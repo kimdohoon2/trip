@@ -4,18 +4,30 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #212121;
+  --bordercolor: #c4c4c4;
+  --lightorange: #ff9900;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #212121;
+  --foreground: #ffffff;
+  --bordercolor: #666666;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply text-base;
+}
+
+/* 라이트 모드 */
+.header-logo {
+  color: var(--foreground);
+}
+
+/* 다크 모드 */
+@media (prefers-color-scheme: dark) {
+  .header-logo {
+    color: var(--foreground);
+  }
 }

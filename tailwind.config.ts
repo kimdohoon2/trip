@@ -11,6 +11,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        textcolor: "var(--textcolor)",
+        lightorange: "var(--lightorange)",
+        bordercolor: "var(--bordercolor)",
       },
     },
   },
