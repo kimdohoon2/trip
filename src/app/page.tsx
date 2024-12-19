@@ -1,3 +1,9 @@
-export default function Home() {
-  return <div>홈</div>;
+import MainSlide from "./components/MainSlide";
+
+export default function HomePage() {
+  return (
+    <>
+      <MainSlide />
+    </>
+  );
 }
