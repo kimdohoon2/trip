@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/app/components/Header";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -19,8 +22,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 쿠키나 로컬 스토리지로 테마 관리 가능
+  const theme = typeof window !== "undefined" && localStorage.getItem("theme");
   return (
-    <html lang="ko">
+    <html lang="ko" className={theme === "dark" ? "dark" : ""}>
       <body className={`${pretendard.className}  antialiased`}>
         <Header />
         <main className="mt-[72px]">{children}</main>
