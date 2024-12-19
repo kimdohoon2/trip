@@ -9,8 +9,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        white: "var(--white)",
+        black: "var(--black)",
+        textcolor: "var(--textcolor)",
+        lightorange: "var(--lightorange)",
+        bordercolor: "var(--bordercolor)",
+        gray: "var(--gray)",
+        custompink: "var(--custompink)",
+        customyellow: "var(--customyellow)",
+        customskyblue: "var(--customskyblue)",
+      },
+      animation: {
+        progress: "progress_ani 3s linear",
+      },
+      keyframes: {
+        progress_ani: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
       },
     },
   },
