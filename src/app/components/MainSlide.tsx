@@ -181,7 +181,7 @@ const MainSlide: React.FC = () => {
                   <em className="py-1 px-2 h-5 leading-5 rounded-tl-lg 2xl:rounded-tl-2xl rounded-tr-lg rounded-br-lg rounded-bl-none text-xs text-white bg-black xl:text-lg">
                     {slide.title}
                   </em>
-                  <p className="mt-3 xl:mt-4 2xl:mt-10 text-[20px] leading-6 lg:leading-10 2xl:leading-[50px] tracking-tight max-h-12 xl:max-h-20 2xl:max-h-28 line-clamp-2 text-black lg:text-[26px] xl:text-[37px] 2xl:text-[44px]">
+                  <p className="mt-3 xl:mt-4 2xl:mt-10 text-xl leading-6 lg:leading-10 2xl:leading-[50px] tracking-tight max-h-12 xl:max-h-20 2xl:max-h-28 line-clamp-2 text-black lg:text-[26px] xl:text-[37px] 2xl:text-[44px]">
                     {slide.description}
                     {slide.description2 && (
                       <>
