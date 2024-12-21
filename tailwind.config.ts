@@ -21,11 +21,16 @@ export default {
       },
       animation: {
         progress: "progress_ani 3s linear",
+        rotate_image: "rotate_image 20s linear infinite",
       },
       keyframes: {
         progress_ani: {
           "0%": { transform: "scaleX(0)" },
           "100%": { transform: "scaleX(1)" },
+        },
+        rotate_image: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
       },
     },
