@@ -3,7 +3,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 export default function Search() {
   return (
     <div className="mb-[10px] lg:mb-0">
-      <div className="block w-auto lg:w-[300px] px-[20px] lg:px-[10px] mr-0 h-[35px] bg-[#eef0f2] lg:bg-transparent rounded-full lg:rounded-none border-transparent lg:border-b lg:border-b-black flex items-center justify-between">
+      <div className="w-auto lg:w-[300px] px-[20px] lg:px-[10px] mr-0 h-[35px] bg-[#eef0f2] lg:bg-transparent rounded-full lg:rounded-none border-transparent lg:border-b lg:border-b-black flex items-center justify-between">
         <input
           className="w-full h-full bg-transparent border-none outline-none placeholder:text-[13px] lg:placeholder:text-[18px] lg:placeholder:font-thin"
           type="text"
