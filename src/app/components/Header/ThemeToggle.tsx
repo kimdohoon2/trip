@@ -34,7 +34,7 @@ export default function ThemeToggle() {
   return (
     <div className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] relative cursor-pointer">
       <div
-        className={`w-full h-full border border-bordercolor rounded-full absolute z-1 transition-opacity duration-300 transition-white-color duration-300 ${
+        className={`w-full h-full border border-bordercolor rounded-full absolute z-1 transition-opacity transition-white-color duration-300 ${
           isDay ? "opacity-100 bg-white" : "opacity-0"
         }`}
         onClick={handleClick}
@@ -45,7 +45,7 @@ export default function ThemeToggle() {
         />
       </div>
       <div
-        className={`w-full h-full border border-bordercolor rounded-full absolute z-2 transition-opacity duration-300 transition-white-color duration-300 ${
+        className={`w-full h-full border border-bordercolor rounded-full absolute z-2 transition-opacity transition-white-color duration-300 ${
           isDay ? "opacity-0" : "opacity-100 bg-black"
         }`}
         onClick={handleClick}
