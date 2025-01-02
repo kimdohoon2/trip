@@ -18,6 +18,7 @@ export default {
         custompink: "var(--custompink)",
         customyellow: "var(--customyellow)",
         customskyblue: "var(--customskyblue)",
+        areabg: "var(--areabg)",
       },
       animation: {
         progress: "progress_ani 3s linear",
