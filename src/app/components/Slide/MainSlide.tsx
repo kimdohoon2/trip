@@ -1,43 +1,22 @@
-"use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller, Autoplay, Navigation } from "swiper/modules";
-import "swiper/css";
-import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
-import { Swiper as SwiperClass } from "swiper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+'use client';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Controller, Autoplay, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
+import { Swiper as SwiperClass } from 'swiper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { MainSlideInfo } from '@/app/constant/SlideConstant';
 
 const MainSlide: React.FC = () => {
-  const slides = [
-    {
-      image: "/main/main1.png",
-      title: "가볼래-터 도착❄",
-      description: "낭만여행 적립",
-      description2: "겨울 여행지 속으로",
-    },
-    {
-      image: "/main/main2.png",
-      title: "자연 그대로의 매력🌲",
-      description: "강원도 양구 감성 충전 코스.zip",
-    },
-    {
-      image: "/main/main3.png",
-      title: " 한옥 스테이와 함께,",
-      description: "논산에서 만나는 여유와 쉼",
-    },
-  ];
-
-  const [galleryTopSwiper, setGalleryTopSwiper] = useState<SwiperClass | null>(
-    null
-  );
-  const [galleryTextSwiper, setGalleryTextSwiper] =
-    useState<SwiperClass | null>(null);
+  const [galleryTopSwiper, setGalleryTopSwiper] = useState<SwiperClass | null>(null);
+  const [galleryTextSwiper, setGalleryTextSwiper] = useState<SwiperClass | null>(null);
 
   const [isPlaying, setIsPlaying] = useState(true); // 슬라이드 재생 상태
   const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드 인덱스
   const progressBarRef = useRef<HTMLDivElement | null>(null); // 프로그레스 바 Ref 추가
-  const [bgColor, setBgColor] = useState("bg-custompink");
+  const [bgColor, setBgColor] = useState('bg-custompink');
   const [showNavigation, setShowNavigation] = useState(false);
 
   useEffect(() => {
@@ -52,36 +31,36 @@ const MainSlide: React.FC = () => {
       if (isPlaying) {
         galleryTopSwiper.autoplay.stop();
         if (progressBarRef.current) {
-          progressBarRef.current.style.animationPlayState = "paused";
+          progressBarRef.current.style.animationPlayState = 'paused';
         }
       } else {
         galleryTopSwiper.autoplay.start();
         if (progressBarRef.current) {
-          progressBarRef.current.style.animationPlayState = "running";
+          progressBarRef.current.style.animationPlayState = 'running';
         }
       }
       setIsPlaying(!isPlaying); // 슬라이드 재생 상태 토글
     } else {
-      console.error("Swiper instance or autoplay is not available.");
+      console.error('Swiper instance or autoplay is not available.');
     }
   };
 
   useEffect(() => {
     if (progressBarRef.current) {
       const progressBar = progressBarRef.current;
-      progressBar.classList.remove("animate-progress");
+      progressBar.classList.remove('animate-progress');
       void progressBar.offsetWidth;
-      progressBar.classList.add("animate-progress");
+      progressBar.classList.add('animate-progress');
     }
   }, [currentSlide]);
 
   useEffect(() => {
     if (currentSlide === 1) {
-      setBgColor("bg-custompink");
+      setBgColor('bg-custompink');
     } else if (currentSlide === 2) {
-      setBgColor("bg-customyellow");
+      setBgColor('bg-customyellow');
     } else if (currentSlide === 3) {
-      setBgColor("bg-customskyblue");
+      setBgColor('bg-customskyblue');
     }
   }, [currentSlide]);
 
@@ -91,20 +70,20 @@ const MainSlide: React.FC = () => {
     }
 
     handleResize(); // 초기 로드 시 실행
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <div
       className={`relative w-full ${bgColor} after-example transition-colors duration-1000 ease-in-out`}
     >
-      <div className="lg:pt-[140px] lg:pb-[80px] relative clearfix">
-        <div className="pl-[15px] pt-[20px] z-5 w-full lg:max-w-[453px] lg:h-[350px] 2xl:max-w-[1027px] h-[300px] md:h-[570px] xl:max-w-[678px] xl:h-[460px] 2xl:h-[570px] float-right relative">
+      <div className="clearfix relative lg:pb-[80px] lg:pt-[140px]">
+        <div className="z-5 relative float-right h-[300px] w-full pl-[15px] pt-[20px] md:h-[570px] lg:h-[350px] lg:max-w-[453px] xl:h-[460px] xl:max-w-[678px] 2xl:h-[570px] 2xl:max-w-[1027px]">
           {/* 이미지 슬라이드 */}
           <Swiper
-            className="galleryTop w-full h-full"
+            className="galleryTop h-full w-full"
             slidesPerView={1} // 화면에 슬라이드 1개만 표시
             breakpoints={{
               1920: {
@@ -115,8 +94,8 @@ const MainSlide: React.FC = () => {
             loop={true}
             navigation={{
               enabled: showNavigation,
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
             }}
             pagination={{ clickable: true }}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -132,11 +111,11 @@ const MainSlide: React.FC = () => {
             effect="slide"
             grabCursor={true}
           >
-            {slides.map((slide, index) => (
-              <SwiperSlide key={index} className="w-full h-full">
-                <div className="relative w-full h-full">
+            {MainSlideInfo.map((slide, index) => (
+              <SwiperSlide key={index} className="h-full w-full">
+                <div className="relative h-full w-full">
                   <Image
-                    className="rounded-tl-[5px] rounded-bl-[5px] lg:rounded-[5px] object-cover"
+                    className="rounded-bl-[5px] rounded-tl-[5px] object-cover lg:rounded-[5px]"
                     src={slide.image}
                     alt={slide.title}
                     fill
@@ -145,7 +124,7 @@ const MainSlide: React.FC = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="hidden w-full h-auto lg:block lg:max-w-[125px] lg:absolute lg:top-[-10%] lg:z-20 lg:left-[-8%] 2xl:top-[-8%] lg:animate-rotate_image lg:transform-origin-center xl:left-[-6%] 2xl:left-[-4%]">
+          <div className="lg:transform-origin-center hidden h-auto w-full lg:absolute lg:left-[-8%] lg:top-[-10%] lg:z-20 lg:block lg:max-w-[125px] lg:animate-rotate_image xl:left-[-6%] 2xl:left-[-4%] 2xl:top-[-8%]">
             <Image
               className="object-contain"
               src="/icons/main_showcase_logo.png"
@@ -155,10 +134,10 @@ const MainSlide: React.FC = () => {
             />
           </div>
         </div>
-        <div className="w-auto relative lg:absolute top-[-15px] lg:top-1/2 xl:top-[40%] 2xl:top-[30%] lg:left-[0%] xl:left-[16%] 2xl:left-[20%] lg:w-[507px]">
+        <div className="relative top-[-15px] w-auto lg:absolute lg:left-[0%] lg:top-1/2 lg:w-[507px] xl:left-[16%] xl:top-[40%] 2xl:left-[20%] 2xl:top-[30%]">
           {/* 텍스트 슬라이드 */}
           <Swiper
-            className="galleryText w-full h-full "
+            className="galleryText h-full w-full"
             slidesPerView={1}
             breakpoints={{
               1920: {
@@ -172,16 +151,16 @@ const MainSlide: React.FC = () => {
             }}
             modules={[Controller]}
           >
-            {slides.map((slide, index) => (
+            {MainSlideInfo.map((slide, index) => (
               <SwiperSlide
                 key={index}
-                className="relative w-full h-full flex justify-center items-center text-white"
+                className="relative flex h-full w-full items-center justify-center text-white"
               >
-                <div className="w-full h-full inline-block transform translate-x-6">
-                  <em className="py-1 px-2 h-5 leading-5 rounded-tl-lg 2xl:rounded-tl-2xl rounded-tr-lg rounded-br-lg rounded-bl-none text-xs text-white bg-black xl:text-lg">
+                <div className="inline-block h-full w-full translate-x-6 transform">
+                  <em className="h-5 rounded-bl-none rounded-br-lg rounded-tl-lg rounded-tr-lg bg-black px-2 py-1 text-xs leading-5 text-white xl:text-lg 2xl:rounded-tl-2xl">
                     {slide.title}
                   </em>
-                  <p className="mt-3 xl:mt-4 2xl:mt-10 text-xl leading-6 lg:leading-10 2xl:leading-[50px] tracking-tight max-h-12 xl:max-h-20 2xl:max-h-28 line-clamp-2 text-black lg:text-[26px] xl:text-[37px] 2xl:text-[44px]">
+                  <p className="mt-3 line-clamp-2 max-h-12 text-xl leading-6 tracking-tight text-black lg:text-[26px] lg:leading-10 xl:mt-4 xl:max-h-20 xl:text-[37px] 2xl:mt-10 2xl:max-h-28 2xl:text-[44px] 2xl:leading-[50px]">
                     {slide.description}
                     {slide.description2 && (
                       <>
@@ -195,35 +174,35 @@ const MainSlide: React.FC = () => {
             ))}
           </Swiper>
         </div>
-        <div className="z-10 px-1 w-[315px] mx-auto relative lg:absolute lg:bottom-[110px] lg:left-5 xl:left-[17%] 2xl:left-[21%] flex justify-between items-center gap-[10px] lg:gap-0 md:w-[700px] lg:w-[370px]">
-          <div className="max-w-[225px] w-full h-[2px] bg-gray md:max-w-none">
+        <div className="relative z-10 mx-auto flex w-[315px] items-center justify-between gap-[10px] px-1 md:w-[700px] lg:absolute lg:bottom-[110px] lg:left-5 lg:w-[370px] lg:gap-0 xl:left-[17%] 2xl:left-[21%]">
+          <div className="h-[2px] w-full max-w-[225px] bg-gray md:max-w-none">
             {/* 프로그레스 바 */}
             <div
               ref={progressBarRef}
-              className="w-full h-[2px] bg-black transform scale-x-0 origin-left relative z-12"
+              className="z-12 relative h-[2px] w-full origin-left scale-x-0 transform bg-black"
             ></div>
           </div>
-          <div className="flex items-center gap-1 ml-[25px] lg:ml-[20px] lg:mr-[60px]">
+          <div className="ml-[25px] flex items-center gap-1 lg:ml-[20px] lg:mr-[60px]">
             {/* 슬라이드 번호 표시 */}
-            <span className="text-black text-[11px] lg:text-base font-bold">
-              {String(currentSlide).padStart(2, "0")}
+            <span className="text-[11px] font-bold text-black lg:text-base">
+              {String(currentSlide).padStart(2, '0')}
             </span>
-            <span className="text-black text-[11px] lg:text-base">/</span>
-            <span className="text-black text-[11px] lg:text-base">
-              {String(slides.length).padStart(2, "0")}
+            <span className="text-[11px] text-black lg:text-base">/</span>
+            <span className="text-[11px] text-black lg:text-base">
+              {String(MainSlideInfo.length).padStart(2, '0')}
             </span>
           </div>
-          <div className="lg:flex lg:items-center lg:w-[200px] lg:justify-between">
+          <div className="lg:flex lg:w-[200px] lg:items-center lg:justify-between">
             {/* 재생/정지 버튼 */}
             {showNavigation && (
               <>
-                <div className="swiper-button-prev text-[18px] cursor-pointer">
+                <div className="swiper-button-prev cursor-pointer text-[18px]">
                   <FontAwesomeIcon icon={faArrowLeft} />
                 </div>
               </>
             )}
             <div
-              className="max-w-[9px] w-full h-auto relative transform -translate-y-[2px] cursor-pointer lg:max-w-[15px]"
+              className="relative h-auto w-full max-w-[9px] -translate-y-[2px] transform cursor-pointer lg:max-w-[15px]"
               onClick={handlePlayPause}
             >
               {isPlaying ? (
@@ -246,7 +225,7 @@ const MainSlide: React.FC = () => {
             </div>
             {showNavigation && (
               <>
-                <div className="swiper-button-next text-[18px] cursor-pointer">
+                <div className="swiper-button-next cursor-pointer text-[18px]">
                   <FontAwesomeIcon icon={faArrowRight} />
                 </div>
               </>
