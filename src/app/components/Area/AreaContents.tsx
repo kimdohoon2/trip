@@ -25,6 +25,7 @@ export default function AreaContents() {
   const slidesPerView = 3;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [onConfirm, setOnConfirm] = useState<(() => void) | undefined>(undefined);
 
   // 데이터 불러오기
   useEffect(() => {
@@ -88,14 +89,31 @@ export default function AreaContents() {
 
   // 하트 상태를 토글하는 함수
   const toggleHeart = (contentid: string) => {
-    setHeartStates((prevStates) => ({
-      ...prevStates,
-      [contentid]: !prevStates[contentid], // 해당 아이템의 상태를 반전
-    }));
-    // 좋아요 클릭 시 모달 열기
-    setModalMessage('좋아요를 클릭하셨습니다!');
-    setIsModalOpen(true);
+    const isLiked = heartStates[contentid];
+
+    if (isLiked) {
+      // 좋아요 취소 확인 모달 열기
+      setModalMessage('좋아요를 취소하시겠습니까?');
+      setOnConfirm(() => () => {
+        setHeartStates((prevStates) => ({
+          ...prevStates,
+          [contentid]: false, // 좋아요 취소
+        }));
+        setIsModalOpen(false); // 모달 닫기
+      });
+      setIsModalOpen(true); // 모달 열기
+    } else {
+      // 좋아요 설정
+      setHeartStates((prevStates) => ({
+        ...prevStates,
+        [contentid]: true, // 좋아요 설정
+      }));
+      setModalMessage('좋아요를 클릭하셨습니다!');
+      setOnConfirm(undefined); // 확인 동작 필요 없음
+      setIsModalOpen(true); // 모달 열기
+    }
   };
+
   // 페이지네이션 상태 업데이트
   const handleSlideChange = (swiper: SwiperClass) => {
     setCurrentPage(swiper.realIndex + 1); // 현재 페이지 인덱스를 1-based로 설정
@@ -127,8 +145,12 @@ export default function AreaContents() {
   const totalPages = Math.ceil(filteredTourData.length / slidesPerView);
   return (
     <>
-      {' '}
-      <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setIsModalOpen(false)} />
+      <Modal
+        isOpen={isModalOpen}
+        message={modalMessage}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={onConfirm}
+      />
       <section className="relative -top-5 rounded-tl-[20px] bg-white pl-4 pt-[20px]">
         <div>
           <h2 className="text-lg">대한민국 구석구석,</h2>
