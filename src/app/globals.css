@@ -12,6 +12,7 @@
   --customyellow: #f2e89e;
   --customskyblue: #dceff5;
   --areabg: #cedcff;
+  --bgopacity: #212121ad;
 }
 .dark {
   --white: #212121;
@@ -24,6 +25,11 @@ body {
   background: var(--white);
   @apply text-base;
 }
+.swiper-grid-column > .swiper-wrapper {
+  flex-wrap: wrap;
+  flex-direction: row !important;
+}
+
 @layer utilities {
   /* after-example 클래스에 :after 가상 요소 스타일 적용 */
   .after-example::after {
