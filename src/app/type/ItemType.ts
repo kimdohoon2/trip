@@ -1,10 +1,10 @@
-export interface Item {
-  code: string[];
-  name: string[];
-  rnum: string[];
-}
-
 export interface AreaItem {
-  code: string;
-  name: string;
+  title: string; // 제목
+  addr1: string; // 주소 (첫 번째 줄)
+  mapx: string; // 지도 x좌표
+  mapy: string; // 지도 y좌표
+  firstimage: string; // 첫 번째 이미지 URL
+  firstimage2: string; // 썸네일 이미지 URL
+  contenttypeid: string; // 컨텐츠 타입 ID
+  contentid: string; // 컨텐츠 ID
 }
