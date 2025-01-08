@@ -25,6 +25,7 @@ body {
   background: var(--white);
   @apply text-base;
 }
+
 .swiper-grid-column > .swiper-wrapper {
   flex-wrap: wrap;
   flex-direction: row !important;

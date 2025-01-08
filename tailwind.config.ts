@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        '1xl': '1440px',
+      },
       colors: {
         white: 'var(--white)',
         black: 'var(--black)',
