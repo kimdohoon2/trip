@@ -1,15 +1,6 @@
-interface MainSlide {
-  title: string;
-  image: string;
-  description: string;
-  description2?: string;
-}
-interface AreaSlide {
-  title: string;
-  image: string;
-}
+import { MainSlideType, AreaSlideType } from '@/app/type/ItemType';
 
-export const MainSlideInfo: MainSlide[] = [
+export const MainSlideInfo: MainSlideType[] = [
   {
     image: '/main/main1.png',
     title: '가볼래-터 도착❄',
@@ -27,7 +18,7 @@ export const MainSlideInfo: MainSlide[] = [
     description: '논산에서 만나는 여유와 쉼',
   },
 ];
-export const AreaHeaderSlide: AreaSlide[] = [
+export const AreaHeaderSlide: AreaSlideType[] = [
   {
     image: '/area/1.png',
     title: '전국',
@@ -101,3 +92,9 @@ export const AreaHeaderSlide: AreaSlide[] = [
     title: '세종',
   },
 ];
+
+export const categoryMap: { [key: string]: string } = {
+  '음식점 🍽️': '39',
+  '관광지 🏛️': '12',
+  '문화시설 🎨': '14',
+};
