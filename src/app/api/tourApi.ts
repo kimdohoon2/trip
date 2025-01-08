@@ -5,14 +5,36 @@ import { AreaItem } from '../type/ItemType';
 const TOUR_API_KEY = process.env.NEXT_PUBLIC_TOUR_API_KEY;
 const TourAPiUrl = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1';
 
+const areaCodeMap: { [key: string]: string } = {
+  전국: '',
+  서울: '1',
+  인천: '2',
+  대전: '3',
+  대구: '4',
+  광주: '5',
+  부산: '6',
+  울산: '7',
+  세종: '8',
+  경기: '31',
+  강원: '32',
+  충북: '33',
+  충남: '34',
+  경북: '35',
+  경남: '36',
+  전북: '37',
+  전남: '38',
+  제주: '39',
+};
+
 // 지역기반관광정보조회
-export const TourListApi = async (): Promise<AreaItem[]> => {
+export const TourListApi = async (selectedArea: string): Promise<AreaItem[]> => {
+  const areaCode = areaCodeMap[selectedArea] || ''; // 선택된 지역에 맞는 areaCode
   const params = {
     MobileApp: 'AppTest',
     MobileOS: 'ETC',
     pageNo: 1,
-    numOfRows: 50,
-    areaCode: '',
+    numOfRows: 100,
+    areaCode,
     arrange: 'R',
     listYN: 'Y',
   };
