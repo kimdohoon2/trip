@@ -14,6 +14,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Common/modal';
 import { categoryMap } from '@/app/constant/SlideConstant';
 import Link from 'next/link';
+import Spinner from '@/app/components/Common/Spinner';
 
 export default function AreaContents({
   tourData,
@@ -82,8 +83,7 @@ export default function AreaContents({
 
     // return { filteredTourData: filteredData, categories, availableCategories };
   }, [loading, error, tourData, category, windowSize]);
-  console.log('전체 데이터:', tourData);
-  console.log('필터링된 데이터:', filteredTourData);
+
   // 하트 상태를 토글하는 함수
   const toggleHeart = (contentid: string) => {
     const isLiked = heartStates[contentid];
@@ -120,15 +120,29 @@ export default function AreaContents({
   // 로딩화면
   if (loading) {
     return (
-      <div className="flex h-full items-center justify-center text-lg text-blue-500">
-        로딩 중...
+      <div className="mt-60">
+        <Spinner />
+        <p className="text-center">잠시만 기다려 주세요.</p>
       </div>
     );
   }
 
   // 에러화면
   if (error) {
-    return <div className="text-center text-red-600">오류: {error}</div>;
+    return (
+      <div className="mt-7 flex flex-col items-center gap-3">
+        <div className="w-[122px]">
+          <Image
+            className="h-full w-full object-cover"
+            src="/error/data-error.svg"
+            alt="data-error"
+            width={120}
+            height={120}
+          ></Image>
+        </div>
+        <div className="text-center text-red-600">오류: {error}</div>
+      </div>
+    );
   }
 
   return (
@@ -139,12 +153,12 @@ export default function AreaContents({
         onClose={() => setIsModalOpen(false)}
         onConfirm={onConfirm}
       />
-      <section className="1xl:max-w-[1000px] 1xl:m-auto 1xl:pl-0 1xl:pr-0 relative -top-5 rounded-tl-[20px] bg-white pb-10 pl-4 pt-5 lg:-top-0 lg:px-6 lg:pb-12 lg:pt-12">
+      <section className="relative -top-5 rounded-tl-[20px] bg-white pb-10 pl-4 pt-5 lg:-top-0 lg:px-6 lg:pb-12 lg:pt-12 1xl:m-auto 1xl:max-w-[1000px] 1xl:pl-0 1xl:pr-0">
         <h2 className="text-lg lg:text-2xl">{regionText}</h2>
         <div className="align-center relative flex items-center">
           <span className="mr-2 text-sm text-bgopacity lg:text-2xl">다양한</span>
           <button onClick={() => setVisible(!visible)}>
-            <div className="1xl:w-[195px] z-20 flex w-[120px] justify-between border-b border-black bg-white text-lg font-bold lg:w-[170px] lg:text-3xl">
+            <div className="z-20 flex w-[120px] justify-between border-b border-black bg-white text-lg font-bold lg:w-[170px] lg:text-3xl 1xl:w-[195px]">
               {category}
               <span>
                 <FontAwesomeIcon
