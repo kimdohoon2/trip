@@ -23,6 +23,7 @@ export default {
         customskyblue: 'var(--customskyblue)',
         areabg: 'var(--areabg)',
         bgopacity: 'var(--bgopacity)',
+        bluebell: 'var(--bluebell)',
       },
       animation: {
         progress: 'progress_ani 3s linear',

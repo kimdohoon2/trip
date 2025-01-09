@@ -13,6 +13,7 @@
   --customskyblue: #dceff5;
   --areabg: #cedcff;
   --bgopacity: #212121ad;
+  --bluebell: #979fd0;
 }
 .dark {
   --white: #212121;
@@ -29,6 +30,22 @@ body {
 .swiper-grid-column > .swiper-wrapper {
   flex-wrap: wrap;
   flex-direction: row !important;
+}
+
+/* 스피너 스타일 */
+
+@keyframes fancy {
+  to {
+    transform: rotate(360deg) scale(0.5);
+  }
+}
+
+.animate-fancy {
+  animation: fancy 2s infinite alternate;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
 }
 
 @layer utilities {
