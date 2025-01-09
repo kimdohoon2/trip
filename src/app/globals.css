@@ -25,13 +25,13 @@ body {
   color: var(--black);
   background: var(--white);
   @apply text-base;
+  overflow-y: scroll; /* 세로 스크롤을 항상 표시 */
 }
 
 .swiper-grid-column > .swiper-wrapper {
   flex-wrap: wrap;
   flex-direction: row !important;
 }
-
 /* 스피너 스타일 */
 
 @keyframes fancy {
