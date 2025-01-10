@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/app/components/Header/Header';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import Providers from './providers';
 config.autoAddCss = false;
 
 const pretendard = localFont({
@@ -27,8 +28,10 @@ export default function RootLayout({
   return (
     <html lang="ko" className={theme === 'dark' ? 'dark' : ''}>
       <body className={`${pretendard.className} antialiased`}>
-        <Header />
-        <main className="mt-[140px] md:mt-[140px] lg:mt-0">{children}</main>
+        <Providers>
+          <Header />
+          <main className="mt-[140px] md:mt-[140px] lg:mt-0">{children}</main>
+        </Providers>
       </body>
     </html>
   );
