@@ -5,29 +5,55 @@
 :root {
   --white: #ffffff;
   --black: #212121;
+  --red: #ea3c12;
   --bordercolor: #c4c4c4;
   --gray: #b2b2b2;
   --lightorange: #ff9900;
   --custompink: #ffcddb;
   --customyellow: #f2e89e;
   --customskyblue: #dceff5;
-  --areabg : #CEDCFF;
+  --areabg: #cedcff;
+  --bgopacity: #212121ad;
+  --bluebell: #979fd0;
 }
 .dark {
   --white: #212121;
   --black: #ffffff;
   --bordercolor: #666666;
+  --bgopacity: #ffffffad;
 }
 
 body {
   color: var(--black);
   background: var(--white);
   @apply text-base;
+  overflow-y: scroll; /* 세로 스크롤을 항상 표시 */
 }
+
+.swiper-grid-column > .swiper-wrapper {
+  flex-wrap: wrap;
+  flex-direction: row !important;
+}
+/* 스피너 스타일 */
+
+@keyframes fancy {
+  to {
+    transform: rotate(360deg) scale(0.5);
+  }
+}
+
+.animate-fancy {
+  animation: fancy 2s infinite alternate;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
 @layer utilities {
   /* after-example 클래스에 :after 가상 요소 스타일 적용 */
   .after-example::after {
-    content: "";
+    content: '';
     display: block;
     width: 100%;
     height: 160px;
@@ -41,7 +67,7 @@ body {
   }
 
   .nav-affter::after {
-    content: "";
+    content: '';
     display: inline-block;
     width: 0%;
     height: 2px;
@@ -62,7 +88,7 @@ body {
       height: 5px;
     }
     .nav-affter::after {
-      content: "";
+      content: '';
       display: inline-block;
       width: 0px;
       height: 0px;
@@ -76,7 +102,7 @@ body {
       transition: width 0.3s ease;
     }
     .clearfix::after {
-      content: "";
+      content: '';
       display: table;
       clear: both;
     }
