@@ -8,19 +8,9 @@ export interface AreaItem {
   contenttypeid: string; // 컨텐츠 타입 ID
   contentid: string; // 컨텐츠 ID
   areaCode: string; // 지역 코드
-}
-
-export interface AreaContentsProps {
-  tourData: AreaItem[];
   loading: boolean;
-  error: string | null;
-  selectedArea: string;
 }
 
-export interface AreaSlideProps {
-  selectedArea: string;
-  setSelectedArea: (area: string) => void;
-}
 export interface MainSlideType {
   title: string;
   image: string;
