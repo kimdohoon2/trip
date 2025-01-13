@@ -14,6 +14,7 @@ export default {
       colors: {
         white: 'var(--white)',
         black: 'var(--black)',
+        red: 'var(--red)',
         textcolor: 'var(--textcolor)',
         lightorange: 'var(--lightorange)',
         bordercolor: 'var(--bordercolor)',
