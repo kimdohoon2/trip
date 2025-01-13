@@ -5,6 +5,7 @@
 :root {
   --white: #ffffff;
   --black: #212121;
+  --red: #ea3c12;
   --bordercolor: #c4c4c4;
   --gray: #b2b2b2;
   --lightorange: #ff9900;
@@ -19,6 +20,7 @@
   --white: #212121;
   --black: #ffffff;
   --bordercolor: #666666;
+  --bgopacity: #ffffffad;
 }
 
 body {
