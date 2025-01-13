@@ -3,21 +3,28 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller, Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
-import { Swiper as SwiperClass } from 'swiper';
+import { useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { MainSlideInfo } from '@/app/constant/SlideConstant';
+import { useMainSlideStore } from '@/app/stores/useMainSlideStore';
 
 const MainSlide: React.FC = () => {
-  const [galleryTopSwiper, setGalleryTopSwiper] = useState<SwiperClass | null>(null);
-  const [galleryTextSwiper, setGalleryTextSwiper] = useState<SwiperClass | null>(null);
-
-  const [isPlaying, setIsPlaying] = useState(true); // 슬라이드 재생 상태
-  const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드 인덱스
-  const progressBarRef = useRef<HTMLDivElement | null>(null); // 프로그레스 바 Ref 추가
-  const [bgColor, setBgColor] = useState('bg-custompink');
-  const [showNavigation, setShowNavigation] = useState(false);
+  const progressBarRef = useRef<HTMLDivElement | null>(null); // 로컬 useRef로 관리
+  const {
+    galleryTopSwiper,
+    setGalleryTopSwiper,
+    galleryTextSwiper,
+    setGalleryTextSwiper,
+    isPlaying,
+    setIsPlaying,
+    currentSlide,
+    setCurrentSlide,
+    bgColor,
+    setBgColor,
+    showNavigation,
+    setShowNavigation,
+  } = useMainSlideStore();
 
   useEffect(() => {
     if (galleryTopSwiper && galleryTextSwiper) {
