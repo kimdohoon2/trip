@@ -1,6 +1,6 @@
 import axios from 'axios';
 import xml2js from 'xml2js';
-import { AreaItem } from '../type/ItemType';
+import { AreaItem } from '../types/ItemType';
 
 const TOUR_API_KEY = process.env.NEXT_PUBLIC_TOUR_API_KEY;
 const TourAPiUrl = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1';

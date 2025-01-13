@@ -1,4 +1,4 @@
-import { MainSlideType, AreaSlideType } from '@/app/type/ItemType';
+import { MainSlideType, AreaSlideType } from '@/app/types/ItemType';
 
 export const MainSlideInfo: MainSlideType[] = [
   {
