@@ -7,12 +7,14 @@ import 'swiper/css';
 import Image from 'next/image';
 import { AreaHeaderSlide } from '@/app/constant/SlideConstant';
 import { useState, useRef, useEffect } from 'react';
-import { AreaSlideProps } from '@/app/type/ItemType';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons';
 import Spinner from '@/app/components/Common/Spinner';
+import { useAreaStore } from '@/app/stores/useAreaStore';
 
-export default function AreaSlide({ selectedArea, setSelectedArea }: AreaSlideProps) {
+export default function AreaSlide() {
+  const { selectedArea, setSelectedArea } = useAreaStore();
+
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const swiperRef = useRef<SwiperType | null>(null);
 

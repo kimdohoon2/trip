@@ -1,38 +1,39 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useMemo, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperClass } from 'swiper';
 import { Grid } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/grid';
-import Image from 'next/image';
-import { AreaContentsProps } from '@/app/type/ItemType';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../Common/modal';
 import { categoryMap } from '@/app/constant/SlideConstant';
-import Link from 'next/link';
+import { useTourData } from '@/app/hooks/useTourData';
+import { useAreaStore } from '@/app/stores/useAreaStore';
+import { useToastStore } from '@/app/stores/useToastStore';
 import Spinner from '@/app/components/Common/Spinner';
+import Toast from '../Common/Toast';
 
-export default function AreaContents({
-  tourData,
-  loading,
-  error,
-  selectedArea,
-}: AreaContentsProps) {
-  const [visible, setVisible] = useState<boolean>(false);
-  const [heartStates, setHeartStates] = useState<{ [key: string]: boolean }>({});
-  const [category, setCategory] = useState('음식점 🍽️');
-  const [currentPage, setCurrentPage] = useState(1);
-  const slidesPerView = 3;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const [onConfirm, setOnConfirm] = useState<(() => void) | undefined>(undefined);
-  const [windowSize, setWindowSize] = useState<number>(
-    typeof window !== 'undefined' ? window.innerWidth : 0
-  );
+export default function AreaContents() {
+  const {
+    selectedArea,
+    visible,
+    setVisible,
+    heartStates,
+    setHeartStates,
+    category,
+    setCategory,
+    currentPage,
+    setCurrentPage,
+    slidesPerView,
+    windowSize,
+    setWindowSize,
+  } = useAreaStore();
+  const { data: tourData = [], isLoading, error } = useTourData(selectedArea);
 
   // 지역에 따라 텍스트 변경
   const regionText = selectedArea === '전국' ? '대한민국 구석구석,' : '우리지역,';
@@ -50,10 +51,11 @@ export default function AreaContents({
     };
   }, []);
 
-  // 지역 선택 시에도 currentPage 초기화
   useEffect(() => {
-    setCurrentPage(1);
-  }, [tourData]); // tourData가 변경될 때마다 초기화
+    if (tourData && tourData.length > 0) {
+      setCurrentPage(1); // 데이터가 변경되면 페이지를 초기화
+    }
+  }, [tourData, category]); // tourData나 category가 변경될 때만 실행
 
   // useMemo를 활용해 불필요한 렌더링방지
   const { filteredTourData, availableCategories } = useMemo(() => {
@@ -70,7 +72,7 @@ export default function AreaContents({
         addr1: item.addr1.split(' ').slice(0, 2).join(' '), // '서울특별시 ○○구'로 축약
       }));
 
-    if (loading || error) {
+    if (isLoading || error) {
       return { filteredTourData: [], availableCategories: [] };
     }
 
@@ -80,32 +82,29 @@ export default function AreaContents({
       filteredTourData: filteredData.slice(0, maxItems), // 슬라이싱된 데이터 반환
       availableCategories,
     };
+  }, [isLoading, error, tourData, category, windowSize]);
 
-    // return { filteredTourData: filteredData, categories, availableCategories };
-  }, [loading, error, tourData, category, windowSize]);
-
-  // 하트 상태를 토글하는 함수
   const toggleHeart = (contentid: string) => {
     const isLiked = heartStates[contentid];
 
     if (isLiked) {
-      setModalMessage('좋아요를 취소하시겠습니까?');
-      setOnConfirm(() => () => {
-        setHeartStates((prevStates) => ({
-          ...prevStates,
-          [contentid]: false,
-        }));
-        setIsModalOpen(false);
+      setHeartStates((prevStates) => ({
+        ...prevStates,
+        [contentid]: false,
+      }));
+      useToastStore.setState({
+        message: '좋아요가 취소되었습니다!',
+        type: 'error', // 취소 시 에러 타입
       });
-      setIsModalOpen(true);
     } else {
       setHeartStates((prevStates) => ({
         ...prevStates,
         [contentid]: true,
       }));
-      setModalMessage('좋아요를 클릭하셨습니다!');
-      setOnConfirm(undefined);
-      setIsModalOpen(true);
+      useToastStore.setState({
+        message: '좋아요를 클릭하셨습니다!',
+        type: 'success', // 추가 시 성공 타입
+      });
     }
   };
 
@@ -118,7 +117,7 @@ export default function AreaContents({
   const totalPages = Math.ceil(filteredTourData.length / slidesPerView);
 
   // 로딩화면
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="mt-60">
         <Spinner />
@@ -140,19 +139,14 @@ export default function AreaContents({
             height={120}
           ></Image>
         </div>
-        <div className="text-center text-red-600">오류: {error}</div>
+        <div className="text-center text-red-600">오류</div>
       </div>
     );
   }
 
   return (
     <>
-      <Modal
-        isOpen={isModalOpen}
-        message={modalMessage}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={onConfirm}
-      />
+      <Toast />
       <section className="relative -top-5 rounded-tl-[20px] bg-white pb-10 pl-4 pt-5 lg:-top-0 lg:px-6 lg:pb-12 lg:pt-12 1xl:m-auto 1xl:max-w-[1000px] 1xl:pl-0 1xl:pr-0">
         <h2 className="text-lg lg:text-2xl">{regionText}</h2>
         <div className="align-center relative flex items-center">
