@@ -89,7 +89,8 @@ export const LocationApi = async (): Promise<{ items: AreaItem[]; areaCode: stri
     // XML 데이터를 JSON으로 변환
     const parsedData = await xml2js.parseStringPromise(response.data, { explicitArray: false });
 
-    console.log('Parsed API Response:', JSON.stringify(parsedData, null, 2));
+    // 전체 구조를 확인
+    // console.log('Parsed API Response:', JSON.stringify(parsedData, null, 2));
 
     // API 응답에서 items가 없거나 잘못된 경우 처리
     const items = parsedData.response?.body?.items?.item || [];
