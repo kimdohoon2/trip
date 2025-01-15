@@ -1,8 +1,10 @@
 import { create } from 'zustand';
+import { AreaItem, UserLocation } from '../types/ItemType';
 
-export interface AreaSlideProps {
+// Zustand 상태 타입
+export interface AreaStoreState {
   selectedArea: string;
-  setSelectedArea: (area?: string) => void;
+  setSelectedArea: (area: string) => void;
   visible: boolean;
   setVisible: (visible: boolean) => void;
   heartStates: { [key: string]: boolean };
@@ -14,34 +16,33 @@ export interface AreaSlideProps {
   currentPage: number;
   setCurrentPage: (currentPage: number) => void;
   slidesPerView: number;
-  isModalOpen: boolean;
-  setIsModalOpen: (isOpen: boolean) => void;
-  modalMessage: string;
-  setModalMessage: (message: string) => void;
-  onConfirm: (() => void) | undefined;
-  setOnConfirm: (onConfirm: (() => void) | undefined) => void;
   windowSize: number;
   setWindowSize: (size: number) => void;
+  userLocation: UserLocation;
+  setUserLocation: (location: UserLocation) => void;
+  locationData: AreaItem[];
+  setLocationData: (data: AreaItem[]) => void;
 }
 
-export const useAreaStore = create<AreaSlideProps>((set) => ({
+export const useAreaStore = create<AreaStoreState>((set) => ({
   selectedArea: '전국',
   setSelectedArea: (area) => set({ selectedArea: area }),
   visible: false,
   setVisible: (visible) => set({ visible }),
   heartStates: {},
-  setHeartStates: (setter) => set((state) => ({ heartStates: setter(state.heartStates) })),
+  setHeartStates: (setter) =>
+    set((state) => ({
+      heartStates: setter(state.heartStates),
+    })),
   category: '음식점 🍽️',
   setCategory: (category) => set({ category }),
   currentPage: 1,
   setCurrentPage: (currentPage) => set({ currentPage }),
   slidesPerView: 3,
-  isModalOpen: false,
-  setIsModalOpen: (isOpen) => set({ isModalOpen: isOpen }),
-  modalMessage: '',
-  setModalMessage: (message) => set({ modalMessage: message }),
-  onConfirm: undefined,
-  setOnConfirm: (onConfirm) => set({ onConfirm }),
   windowSize: typeof window !== 'undefined' ? window.innerWidth : 0,
   setWindowSize: (size) => set({ windowSize: size }),
+  userLocation: null,
+  setUserLocation: (location) => set({ userLocation: location }),
+  locationData: [],
+  setLocationData: (data: AreaItem[]) => set({ locationData: data }),
 }));
