@@ -1,4 +1,4 @@
-import { MainSlideType, AreaSlideType } from '@/app/types/ItemType';
+import { MainSlideType, AreaSlideType, AccomdationType } from '@/app/types/ItemType';
 
 export const MainSlideInfo: MainSlideType[] = [
   {
@@ -18,6 +18,7 @@ export const MainSlideInfo: MainSlideType[] = [
     description: '논산에서 만나는 여유와 쉼',
   },
 ];
+
 export const AreaHeaderSlide: AreaSlideType[] = [
   {
     image: '/area/1.png',
@@ -120,3 +121,23 @@ export const areaCodeMap: { [key: string]: string } = {
   전남: '38',
   제주: '39',
 };
+
+export const AccomdationDate: AccomdationType[] = [
+  {
+    image: '/icons/hotel1.png',
+    title: '베니키아',
+    description: '합리적인 가격에 깔끔하고 편안한 밤을! 한국관광공사 인증, 가성비 최고 호텔 체인.',
+  },
+  {
+    image: '/icons/hotel2.png',
+    title: '한옥',
+    description:
+      '고즈넉한 아름다움과 현대적인 편리함의 조화! 전통 가옥에서 특별한 하룻밤을 경험하세요.',
+  },
+  {
+    image: '/icons/hotel3.png',
+    title: '굿스테이',
+    description:
+      '굿스테이: 안심하고 편안하게! 한국관광공사가 보증하는 우수 숙박시설에서 즐거운 여행을!',
+  },
+];
