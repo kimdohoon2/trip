@@ -1,11 +1,13 @@
-import { useAreaStore } from '@/app/stores/useAreaStore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { useInteractionStore } from '@/app/stores/useInteractionStore';
+import { useUIStore } from '@/app/stores/useAreaUiStore';
 interface CategorySelectorTypes {
   availableCategories: string[];
 }
 export default function CategorySelector({ availableCategories }: CategorySelectorTypes) {
-  const { category, setCategory, visible, setVisible } = useAreaStore();
+  const { category, setCategory } = useInteractionStore();
+  const { visible, setVisible } = useUIStore();
   return (
     <div className="align-center relative flex items-center">
       <span className="mr-2 text-sm text-bgopacity lg:text-2xl">다양한</span>

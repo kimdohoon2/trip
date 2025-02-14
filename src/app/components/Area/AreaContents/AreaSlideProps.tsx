@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { useAreaStore } from '@/app/stores/useAreaStore';
+import { useInteractionStore } from '@/app/stores/useInteractionStore';
 import { useToastStore } from '@/app/stores/useToastStore';
 
 interface ItemTypes {
@@ -12,7 +12,7 @@ interface ItemTypes {
 }
 
 export default function AreaSlideProps({ item }: { item: ItemTypes }) {
-  const { heartStates, setHeartStates } = useAreaStore();
+  const { heartStates, setHeartStates } = useInteractionStore();
   // 좋아요 버튼 함수
   const toggleHeart = (contentid: string) => {
     const isLiked = heartStates[contentid];

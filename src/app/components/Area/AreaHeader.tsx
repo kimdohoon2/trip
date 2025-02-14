@@ -1,11 +1,12 @@
 'use client';
+
 import AreaSlide from './AreaSlide';
-import { useState } from 'react';
-import { useAreaStore } from '@/app/stores/useAreaStore';
+import { useInteractionStore } from '@/app/stores/useInteractionStore';
+import { useLocationStore } from '@/app/stores/useLocationStore';
 
 export default function AreaHeader() {
-  const { setUserLocation } = useAreaStore();
-  const [myLocationButton, setMyLocationButton] = useState(false); // myLocationButton 상태 추가
+  const { myLocationButton, setMyLocationButton } = useInteractionStore();
+  const { setUserLocation } = useLocationStore();
 
   // 위치 클릭 핸들러
   const handleLocationClick = () => {
@@ -20,7 +21,7 @@ export default function AreaHeader() {
         setUserLocation({ latitude, longitude });
 
         // 위치 정보 가져오고 버튼 상태를 토글하여 이동시키기
-        setMyLocationButton((prev) => !prev); // 상태를 반전시켜서 왼쪽/오른쪽으로 번갈아 이동
+        setMyLocationButton(!myLocationButton); // 상태를 반전시켜서 왼쪽/오른쪽으로 번갈아 이동
       },
       (error) => {
         console.error('위치 정보 오류:', error);
@@ -31,7 +32,7 @@ export default function AreaHeader() {
 
   return (
     <div className="bg-areabg pb-8 pt-3 lg:pb-0 lg:pt-28 1xl:pt-20">
-      <div className="relative right-5 mb-2 flex items-center justify-end lg:right-7 1xl:right-16">
+      <div className="relative right-5 mb-2 flex items-center justify-end lg:right-7 lg:hidden 1xl:right-16">
         <label className="mx-[5px] text-[11px] text-black lg:text-base">내위치</label>
         <button
           className={`relative h-[13px] w-[22px] rounded-3xl lg:h-[15px] lg:w-[30px] ${myLocationButton ? 'bg-black' : 'bg-gray'}`}

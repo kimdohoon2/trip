@@ -10,13 +10,15 @@ import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons';
 import Spinner from '@/app/components/Common/Spinner';
-import { useAreaStore } from '@/app/stores/useAreaStore';
 import { useLocationData } from '@/app/hooks/useTourData';
+import { useLocationStore } from '@/app/stores/useLocationStore';
+import { useUIStore } from '@/app/stores/useAreaUiStore';
 
 export default function AreaSlide() {
   // 상태 변수 및 훅
-  const { selectedArea, setSelectedArea, userLocation } = useAreaStore();
+  const { userLocation } = useLocationStore();
   const { data: locationData } = useLocationData();
+  const { selectedArea, setSelectedArea } = useUIStore();
 
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -50,12 +52,12 @@ export default function AreaSlide() {
 
       if (areaCode) {
         const areaName = Object.keys(areaCodeMap).find((key) => areaCodeMap[key] === areaCode);
-        if (areaName) {
-          setSelectedArea(areaName);
+        if (areaName && areaName !== selectedArea) {
+          setSelectedArea(areaName); // 기존 상태와 다를 경우에만 업데이트
         }
       }
     }
-  }, [userLocation, locationData, setSelectedArea]);
+  }, [userLocation, locationData, selectedArea, setSelectedArea]);
 
   // activeIndex가 -1인 경우 로딩 상태로 Spinner 컴포넌트를 표시
   if (activeIndex === -1) {

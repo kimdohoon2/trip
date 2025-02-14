@@ -8,7 +8,6 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import { categoryMap } from '@/app/constant/SlideConstant';
 import { useTourData, useLocationData } from '@/app/hooks/useTourData';
-import { useAreaStore } from '@/app/stores/useAreaStore';
 import Spinner from '@/app/components/Common/Spinner';
 import Toast from '../../Common/Toast';
 import CategorySelector from './CategorySelector';
@@ -18,20 +17,15 @@ import AreaError from './AreaError';
 import AreaEmptyState from './AreaEmptyState';
 import AreaSlideProps from './AreaSlideProps';
 import { AreaItem } from '@/app/types/ItemType';
+import { useInteractionStore } from '@/app/stores/useInteractionStore';
+import { useLocationStore } from '@/app/stores/useLocationStore';
+import { useUIStore } from '@/app/stores/useAreaUiStore';
 
 export default function AreaContents() {
   // 상태값 가져오기
-  const {
-    selectedArea,
-    category,
-    setCurrentPage,
-    slidesPerView,
-    windowSize,
-    setWindowSize,
-    userLocation,
-    setUserLocation,
-    setSelectedArea,
-  } = useAreaStore();
+  const { selectedArea, slidesPerView, windowSize, setWindowSize, setSelectedArea } = useUIStore();
+  const { category, setCurrentPage } = useInteractionStore();
+  const { userLocation, setUserLocation } = useLocationStore();
 
   // 여행지 데이터 가져오기
   const {

@@ -1,11 +1,11 @@
-import { useAreaStore } from '@/app/stores/useAreaStore';
+import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
 interface ProgressBarTypes {
   totalPages: number;
 }
 
 export default function ProgressBar({ totalPages }: ProgressBarTypes) {
-  const { currentPage } = useAreaStore();
+  const { currentPage } = useInteractionStore();
 
   // 현재 페이지에 대한 이동 위치 (progressLeft)
   const progressLeft = ((currentPage - 1) / totalPages) * 100;
