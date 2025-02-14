@@ -22,6 +22,11 @@ export interface MainSlideType {
   description: string;
   description2?: string;
 }
+export interface AccomdationType {
+  title: string;
+  image: string;
+  description: string;
+}
 export interface AreaSlideType {
   title: string;
   image: string;
