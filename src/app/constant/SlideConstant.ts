@@ -137,7 +137,6 @@ export const AccomdationDate: AccomdationType[] = [
   {
     image: '/icons/hotel3.png',
     title: '굿스테이',
-    description:
-      '굿스테이: 안심하고 편안하게! 한국관광공사가 보증하는 우수 숙박시설에서 즐거운 여행을!',
+    description: '안심하고 편안하게! 한국관광공사가 보증하는 우수 숙박시설에서 즐거운 여행을!',
   },
 ];
