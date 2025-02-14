@@ -1,16 +1,21 @@
 export interface AreaItem {
-  title: string; // 제목
-  addr1: string; // 주소 (첫 번째 줄)
-  mapx: string; // 지도 x좌표
-  mapy: string; // 지도 y좌표
-  firstimage: string; // 첫 번째 이미지 URL
-  firstimage2: string; // 썸네일 이미지 URL
-  contenttypeid: string; // 컨텐츠 타입 ID
-  contentid: string; // 컨텐츠 ID
-  areaCode: string; // 지역 코드
-  loading: boolean;
+  title: string;
+  addr1: string;
+  mapx: string;
+  mapy: string;
+  firstimage: string;
+  firstimage2: string;
+  contenttypeid: string;
+  contentid: string;
+  areaCode?: string;
+  dist?: string;
+  radius?: string;
+  areacode?: string;
 }
-
+export interface LocationApiResponse {
+  items: AreaItem[];
+  areaCode: string;
+}
 export interface MainSlideType {
   title: string;
   image: string;
@@ -21,3 +26,9 @@ export interface AreaSlideType {
   title: string;
   image: string;
 }
+
+// 사용자 위치 타입
+export type UserLocation = {
+  latitude: number;
+  longitude: number;
+} | null;
