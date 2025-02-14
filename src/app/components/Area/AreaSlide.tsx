@@ -10,7 +10,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons';
 import Spinner from '@/app/components/Common/Spinner';
-import { useLocationData } from '@/app/hooks/useTourData';
+import { useLocationData } from '@/app/hooks/useLocationData';
 import { useLocationStore } from '@/app/stores/useLocationStore';
 import { useUIStore } from '@/app/stores/useAreaUiStore';
 
