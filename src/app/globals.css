@@ -78,23 +78,6 @@ body {
     transform: translate(-50%);
     transition: width 0.3s ease;
   }
-  .accomdation-li::before {
-    width: 22px;
-    height: 12px;
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    background-image: url('/icons/accomdation_arrow_down.png');
-    opacity: 0; /* 기본은 안 보이게 */
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .accomdation-li.selected::before {
-    opacity: 1; /* 선택된 항목에만 보이게 */
-  }
   @media all and (min-width: 1024px) {
     .nav-affter.on::after {
       width: 5px;
