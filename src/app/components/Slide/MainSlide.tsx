@@ -1,6 +1,8 @@
 'use client';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller, Autoplay, Navigation } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
@@ -11,6 +13,8 @@ import { useMainSlideStore } from '@/app/stores/useMainSlideStore';
 
 const MainSlide: React.FC = () => {
   const progressBarRef = useRef<HTMLDivElement | null>(null); // 로컬 useRef로 관리
+  const topSwiperRef = useRef<SwiperType | null>(null);
+  const textSwiperRef = useRef<SwiperType | null>(null);
   const {
     galleryTopSwiper,
     setGalleryTopSwiper,
@@ -27,11 +31,14 @@ const MainSlide: React.FC = () => {
   } = useMainSlideStore();
 
   useEffect(() => {
-    if (galleryTopSwiper && galleryTextSwiper) {
-      galleryTopSwiper.controller.control = galleryTextSwiper;
-      galleryTextSwiper.controller.control = galleryTopSwiper;
+    const topSwiper = topSwiperRef.current;
+    const textSwiper = textSwiperRef.current;
+
+    if (topSwiper && textSwiper) {
+      topSwiper.controller.control = textSwiper;
+      textSwiper.controller.control = topSwiper;
     }
-  }, [galleryTopSwiper, galleryTextSwiper]);
+  }, []);
 
   const handlePlayPause = () => {
     if (galleryTopSwiper && galleryTopSwiper.autoplay) {

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-export default function AreaError() {
+export default function DataError() {
   return (
     <>
       <div className="w-[122px]">

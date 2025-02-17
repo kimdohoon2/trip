@@ -18,6 +18,7 @@ export const MainSlideInfo: MainSlideType[] = [
     description: '논산에서 만나는 여유와 쉼',
   },
 ];
+
 export const AreaHeaderSlide: AreaSlideType[] = [
   {
     image: '/area/1.png',

@@ -12,6 +12,22 @@ export interface AreaItem {
   radius?: string;
   areacode?: string;
 }
+
+export interface StayItem {
+  title: string;
+  addr1: string;
+  mapx: string;
+  mapy: string;
+  firstimage: string;
+  firstimage2: string;
+  contentid: string;
+  contenttypeid: string;
+  benikia?: string; // 베니케아 여부
+  hanok?: string; // 한옥 여부
+  goodstay?: string; // 굿스테이 여부
+  areaCode?: string; // 지역 코드
+}
+
 export interface LocationApiResponse {
   items: AreaItem[];
   areaCode: string;

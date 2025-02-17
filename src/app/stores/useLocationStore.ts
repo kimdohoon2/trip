@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { AreaItem, UserLocation } from '../types/ItemType';
+import { AreaItem, UserLocation } from '@/app/types/ItemType';
 
 // 위치 데이터 상태 타입
 export interface LocationStoreState {

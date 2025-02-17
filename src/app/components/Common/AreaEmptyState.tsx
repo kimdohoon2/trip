@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 export default function AreaEmptyState() {
   return (
     <div className="mt-7 flex flex-col items-center gap-3">
