@@ -12,10 +12,10 @@ import { useLocationData } from '@/app/hooks/useLocationData';
 import Spinner from '@/app/components/Common/Spinner';
 import Toast from '@/app/components/Common/Toast';
 import CategorySelector from '@/app/components/Area/AreaContents/CategorySelector';
-import ProgressBar from '@/app/components/Area/AreaContents/ProgressBar';
-import MoreButton from '@/app/components/Area/AreaContents/MoreButton';
-import AreaError from '@/app/components/Area/AreaContents/AreaError';
-import AreaEmptyState from '@/app/components/Area/AreaContents/AreaEmptyState';
+import ProgressBar from '@/app/components/Common/ProgressBar';
+import MoreButton from '@/app/components/Common/MoreButton';
+import DataError from '@/app/components/Common/Error';
+import AreaEmptyState from '@/app/components/Common/AreaEmptyState';
 import AreaSlideProps from '@/app/components/Area/AreaContents/AreaSlideProps';
 import { AreaItem } from '@/app/types/ItemType';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
@@ -51,6 +51,7 @@ export default function AreaContents() {
         .map((item) => ({
           ...item,
           addr1: item.addr1.split(' ').slice(0, 2).join(' '), // 주소 가공
+          title: item.title.length > 12 ? item.title.slice(0, 12) + '...' : item.title, // 12자로 제한
         }));
     },
     [category] // 카테고리 변경 시 업데이트
@@ -142,7 +143,7 @@ export default function AreaContents() {
   if (error) {
     return (
       <div className="mt-7 flex flex-col items-center gap-3">
-        <AreaError />
+        <DataError />
       </div>
     );
   }
@@ -178,8 +179,8 @@ export default function AreaContents() {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <ProgressBar totalPages={totalPages} /> {/* 진행 상태 바 */}
-            <MoreButton /> {/* 더 보기 버튼 */}
+            <ProgressBar className="lg:hidden" totalPages={totalPages} /> {/* 진행 상태 바 */}
+            <MoreButton href="/" text="더맣은" strongText="여행지" /> {/* 더 보기 버튼 */}
           </>
         )}
       </section>
