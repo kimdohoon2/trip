@@ -8,5 +8,6 @@ export function useTourData(selectedArea: string) {
     queryFn: () => getTourListApi(selectedArea),
     staleTime: 5 * 60 * 1000, // 5분
     retry: 1,
+    enabled: !!selectedArea, // selectedArea가 있을 때만 쿼리 실행
   });
 }
