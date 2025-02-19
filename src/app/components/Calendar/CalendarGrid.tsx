@@ -1,4 +1,4 @@
-import { getDaysInMonth, getPrevMonthDays } from '@/app/utils/dateUtils';
+import { getDaysInMonth, getPrevMonthDays } from '@/app/utils/getFormattedDate';
 
 interface CalendarGridProps {
   currentYear: number;

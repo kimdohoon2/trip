@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { getFormattedDate } from '@/app/utils/dateUtils';
+import { getFormattedDate } from '@/app/utils/getFormattedDate';
 
 interface DateDisplayProps {
   selectedDate: Date;
