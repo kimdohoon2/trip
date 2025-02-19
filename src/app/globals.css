@@ -15,6 +15,7 @@
   --areabg: #cedcff;
   --bgopacity: #212121ad;
   --bluebell: #979fd0;
+  --gray6: #666;
 }
 .dark {
   --white: #212121;
@@ -49,7 +50,26 @@ body {
 .animation-delay-1000 {
   animation-delay: 1s;
 }
-
+.event-card::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  bottom: 80px;
+  background-color: var(--black);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.event-card::after {
+  content: '';
+  position: absolute;
+  right: -7px;
+  bottom: 80px;
+  background-color: var(--black);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
 @layer utilities {
   /* after-example 클래스에 :after 가상 요소 스타일 적용 */
   .after-example::after {

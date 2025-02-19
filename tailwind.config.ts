@@ -25,6 +25,7 @@ export default {
         areabg: 'var(--areabg)',
         bgopacity: 'var(--bgopacity)',
         bluebell: 'var(--bluebell)',
+        gray6: 'var(--gray6)',
       },
       animation: {
         progress: 'progress_ani 3s linear',
