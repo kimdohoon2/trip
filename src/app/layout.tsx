@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import './globals.css';
+import '@/app/styles/globals.css';
 import Header from '@/app/components/Header/Header';
+import Footer from '@/app/components/Footer/FooterContents';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import Providers from './providers';
+import Providers from '@/app/providers/providers';
 config.autoAddCss = false;
 
 const pretendard = localFont({
@@ -23,7 +24,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // 쿠키나 로컬 스토리지로 테마 관리 가능
   const theme = typeof window !== 'undefined' && localStorage.getItem('theme');
   return (
     <html lang="ko" className={theme === 'dark' ? 'dark' : ''}>
@@ -31,6 +31,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className="mt-[140px] md:mt-[140px] lg:mt-0">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>
