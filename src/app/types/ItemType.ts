@@ -27,6 +27,18 @@ export interface StayItem {
   goodstay?: string; // 굿스테이 여부
   areaCode?: string; // 지역 코드
 }
+export interface EventItem {
+  title: string;
+  addr1: string;
+  firstimage: string;
+  firstimage2: string;
+  contentid: string;
+  contenttypeid: string;
+  tel: string;
+  areaCode?: string; // 지역 코드
+  eventstartdate: string;
+  eventenddate: string;
+}
 
 export interface LocationApiResponse {
   items: AreaItem[];
