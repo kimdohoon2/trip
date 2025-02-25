@@ -15,6 +15,7 @@
   --areabg: #cedcff;
   --bgopacity: #212121ad;
   --bluebell: #979fd0;
+  --gray6: #666;
 }
 .dark {
   --white: #212121;
@@ -49,8 +50,27 @@ body {
 .animation-delay-1000 {
   animation-delay: 1s;
 }
-
 @layer utilities {
+  .event-card::before {
+    width: 12px;
+    height: 12px;
+    content: '';
+    position: absolute;
+    left: -7px;
+    bottom: 80px;
+    background-color: var(--black);
+    border-radius: 50%;
+  }
+  .event-card::after {
+    width: 12px;
+    height: 12px;
+    content: '';
+    position: absolute;
+    right: -7px;
+    bottom: 80px;
+    background-color: var(--black);
+    border-radius: 50%;
+  }
   /* after-example 클래스에 :after 가상 요소 스타일 적용 */
   .after-example::after {
     content: '';
@@ -105,6 +125,18 @@ body {
       content: '';
       display: table;
       clear: both;
+    }
+    .event-card::before {
+      width: 16px;
+      height: 16px;
+      left: 30.5%;
+      top: -8px;
+    }
+    .event-card::after {
+      width: 16px;
+      height: 16px;
+      left: 30.5%;
+      bottom: -8px;
     }
   }
 }
