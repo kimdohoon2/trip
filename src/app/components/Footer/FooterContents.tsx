@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <div className="bg-footerbg w-full px-4 py-4">
+    <footer className="bg-footerbg w-full px-4 py-4">
       <div className="flex items-center justify-between border-t border-bordercolor pt-4 1xl:mx-auto 1xl:max-w-[1000px]">
         <div className="w-20">
           <Image
@@ -41,6 +41,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
