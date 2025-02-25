@@ -46,7 +46,7 @@ export default function CalendarGrid({
       {calendarDays.map(({ day, isCurrentMonth }, index) => (
         <div
           key={index}
-          className={`hover:bg-gray-200 cursor-pointer rounded p-2 ${getDayColor(
+          className={`hover:bg-gray-200 cursor-pointer rounded p-[5px] ${getDayColor(
             index,
             isCurrentMonth
           )} ${
@@ -54,7 +54,7 @@ export default function CalendarGrid({
             day === selectedDate.getDate() &&
             currentMonth === selectedDate.getMonth() &&
             currentYear === selectedDate.getFullYear()
-              ? 'bg-custompink text-white'
+              ? 'bg-black text-white'
               : ''
           }`}
           onClick={() => isCurrentMonth && onDateClick(currentYear, currentMonth, day)}
