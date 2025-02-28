@@ -1,0 +1,29 @@
+import { create } from 'zustand';
+
+// 사용자 상호작용 상태 타입
+export interface InteractionStoreState {
+  heartStates: { [key: string]: boolean };
+  setHeartStates: (
+    setter: (prevStates: { [key: string]: boolean }) => { [key: string]: boolean }
+  ) => void;
+  category: string;
+  setCategory: (category: string) => void;
+  currentPage: number;
+  setCurrentPage: (currentPage: number) => void;
+  myLocationButton: boolean;
+  setMyLocationButton: (value: boolean) => void;
+}
+
+export const useInteractionStore = create<InteractionStoreState>((set) => ({
+  heartStates: {},
+  setHeartStates: (setter) =>
+    set((state) => ({
+      heartStates: setter(state.heartStates),
+    })),
+  category: '음식점 🍽️',
+  setCategory: (category) => set({ category }),
+  currentPage: 1,
+  setCurrentPage: (currentPage) => set({ currentPage }),
+  myLocationButton: false,
+  setMyLocationButton: (value) => set({ myLocationButton: value }),
+}));
