@@ -27,6 +27,7 @@ export default {
         bluebell: 'var(--bluebell)',
         gray6: 'var(--gray6)',
         footerbg: 'var(--footerbg)',
+        morebg: 'var(--morebg)',
       },
       animation: {
         progress: 'progress_ani 3s linear',
