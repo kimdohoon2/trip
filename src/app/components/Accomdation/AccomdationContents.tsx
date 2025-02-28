@@ -75,7 +75,7 @@ export default function AccomdationContents() {
           </>
         )}
       </div>
-      <MoreButton href="/" text="더많은" strongText="숙박시설" />
+      <MoreButton href="/morepage" text="더많은" strongText="숙박시설" />
     </section>
   );
 }
