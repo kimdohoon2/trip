@@ -4,6 +4,8 @@ import { create } from 'zustand';
 export interface UIStoreState {
   selectedArea: string;
   setSelectedArea: (area: string) => void;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
   visible: boolean;
   setVisible: (visible: boolean) => void;
   slidesPerView: number;
@@ -14,6 +16,8 @@ export interface UIStoreState {
 
 export const useUIStore = create<UIStoreState>((set) => ({
   selectedArea: '전국',
+  selectedCategory: '인기 여행지',
+  setSelectedCategory: (category) => set({ selectedCategory: category }),
   setSelectedArea: (area) => set({ selectedArea: area }),
   visible: false,
   setVisible: (visible) => set({ visible }),

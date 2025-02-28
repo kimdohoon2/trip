@@ -11,6 +11,8 @@ import formatDate from '@/app/utils/formatDate';
 import CustomCalendar from '@/app/components/Calendar/CustomCalendar';
 import { useEventData } from '@/app/hooks/useEventData';
 import { AreaHeaderSlide } from '@/app/constant/SlideConstant';
+import { filterAddress, filterTitle } from '@/app/utils/filterDate';
+import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
 
 export default function EventContents() {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
@@ -46,14 +48,6 @@ export default function EventContents() {
     const newDate = new Date(currentDate);
     newDate.setDate(newDate.getDate() + 1);
     setCurrentDate(newDate);
-  };
-
-  const filterAddress = (address: string) => {
-    return address.split(' ').slice(0, 2).join(' ');
-  };
-  const createKakaoMapURL = (address: string) => {
-    const encodedAddress = encodeURIComponent(address);
-    return `https://map.kakao.com/link/search/${encodedAddress}`;
   };
 
   return (
@@ -131,7 +125,7 @@ export default function EventContents() {
                       </div>
                       <div className="border-dashed text-center 2xl:ml-8 2xl:flex 2xl:flex-col 2xl:justify-between 2xl:border-l 2xl:pb-0 2xl:pl-8 2xl:text-left">
                         <div className="my-3">
-                          <h3 className="text-md lg:text-2xl">{event.title}</h3>
+                          <h3 className="text-md lg:text-2xl">{filterTitle(event.title)}</h3>
                           <p className="text-xs text-gray6 lg:text-base">
                             {filterAddress(event.addr1)}
                           </p>

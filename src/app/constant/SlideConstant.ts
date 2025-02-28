@@ -121,3 +121,11 @@ export const areaCodeMap: { [key: string]: string } = {
   전남: '38',
   제주: '39',
 };
+
+export const moreCategories = ['인기 여행지', '인기 맛집', '인기 숙소'];
+
+export const moreCategoryMap: { [key: string]: string } = {
+  '인기 여행지': '12',
+  '인기 맛집': '39',
+  '인기 숙소': '32',
+};
