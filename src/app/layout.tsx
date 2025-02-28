@@ -29,9 +29,11 @@ export default function RootLayout({
     <html lang="ko" className={theme === 'dark' ? 'dark' : ''}>
       <body className={`${pretendard.className} antialiased`}>
         <Providers>
-          <Header />
-          <main className="mt-[140px] md:mt-[140px] lg:mt-0">{children}</main>
-          <Footer />
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="mt-[140px] flex-1 md:mt-[140px] lg:mt-0">{children}</main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
