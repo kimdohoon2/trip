@@ -36,7 +36,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-50 bg-white lg:${headerScrolled ? 'bg-white' : 'bg-transparent'} px-2 transition-colors duration-300 md:px-3 lg:px-6 2xl:px-14`}
+      className={`fixed left-0 right-0 top-0 z-40 bg-white shadow-md lg:${headerScrolled ? 'bg-white shadow-md' : 'bg-transparent'} px-2 transition-colors duration-300 md:px-3 lg:px-6 2xl:px-14`}
     >
       <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
         <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
