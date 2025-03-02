@@ -12,6 +12,8 @@ export interface InteractionStoreState {
   setCurrentPage: (currentPage: number) => void;
   myLocationButton: boolean;
   setMyLocationButton: (value: boolean) => void;
+  keyword: string;
+  setKeyword: (keyword: string) => void;
 }
 
 export const useInteractionStore = create<InteractionStoreState>((set) => ({
@@ -26,4 +28,7 @@ export const useInteractionStore = create<InteractionStoreState>((set) => ({
   setCurrentPage: (currentPage) => set({ currentPage }),
   myLocationButton: false,
   setMyLocationButton: (value) => set({ myLocationButton: value }),
+
+  keyword: '',
+  setKeyword: (keyword) => set({ keyword }),
 }));
