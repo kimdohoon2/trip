@@ -61,7 +61,7 @@ export default function MoreCard({ moreData }: MoreCardProps) {
             </div>
           </div>
           <div className="shadow-indigo-500/40 lg:shadow-lg">
-            <div className="pl-4">
+            <div className="text-left lg:pl-3">
               <h1 className="text-base font-bold lg:text-lg">{filterTitle(more.title)}</h1>
               <p className="text-xs lg:text-sm">
                 {filterAddress(more.addr1 || '주소를 준비중입니다.')}
