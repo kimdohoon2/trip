@@ -52,7 +52,7 @@ export default function Header() {
       return () => {
         window.removeEventListener('scroll', controlHeader);
         window.removeEventListener('resize', controlHeader);
-        controlHeader.cancel(); // throttle 함수의 취소
+        controlHeader.cancel();
       };
     }
   }, [controlHeader]);

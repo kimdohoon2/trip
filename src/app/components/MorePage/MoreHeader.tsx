@@ -25,7 +25,7 @@ export default function MoreHeader() {
     <div className="bg-morebg lg:pt-28">
       <div className="1xl:m-auto 1xl:max-w-[1000px]">
         <div className="px-4 pt-7 lg:mx-auto lg:w-[600px]">
-          <ul className="relative flex justify-center overflow-hidden rounded-md border border-black bg-white">
+          <ul className="relative flex justify-center overflow-hidden rounded-md border border-[#000] bg-[#fff]">
             <div
               className="more-header-slider"
               style={{ transform: `translateX(${selectedTab * 100}%)` }}
@@ -34,7 +34,7 @@ export default function MoreHeader() {
               <li
                 key={index}
                 className={`more-header w-1/3 cursor-pointer py-1 text-center text-sm transition-all lg:py-2 lg:text-lg ${
-                  selectedTab === index ? 'selected text-white' : 'text-black'
+                  selectedTab === index ? 'selected text-[#fff]' : 'text-[#000]'
                 }`}
                 onClick={() => handleTabClick(index)}
               >
