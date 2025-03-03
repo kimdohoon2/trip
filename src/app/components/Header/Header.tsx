@@ -6,6 +6,7 @@ import Navigation from '@/app/components/Header/Navigation';
 import Search from '@/app/components/Header/Search';
 import ThemeToggle from '@/app/components/Header/ThemeToggle';
 import LogoIcon from '@/app/components/Header/LogoIcon';
+import MoblieNavigation from '@/app/components/Header/MoblieNavigation';
 
 export default function Header() {
   const [headerScrolled, setHeaderScrolled] = useState(false);
@@ -36,7 +37,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-40 bg-white shadow-md lg:${headerScrolled ? 'bg-white shadow-md' : 'bg-transparent'} px-2 transition-colors duration-300 md:px-3 lg:px-6 2xl:px-14`}
+      className={`fixed left-0 right-0 top-0 z-40 bg-white lg:${headerScrolled ? 'bg-white shadow-md' : 'bg-transparent'} px-2 transition-colors duration-300 md:px-3 lg:px-6 2xl:px-14`}
     >
       <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
         <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
@@ -59,6 +60,9 @@ export default function Header() {
       </div>
       <div className="block lg:hidden">
         <Navigation />
+      </div>
+      <div className="fixed bottom-0 left-0 block w-full bg-white lg:hidden">
+        <MoblieNavigation />
       </div>
     </header>
   );
