@@ -43,7 +43,7 @@ export default function SearchPagination({
               onClick={() => onPageChange(number)}
               className={`rounded px-3 py-1 ${
                 currentPage === number
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-black text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
