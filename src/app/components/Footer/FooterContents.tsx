@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
   return (
@@ -15,30 +17,14 @@ export default function Footer() {
           ></Image>
         </div>
         <div>
-          <div className="flex gap-4">
-            <div className="w-28">
-              <Link className="w-full" href="https://api.visitkorea.or.kr/#/" target="_blank">
-                <Image
-                  className="w-full"
-                  src="/footer/logo_foot_api.png"
-                  alt="TourAPI 4.0"
-                  width={120}
-                  height={30}
-                ></Image>
-              </Link>
-            </div>
-            <div className="w-20">
-              <Link className="w-full" href="https://knto.or.kr/index" target="_blank">
-                <Image
-                  className="w-full"
-                  src="/footer/logo_foot_gg.png"
-                  alt="한국관광공사"
-                  width={90}
-                  height={30}
-                ></Image>
-              </Link>
-            </div>
-          </div>
+          <Link
+            className="flex w-full items-center gap-2"
+            href="https://github.com/kimdohoon2/trip"
+            target="_blank"
+          >
+            <FontAwesomeIcon icon={faGithub} />
+            <span>kimdohoon2</span>
+          </Link>
         </div>
       </div>
     </footer>
