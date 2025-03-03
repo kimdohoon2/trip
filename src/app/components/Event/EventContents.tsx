@@ -151,7 +151,7 @@ export default function EventContents() {
                         </div>
                         <div className="mt-4 lg:mb-4 lg:mt-7">
                           <Link
-                            className="rounded-xl border border-bordercolor px-6 py-1 text-sm hover:bg-black hover:text-white lg:text-base"
+                            className="hover-button rounded-xl border border-bordercolor px-6 py-1 text-sm lg:text-base"
                             href={createKakaoMapURL(event.addr1)}
                             target="_blank"
                           >

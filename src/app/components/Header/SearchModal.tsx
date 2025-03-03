@@ -68,7 +68,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
             />
             <button type="submit">
               <FontAwesomeIcon
-                className="text-[#6d6d6d] lg:text-lg lg:text-[black]"
+                className="text-[#6d6d6d] lg:text-lg lg:text-black"
                 icon={faSearch}
               />
             </button>

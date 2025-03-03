@@ -13,7 +13,7 @@ export default function AccomdationHeader({ selectedArea, onSelect }: Accomdatio
         <SwiperSlide
           key={slide.title}
           onClick={() => onSelect(slide.title)}
-          className={`!w-auto cursor-pointer whitespace-nowrap rounded-full px-4 py-2 text-sm transition-all ${
+          className={`hover-button !w-auto cursor-pointer whitespace-nowrap rounded-full px-4 py-2 text-sm transition-all ${
             selectedArea === slide.title
               ? 'bg-black text-white shadow-md'
               : 'text-gray-600 border-gray-200 hover:bg-gray-100 border bg-white'
