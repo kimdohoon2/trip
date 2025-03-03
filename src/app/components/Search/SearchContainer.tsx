@@ -18,7 +18,7 @@ const contentTypeNames: { [key: string]: string } = {
 
 export default function SearchContainer() {
   const { keyword } = useInteractionStore();
-  const [numOfRows] = useState(100);
+  const [numOfRows] = useState(1000);
   const [contentTypeId, setContentTypeId] = useState<string | null>(null);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const prevKeywordRef = useRef<string>('');
@@ -68,7 +68,7 @@ export default function SearchContainer() {
 
   if (!keyword) {
     return (
-      <div className="container mx-auto p-4 text-center">
+      <div className="mx-auto p-4 text-center lg:mt-28">
         <h1 className="text-2xl font-bold">검색을 해주세요</h1>
       </div>
     );
@@ -92,56 +92,68 @@ export default function SearchContainer() {
   }
 
   const groupedData = data ? groupDataByContentType(data) : {};
+  const hasAnyResults = Object.values(groupedData).some((group) => group.length > 0);
+
+  if (!hasAnyResults) {
+    return (
+      <div className="mx-auto p-4 text-center lg:mt-[90px]">
+        <h1 className="mb-4 text-xl font-bold">{`"${keyword}" 검색 결과`}</h1>
+        <p className="text-gray-600 text-sm">검색 결과가 없습니다. 다른 키워드로 검색해 보세요.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="container mx-auto inline-block h-full w-full bg-[#f4f6f8]">
-      <div className="mb-4 bg-white">
-        <h1 className="p-4 text-xl font-bold">{`"${keyword}" 검색 결과`}</h1>
-        <div className="scroll-container">
-          <div className="mb-4 flex space-x-2 px-4">
-            <button
-              onClick={() => handleCategoryChange(null)}
-              className={`w-24 flex-shrink-0 rounded-full border border-black px-3 py-1 text-sm ${
-                !contentTypeId ? 'bg-black text-white' : 'bg-gray-200'
-              }`}
-            >
-              전체
-            </button>
-            {Object.entries(contentTypeNames).map(([id, name]) => (
+    <div className="inline-block h-full w-full bg-[#f4f6f8] lg:pt-24">
+      <div className="lg:mx-auto lg:max-w-[1000px]">
+        <div className="mb-4 bg-white lg:bg-transparent">
+          <h1 className="p-4 text-xl font-bold">{`"${keyword}" 검색 결과`}</h1>
+          <div className="scroll-container">
+            <div className="mb-4 flex space-x-2 px-4 lg:justify-between">
               <button
-                key={id}
-                onClick={() => handleCategoryChange(id)}
-                className={`w-24 flex-shrink-0 rounded-full border border-black px-1 py-1 text-sm ${
-                  contentTypeId === id ? 'bg-black text-white' : 'bg-gray-200'
+                onClick={() => handleCategoryChange(null)}
+                className={`w-24 flex-shrink-0 rounded-full border border-black px-3 py-1 text-sm lg:w-auto lg:px-10 lg:text-lg ${
+                  !contentTypeId ? 'bg-black text-white' : 'bg-gray-200 bg-white'
                 }`}
               >
-                {name}
+                전체
               </button>
-            ))}
+              {Object.entries(contentTypeNames).map(([id, name]) => (
+                <button
+                  key={id}
+                  onClick={() => handleCategoryChange(id)}
+                  className={`w-24 flex-shrink-0 rounded-full border border-black px-1 py-1 text-sm lg:w-auto lg:px-10 lg:text-lg ${
+                    contentTypeId === id ? 'bg-black text-white' : 'bg-gray-200 bg-white'
+                  }`}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {contentTypeId === null
-        ? Object.entries(contentTypeNames).map(([id, name]) => (
-            <SearchSection
-              key={id}
-              contentTypeId={id}
-              name={name}
-              items={groupedData[id] || []}
-              isExpanded={expandedCategory === id}
-              onExpand={() => handleExpandCategory(id)}
-            />
-          ))
-        : contentTypeNames[contentTypeId] && (
-            <SearchSection
-              contentTypeId={contentTypeId}
-              name={contentTypeNames[contentTypeId]}
-              items={groupedData[contentTypeId] || []}
-              isExpanded={expandedCategory === contentTypeId}
-              onExpand={() => handleExpandCategory(contentTypeId)}
-            />
-          )}
+        {contentTypeId === null
+          ? Object.entries(contentTypeNames).map(([id, name]) => (
+              <SearchSection
+                key={id}
+                contentTypeId={id}
+                name={name}
+                items={groupedData[id] || []}
+                isExpanded={expandedCategory === id}
+                onExpand={() => handleExpandCategory(id)}
+              />
+            ))
+          : contentTypeNames[contentTypeId] && (
+              <SearchSection
+                contentTypeId={contentTypeId}
+                name={contentTypeNames[contentTypeId]}
+                items={groupedData[contentTypeId] || []}
+                isExpanded={expandedCategory === contentTypeId}
+                onExpand={() => handleExpandCategory(contentTypeId)}
+              />
+            )}
+      </div>
     </div>
   );
 }
