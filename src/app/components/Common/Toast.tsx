@@ -23,7 +23,7 @@ const Toast: React.FC = () => {
 
   // Tailwind 클래스를 조건부로 지정
   const baseClass =
-    'fixed bottom-5 left-1/2 z-50 -translate-x-1/2 transform rounded-md p-4 shadow-lg text-white transition-opacity duration-300';
+    'text-sm fixed bottom-16 left-1/2 z-50 -translate-x-1/2 transform rounded-md p-4 shadow-lg text-white transition-opacity duration-300 lg:text-base';
   const typeClass = {
     success: 'bg-red',
     error: 'bg-black',
