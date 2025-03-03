@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import throttle from 'lodash/throttle';
 import Navigation from '@/app/components/Header/Navigation';
 import Search from '@/app/components/Header/Search';
 import ThemeToggle from '@/app/components/Header/ThemeToggle';
@@ -13,30 +14,35 @@ export default function Header() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlHeader = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      const currentScrollY = window.scrollY;
+  const SCROLL_THRESHOLD = 50; // 스크롤 임계값 (픽셀 단위)
+  const THROTTLE_DELAY = 200; // 스로틀링 딜레이 (밀리초 단위)
 
-      if (window.innerWidth < 1024) {
-        // 모바일 환경
-        if (currentScrollY > lastScrollY) {
-          // 아래로 스크롤
-          setIsHeaderVisible(false);
-        } else {
-          // 위로 스크롤
-          setIsHeaderVisible(true);
+  const controlHeader = useMemo(
+    () =>
+      throttle(() => {
+        if (typeof window !== 'undefined') {
+          const currentScrollY = window.scrollY;
+
+          if (window.innerWidth < 1024) {
+            // 모바일 환경
+            if (Math.abs(currentScrollY - lastScrollY) > SCROLL_THRESHOLD) {
+              if (currentScrollY > lastScrollY) {
+                // 아래로 스크롤
+                setIsHeaderVisible(false);
+              } else {
+                // 위로 스크롤
+                setIsHeaderVisible(true);
+              }
+              setLastScrollY(currentScrollY);
+            }
+          } else {
+            // 데스크톱 환경
+            setHeaderScrolled(currentScrollY > 10);
+          }
         }
-        setLastScrollY(currentScrollY);
-      } else {
-        // 데스크톱 환경
-        if (currentScrollY > 10) {
-          setHeaderScrolled(true);
-        } else {
-          setHeaderScrolled(false);
-        }
-      }
-    }
-  }, [lastScrollY]);
+      }, THROTTLE_DELAY),
+    [lastScrollY]
+  );
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -46,6 +52,7 @@ export default function Header() {
       return () => {
         window.removeEventListener('scroll', controlHeader);
         window.removeEventListener('resize', controlHeader);
+        controlHeader.cancel(); // throttle 함수의 취소
       };
     }
   }, [controlHeader]);
@@ -55,7 +62,6 @@ export default function Header() {
       <header
         className={`fixed left-0 right-0 top-0 z-40 bg-white px-4 transition-all duration-300 md:px-3 lg:px-6 2xl:px-14 ${!isHeaderVisible ? '-translate-y-full' : 'translate-y-0'} ${headerScrolled ? 'lg:bg-white lg:shadow-md' : 'lg:bg-transparent'}`}
       >
-        {/* 헤더 내용 */}
         <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
           <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
             <Link className="relative block h-full w-full" href="/">
