@@ -1,69 +1,87 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Navigation from '@/app/components/Header/Navigation';
 import Search from '@/app/components/Header/Search';
 import ThemeToggle from '@/app/components/Header/ThemeToggle';
 import LogoIcon from '@/app/components/Header/LogoIcon';
-import MoblieNavigation from '@/app/components/Header/MoblieNavigation';
+import MobileNavigation from '@/app/components/Header/MoblieNavigation';
 
 export default function Header() {
   const [headerScrolled, setHeaderScrolled] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerWidth >= 1024) {
-        if (window.scrollY > 10) {
+  const controlHeader = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      const currentScrollY = window.scrollY;
+
+      if (window.innerWidth < 1024) {
+        // 모바일 환경
+        if (currentScrollY > lastScrollY) {
+          // 아래로 스크롤
+          setIsHeaderVisible(false);
+        } else {
+          // 위로 스크롤
+          setIsHeaderVisible(true);
+        }
+        setLastScrollY(currentScrollY);
+      } else {
+        // 데스크톱 환경
+        if (currentScrollY > 10) {
           setHeaderScrolled(true);
         } else {
           setHeaderScrolled(false);
         }
-      } else {
-        setHeaderScrolled(false);
       }
-    };
+    }
+  }, [lastScrollY]);
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlHeader);
+      window.addEventListener('resize', controlHeader);
 
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener('scroll', controlHeader);
+        window.removeEventListener('resize', controlHeader);
+      };
+    }
+  }, [controlHeader]);
 
   return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-40 bg-white lg:${headerScrolled ? 'bg-white shadow-md' : 'bg-transparent'} px-2 transition-colors duration-300 md:px-3 lg:px-6 2xl:px-14`}
-    >
-      <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
-        <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
-          <Link className="relative block h-full w-full" href="/">
-            <LogoIcon className="head-logo h-full w-full" />
-          </Link>
+    <>
+      <header
+        className={`fixed left-0 right-0 top-0 z-40 bg-white px-4 transition-all duration-300 md:px-3 lg:px-6 2xl:px-14 ${!isHeaderVisible ? '-translate-y-full' : 'translate-y-0'} ${headerScrolled ? 'lg:bg-white lg:shadow-md' : 'lg:bg-transparent'}`}
+      >
+        {/* 헤더 내용 */}
+        <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
+          <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
+            <Link className="relative block h-full w-full" href="/">
+              <LogoIcon className="head-logo h-full w-full" />
+            </Link>
+          </div>
+          <div className="hidden lg:block">
+            <Navigation />
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="hidden lg:block">
+              <Search />
+            </div>
+            <ThemeToggle />
+          </div>
         </div>
-        <div className="hidden lg:block">
+        <div className="block lg:hidden">
+          <Search />
+        </div>
+        <div className="block lg:hidden">
           <Navigation />
         </div>
-        <div className="flex items-center gap-4">
-          <div className="hidden lg:block">
-            <Search />
-          </div>
-          <ThemeToggle />
-        </div>
+      </header>
+      <div className="fixed bottom-0 left-0 z-40 block w-full bg-white lg:hidden">
+        <MobileNavigation />
       </div>
-      <div className="block lg:hidden">
-        <Search />
-      </div>
-      <div className="block lg:hidden">
-        <Navigation />
-      </div>
-      <div className="fixed bottom-0 left-0 block w-full bg-white lg:hidden">
-        <MoblieNavigation />
-      </div>
-    </header>
+    </>
   );
 }
