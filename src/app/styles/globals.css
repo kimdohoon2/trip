@@ -134,7 +134,11 @@ body {
     transform: translate(-50%);
     transition: width 0.3s ease;
   }
-
+  .hover-button:hover {
+    background-color: var(--black);
+    color: var(--white);
+    transition: all 0.3s ease;
+  }
   @media all and (min-width: 1024px) {
     .nav-affter.on::after {
       width: 5px;
