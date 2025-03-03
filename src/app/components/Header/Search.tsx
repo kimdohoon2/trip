@@ -9,7 +9,7 @@ import Link from 'next/link';
 import LogoIcon from '@/app/components/Header/LogoIcon';
 import ThemeToggle from '@/app/components/Header/ThemeToggle';
 
-const MAX_RECENT_SEARCHES = 10;
+const MAX_RECENT_SEARCHES = 5;
 
 export default function Search() {
   const { keyword, setKeyword } = useInteractionStore();
@@ -56,16 +56,23 @@ export default function Search() {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const clearRecentSearches = () => {
     localStorage.removeItem('recentSearches');
     setRecentSearches([]);
   };
+
+  const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      setIsModalOpen(false);
+    }
+  };
   return (
     <>
       <form onSubmit={handleSearch} className="mb-[10px] lg:mb-0">
-        <div className="mr-0 flex h-[35px] w-auto items-center justify-between rounded-full border-transparent bg-[#eef0f2] px-[20px] lg:w-[300px] lg:rounded-none lg:border-b lg:border-b-black lg:bg-transparent lg:px-[10px]">
+        <div className="mr-0 flex h-[35px] w-auto items-center justify-between rounded-full border-transparent bg-[#eef0f2] px-[20px] lg:h-10 lg:w-10 lg:items-center lg:justify-center lg:rounded-full lg:border lg:border-black lg:bg-transparent lg:px-0">
           <input
-            className="h-full w-full border-none bg-transparent outline-none placeholder:text-[13px] lg:placeholder:text-[18px] lg:placeholder:font-thin"
+            className="h-full w-full border-none bg-transparent outline-none placeholder:text-[13px] lg:hidden"
             type="text"
             placeholder="어디로 여행을 떠날 예정인가요?"
             value={keyword}
@@ -74,7 +81,7 @@ export default function Search() {
           />
           <button type="button" onClick={openModal}>
             <FontAwesomeIcon
-              className="text-[#6d6d6d] lg:text-[24px] lg:text-[black]"
+              className="text-[#6d6d6d] lg:text-xl lg:text-[black]"
               icon={faSearch}
             />
           </button>
@@ -82,7 +89,10 @@ export default function Search() {
       </form>
 
       {isModalOpen && (
-        <div className="modal fixed left-0 right-0 top-0 z-[100] h-[100vh] w-full bg-white px-2 shadow-md transition-colors duration-300 md:px-3 lg:px-6 2xl:px-14">
+        <div
+          className="fixed left-0 right-0 top-0 z-[100] h-[100vh] w-full bg-white px-2 shadow-md transition-colors duration-300 md:px-3 lg:h-[50vh] lg:px-6 2xl:px-14"
+          onClick={handleModalClick}
+        >
           <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
             <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
               <Link
@@ -105,9 +115,9 @@ export default function Search() {
           </div>
           <div className="block">
             <form onSubmit={handleSearch} className="mb-[10px] lg:mb-0">
-              <div className="mr-0 box-border flex h-[35px] w-auto items-center justify-between rounded-full border border-black bg-white px-[20px] lg:w-[300px] lg:rounded-none lg:border-b lg:border-b-black lg:bg-transparent lg:px-[10px]">
+              <div className="mr-0 box-border flex h-[35px] w-auto items-center justify-between rounded-full border border-black bg-white px-[20px] lg:w-full lg:rounded-none lg:border-0 lg:border-b lg:border-b-black lg:bg-transparent lg:px-[10px]">
                 <input
-                  className="h-full w-full bg-transparent outline-none placeholder:text-[13px] lg:placeholder:text-[18px] lg:placeholder:font-thin"
+                  className="h-full w-full bg-transparent outline-none placeholder:text-[13px] lg:text-lg lg:placeholder:text-lg lg:placeholder:font-thin"
                   type="text"
                   placeholder="어디로 여행을 떠날 예정인가요?"
                   value={keyword}
@@ -116,7 +126,7 @@ export default function Search() {
                 />
                 <button type="submit">
                   <FontAwesomeIcon
-                    className="text-[#6d6d6d] lg:text-[24px] lg:text-[black]"
+                    className="text-[#6d6d6d] lg:text-lg lg:text-[black]"
                     icon={faSearch}
                   />
                 </button>
@@ -125,9 +135,9 @@ export default function Search() {
           </div>
           <div className="mt-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-bold">최근검색어</h2>
+              <h2 className="text-sm font-bold lg:text-lg">최근검색어</h2>
               {recentSearches.length > 0 && (
-                <button onClick={clearRecentSearches} className="text-gray-500 text-sm">
+                <button onClick={clearRecentSearches} className="text-gray-500 text-sm lg:text-lg">
                   전체 삭제
                 </button>
               )}
@@ -136,7 +146,7 @@ export default function Search() {
               {recentSearches.map((search, index) => (
                 <li key={index} className="flex items-center justify-between py-1">
                   <button
-                    className="flex-grow text-left"
+                    className="flex-grow text-left lg:text-lg"
                     onClick={() => handleRecentSearchClick(search)}
                   >
                     {search}
