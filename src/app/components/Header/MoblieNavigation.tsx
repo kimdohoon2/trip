@@ -1,5 +1,11 @@
 import Link from 'next/link';
 export default function MoblieNavigation() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // 부드럽게 스크롤
+    });
+  };
   return (
     <nav>
       <ul className="flex items-center justify-between lg:w-full lg:gap-[50px]">
@@ -28,12 +34,12 @@ export default function MoblieNavigation() {
           </Link>
         </li>
         <li className="w-[25%] text-center lg:w-auto">
-          <Link
-            href="/"
+          <button
+            onClick={scrollToTop}
             className="nav-affter relative block w-full py-[10px] text-[14px] lg:text-[20px]"
           >
             up
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>
