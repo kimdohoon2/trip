@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { useInteractionStore } from '@/app/stores/useInteractionStore';
-import { useToastStore } from '@/app/stores/useToastStore';
+import useLike from '@/app/hooks/useLike';
 
 interface ItemTypes {
   firstimage: string;
@@ -12,31 +11,7 @@ interface ItemTypes {
 }
 
 export default function AreaSlideProps({ item }: { item: ItemTypes }) {
-  const { heartStates, setHeartStates } = useInteractionStore();
-  // 좋아요 버튼 함수
-  const toggleHeart = (contentid: string) => {
-    const isLiked = heartStates[contentid];
-
-    if (isLiked) {
-      setHeartStates((prevStates) => ({
-        ...prevStates,
-        [contentid]: false,
-      }));
-      useToastStore.setState({
-        message: '좋아요가 취소되었습니다!',
-        type: 'error', // 취소 시 에러 타입
-      });
-    } else {
-      setHeartStates((prevStates) => ({
-        ...prevStates,
-        [contentid]: true,
-      }));
-      useToastStore.setState({
-        message: '좋아요를 클릭하셨습니다!',
-        type: 'success', // 추가 시 성공 타입
-      });
-    }
-  };
+  const { heartStates, toggleHeart } = useLike();
   return (
     <div>
       <div className="relative aspect-[4/3] h-[34.38vw] w-full overflow-hidden rounded-md lg:aspect-square lg:h-full">
@@ -53,7 +28,7 @@ export default function AreaSlideProps({ item }: { item: ItemTypes }) {
           className="absolute right-2 top-2 h-5 w-5 cursor-pointer rounded-full bg-white lg:h-7 lg:w-7"
         >
           <FontAwesomeIcon
-            className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-sm ${heartStates[item.contentid] ? 'text-[#ff6b6b]' : 'text-black opacity-[50%]'} transition-transform duration-300`}
+            className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-sm ${heartStates[item.contentid] ? 'text-[#ff6b6b]' : 'text-black opacity-[50%]'} transition-transform duration-300 hover:text-[#ff6b6b] lg:text-lg`}
             icon={faHeart}
           />
         </div>
