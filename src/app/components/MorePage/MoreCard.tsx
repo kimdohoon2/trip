@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
@@ -66,13 +67,13 @@ export default function MoreCard({ moreData }: MoreCardProps) {
                 {filterAddress(more.addr1 || '주소를 준비중입니다.')}
               </p>
               <div className="mt-2 lg:mb-4 lg:mt-7">
-                <a
+                <Link
                   className="rounded-xl border border-bordercolor px-6 py-1 text-sm hover:bg-black hover:text-white lg:text-base"
                   href={createKakaoMapURL(more.addr1 || '주소를 준비중입니다.')}
                   target="_blank"
                 >
                   길찾기
-                </a>
+                </Link>
               </div>
             </div>
           </div>

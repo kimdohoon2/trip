@@ -44,6 +44,17 @@ export interface LocationApiResponse {
   items: AreaItem[];
   areaCode: string;
 }
+
+export interface SearchApiResponse {
+  title: string;
+  addr1: string;
+  firstimage: string;
+  firstimage2: string;
+  contenttypeid: string;
+  contentid: string;
+  tel: string;
+}
+
 export interface MainSlideType {
   title: string;
   image: string;

@@ -5,4 +5,5 @@ export const API_URLS = {
   LOCATION_BASED: 'https://apis.data.go.kr/B551011/KorService1/locationBasedList1',
   STAY_BASED: 'https://apis.data.go.kr/B551011/KorService1/searchStay1',
   EVENT_BASED: 'https://apis.data.go.kr/B551011/KorService1/searchFestival1',
+  SEARCH_BASED: 'https://apis.data.go.kr/B551011/KorService1/searchKeyword1',
 };

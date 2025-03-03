@@ -13,6 +13,7 @@ import { useEventData } from '@/app/hooks/useEventData';
 import { AreaHeaderSlide } from '@/app/constant/SlideConstant';
 import { filterAddress, filterTitle } from '@/app/utils/filterDate';
 import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
+import Link from 'next/link';
 
 export default function EventContents() {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
@@ -149,13 +150,13 @@ export default function EventContents() {
                           </div>
                         </div>
                         <div className="mt-4 lg:mb-4 lg:mt-7">
-                          <a
+                          <Link
                             className="rounded-xl border border-bordercolor px-6 py-1 text-sm hover:bg-black hover:text-white lg:text-base"
                             href={createKakaoMapURL(event.addr1)}
                             target="_blank"
                           >
                             길찾기
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
