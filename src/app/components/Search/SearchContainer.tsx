@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchData } from '@/app/hooks/useSearchData';
 import { SearchApiResponse } from '@/app/types/ItemType';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
-import Spinner from '@/app/components/Common/Spinner';
 import DataError from '@/app/components/Common/Error';
-import SearchSection from './SearchSection';
+import SearchSection from '@/app/components/Search/SearchSection';
+import SearchContainerSkeleton from '@/app/components/Search/SearchContainerSkeleton';
+import SearchSectionSkeleton from '@/app/components/Search/SearchSectionSkeleton';
 
 const contentTypeNames: { [key: string]: string } = {
   '12': '🏛️ 관광지',
@@ -22,6 +23,8 @@ export default function SearchContainer() {
   const [contentTypeId, setContentTypeId] = useState<string | null>(null);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const prevKeywordRef = useRef<string>('');
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [isCategoryChanging, setIsCategoryChanging] = useState(false);
 
   const { data, isLoading, isError, error, refetch } = useSearchData(
     keyword,
@@ -29,16 +32,32 @@ export default function SearchContainer() {
     contentTypeId
   );
 
+  const debouncedSearch = useCallback(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    debounceTimerRef.current = setTimeout(() => {
+      if (keyword !== prevKeywordRef.current) {
+        setContentTypeId(null);
+        setExpandedCategory(null);
+        prevKeywordRef.current = keyword;
+      }
+      if (keyword) {
+        refetch();
+      }
+    }, 300);
+  }, [keyword, refetch]);
+
   useEffect(() => {
-    if (keyword !== prevKeywordRef.current) {
-      setContentTypeId(null);
-      setExpandedCategory(null);
-      prevKeywordRef.current = keyword;
-    }
-    if (keyword) {
-      refetch();
-    }
-  }, [keyword, contentTypeId, refetch]);
+    debouncedSearch();
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [keyword, contentTypeId, debouncedSearch]);
 
   const groupDataByContentType = (data: SearchApiResponse[]) => {
     return data.reduce(
@@ -57,9 +76,16 @@ export default function SearchContainer() {
   };
 
   const handleCategoryChange = (id: string | null) => {
+    setIsCategoryChanging(true);
     setContentTypeId(id);
     setExpandedCategory(null);
   };
+
+  useEffect(() => {
+    if (isCategoryChanging) {
+      refetch().then(() => setIsCategoryChanging(false));
+    }
+  }, [contentTypeId, refetch]);
 
   const handleExpandCategory = (id: string) => {
     setExpandedCategory(id);
@@ -69,23 +95,25 @@ export default function SearchContainer() {
   if (!keyword) {
     return (
       <div className="mx-auto p-4 text-center lg:mt-28">
-        <h1 className="text-2xl font-bold">검색을 해주세요</h1>
+        <h1 className="text-2xl font-bold">어디로 여행을 떠날 예정인가요?</h1>
       </div>
     );
   }
 
   if (isLoading) {
     return (
-      <div className="mt-32">
-        <Spinner />
-        <p className="text-center">잠시만 기다려 주세요.</p>
-      </div>
+      <>
+        <SearchContainerSkeleton />
+        <SearchSectionSkeleton />
+        <SearchSectionSkeleton />
+        <SearchSectionSkeleton />
+      </>
     );
   }
 
   if (error && isError) {
     return (
-      <div className="mt-7 flex flex-col items-center gap-3">
+      <div className="mt-7 flex flex-col items-center gap-3 lg:mt-32">
         <DataError />
       </div>
     );
@@ -93,15 +121,6 @@ export default function SearchContainer() {
 
   const groupedData = data ? groupDataByContentType(data) : {};
   const hasAnyResults = Object.values(groupedData).some((group) => group.length > 0);
-
-  if (!hasAnyResults) {
-    return (
-      <div className="mx-auto p-4 text-center lg:mt-[90px]">
-        <h1 className="mb-4 text-xl font-bold">{`"${keyword}" 검색 결과`}</h1>
-        <p className="text-gray-600 text-sm">검색 결과가 없습니다. 다른 키워드로 검색해 보세요.</p>
-      </div>
-    );
-  }
 
   return (
     <div className="inline-block h-full w-full bg-[#f4f6f8] lg:pt-24">
@@ -133,26 +152,42 @@ export default function SearchContainer() {
           </div>
         </div>
 
-        {contentTypeId === null
-          ? Object.entries(contentTypeNames).map(([id, name]) => (
-              <SearchSection
-                key={id}
-                contentTypeId={id}
-                name={name}
-                items={groupedData[id] || []}
-                isExpanded={expandedCategory === id}
-                onExpand={() => handleExpandCategory(id)}
-              />
-            ))
-          : contentTypeNames[contentTypeId] && (
+        {hasAnyResults ? (
+          contentTypeId === null ? (
+            Object.entries(contentTypeNames).map(([id, name]) => {
+              const items = groupedData[id] || [];
+              if (items.length === 0) return null;
+              return (
+                <SearchSection
+                  key={id}
+                  contentTypeId={id}
+                  name={name}
+                  items={items}
+                  isExpanded={expandedCategory === id}
+                  onExpand={() => handleExpandCategory(id)}
+                />
+              );
+            })
+          ) : (
+            contentTypeNames[contentTypeId] &&
+            groupedData[contentTypeId]?.length > 0 && (
               <SearchSection
                 contentTypeId={contentTypeId}
                 name={contentTypeNames[contentTypeId]}
-                items={groupedData[contentTypeId] || []}
+                items={groupedData[contentTypeId]}
                 isExpanded={expandedCategory === contentTypeId}
                 onExpand={() => handleExpandCategory(contentTypeId)}
               />
-            )}
+            )
+          )
+        ) : (
+          <div className="mx-4 mb-6 rounded-lg bg-white p-8 text-center shadow-md">
+            <p className="text-gray-800 mb-2 text-lg font-semibold">
+              해당 카테고리에 검색결과가 없습니다.
+            </p>
+            <p className="text-gray-600">다른 카테고리를 선택해주세요.</p>
+          </div>
+        )}
       </div>
     </div>
   );

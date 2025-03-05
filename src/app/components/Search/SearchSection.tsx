@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { SearchApiResponse } from '@/app/types/ItemType';
 import { filterAddress, filterTitle } from '@/app/utils/filterDate';
-import SearchPagination from './SearchPagination';
+import SearchPagination from '@/app/components/Search/SearchPagination';
 import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
