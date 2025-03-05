@@ -8,6 +8,8 @@ import DataError from '@/app/components/Common/Error';
 import SearchSection from '@/app/components/Search/SearchSection';
 import SearchContainerSkeleton from '@/app/components/Search/SearchContainerSkeleton';
 import SearchSectionSkeleton from '@/app/components/Search/SearchSectionSkeleton';
+import Modal from '@/app/components/Common/Modal';
+import { useModalLogic } from '@/app/hooks/useModalLogic';
 
 const contentTypeNames: { [key: string]: string } = {
   '12': '🏛️ 관광지',
@@ -24,13 +26,9 @@ export default function SearchContainer() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const prevKeywordRef = useRef<string>('');
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const [isCategoryChanging, setIsCategoryChanging] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModalLogic();
 
-  const { data, isLoading, isError, error, refetch } = useSearchData(
-    keyword,
-    numOfRows,
-    contentTypeId
-  );
+  const { data, isLoading, isError, error } = useSearchData(keyword, numOfRows, contentTypeId);
 
   const debouncedSearch = useCallback(() => {
     if (debounceTimerRef.current) {
@@ -43,11 +41,8 @@ export default function SearchContainer() {
         setExpandedCategory(null);
         prevKeywordRef.current = keyword;
       }
-      if (keyword) {
-        refetch();
-      }
     }, 300);
-  }, [keyword, refetch]);
+  }, [keyword]);
 
   useEffect(() => {
     debouncedSearch();
@@ -76,16 +71,9 @@ export default function SearchContainer() {
   };
 
   const handleCategoryChange = (id: string | null) => {
-    setIsCategoryChanging(true);
     setContentTypeId(id);
     setExpandedCategory(null);
   };
-
-  useEffect(() => {
-    if (isCategoryChanging) {
-      refetch().then(() => setIsCategoryChanging(false));
-    }
-  }, [contentTypeId, refetch]);
 
   const handleExpandCategory = (id: string) => {
     setExpandedCategory(id);
@@ -165,6 +153,7 @@ export default function SearchContainer() {
                   items={items}
                   isExpanded={expandedCategory === id}
                   onExpand={() => handleExpandCategory(id)}
+                  onClick={openModal}
                 />
               );
             })
@@ -177,6 +166,7 @@ export default function SearchContainer() {
                 items={groupedData[contentTypeId]}
                 isExpanded={expandedCategory === contentTypeId}
                 onExpand={() => handleExpandCategory(contentTypeId)}
+                onClick={openModal}
               />
             )
           )
@@ -189,6 +179,7 @@ export default function SearchContainer() {
           </div>
         )}
       </div>
+      {isModalOpen && <Modal onClose={closeModal} />}
     </div>
   );
 }

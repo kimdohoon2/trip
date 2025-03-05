@@ -8,6 +8,6 @@ export function useSearchData(keyword: string, numOfRows: number, contentTypeId:
     queryFn: () => getSearchApi(keyword, numOfRows, contentTypeId),
     staleTime: 5 * 60 * 1000,
     retry: 1,
-    enabled: false,
+    enabled: !!keyword,
   });
 }
