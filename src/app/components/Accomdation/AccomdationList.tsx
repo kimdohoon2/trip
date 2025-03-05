@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import AccomdationCard from './AccomdationCard';
+import AccomdationCard from '@/app/components/Accomdation/AccomdationCard';
 import { StayItem } from '@/app/types/ItemType';
 
 interface AccomdationListProps {

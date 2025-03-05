@@ -1,6 +1,6 @@
 'use client';
 
-import AreaSlide from './AreaSlide';
+import AreaSlide from '@/app/components/Area/AreaSlide';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 import { useLocationStore } from '@/app/stores/useLocationStore';
 

@@ -11,7 +11,7 @@ import EventCard from '@/app/components/Event/EventCard';
 import EventPagination from '@/app/components/Event/EventPagination';
 import DataError from '@/app/components/Common/Error';
 import EmptyState from '@/app/components/Common/EmptyState';
-import EventSkeleton from './EventSkeleton';
+import EventSkeleton from '@/app/components/Event/EventSkeleton';
 
 export default function EventContents() {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);

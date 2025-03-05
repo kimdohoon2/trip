@@ -11,7 +11,7 @@ import EmptyState from '@/app/components/Common/EmptyState';
 import AccomdationHeader from '@/app/components/Accomdation/AccomdationHeader';
 import { useStayProcessor } from '@/app/hooks/useStayProcessor';
 import AccomdationList from '@/app/components/Accomdation/AccomdationList';
-import AccomdationSkeleton from './AccomdationSkeleton';
+import AccomdationSkeleton from '@/app/components/Accomdation/AccomdationSkeleton';
 
 export default function AccomdationContents() {
   const { setCurrentPage } = useInteractionStore();
