@@ -1,7 +1,7 @@
 'use client';
 
-import MoreCard from './MoreCard';
-import Spinner from '@/app/components/Common/Spinner';
+import MoreCard from '@/app/components/MorePage/MoreCard';
+import MoreSkeleton from '@/app/components/MorePage/MoreSkeleton';
 import DataError from '@/app/components/Common/Error';
 import { useUIStore } from '@/app/stores/useAreaUiStore';
 import { useTourData } from '@/app/hooks/useTourData';
@@ -12,13 +12,7 @@ export default function MoreContents() {
   const { selectedArea, selectedCategory } = useUIStore();
   const { data: moreData, isLoading, error } = useTourData(selectedArea);
 
-  if (isLoading)
-    return (
-      <div className="mt-32">
-        <Spinner />
-        <p className="text-center">잠시만 기다려 주세요.</p>
-      </div>
-    );
+  if (isLoading) return <MoreSkeleton />;
   if (error) return <DataError />;
 
   const filteredData = (moreData || []).filter(
