@@ -12,12 +12,15 @@ import EventPagination from '@/app/components/Event/EventPagination';
 import DataError from '@/app/components/Common/Error';
 import EmptyState from '@/app/components/Common/EmptyState';
 import EventSkeleton from '@/app/components/Event/EventSkeleton';
+import Modal from '@/app/components/Common/Modal';
+import { useModalLogic } from '@/app/hooks/useModalLogic';
 
 export default function EventContents() {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedArea, setSelectedArea] = useState<string>('전국');
+  const { isModalOpen, openModal, closeModal } = useModalLogic();
 
   const eventStartDate = `${currentDate.getFullYear()}${(currentDate.getMonth() + 1)
     .toString()
@@ -68,7 +71,7 @@ export default function EventContents() {
                   className="mr-4 !w-[65%] lg:!w-[45%] 2xl:!w-[800px]"
                   key={event.contentid}
                 >
-                  <EventCard event={event} />
+                  <EventCard event={event} onClick={openModal} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -85,6 +88,7 @@ export default function EventContents() {
           </div>
         )}
       </div>
+      {isModalOpen && <Modal onClose={closeModal} />}
     </section>
   );
 }

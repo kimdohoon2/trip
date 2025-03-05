@@ -10,13 +10,14 @@ import useLike from '@/app/hooks/useLike';
 
 interface MoreCardProps {
   moreData: AreaItem[];
+  onClick: () => void;
 }
-export default function MoreCard({ moreData }: MoreCardProps) {
+export default function MoreCard({ moreData, onClick }: MoreCardProps) {
   const { heartStates, toggleHeart } = useLike();
   return (
     <div className="grid w-full grid-cols-2 gap-3 px-4 py-4 lg:grid-cols-4 lg:gap-5 lg:px-6 lg:pt-12 1xl:m-auto 1xl:max-w-[1000px]">
       {moreData.map((more) => (
-        <div key={more.contentid} className="flex w-full flex-col">
+        <div key={more.contentid} className="flex w-full cursor-pointer flex-col" onClick={onClick}>
           <div className="relative mb-2 aspect-[4/3] h-[34.38vw] w-full lg:h-[220px]">
             <Image
               className="h-full w-full rounded-lg object-cover"
@@ -26,7 +27,10 @@ export default function MoreCard({ moreData }: MoreCardProps) {
               height={333}
             />
             <div
-              onClick={() => toggleHeart(more.contentid)}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleHeart(more.contentid);
+              }}
               className="absolute right-2 top-2 h-5 w-5 cursor-pointer rounded-full bg-white lg:h-7 lg:w-7"
             >
               <FontAwesomeIcon
@@ -43,9 +47,12 @@ export default function MoreCard({ moreData }: MoreCardProps) {
               </p>
               <div className="mt-2 lg:mb-4 lg:mt-7">
                 <Link
-                  className="rounded-xl border border-bordercolor px-6 py-1 text-sm hover:bg-black hover:text-white lg:text-base"
+                  className="hover-button rounded-xl border border-bordercolor px-6 py-1 text-sm lg:text-base"
                   href={createKakaoMapURL(more.addr1 || '주소를 준비중입니다.')}
                   target="_blank"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                 >
                   길찾기
                 </Link>

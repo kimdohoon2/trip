@@ -5,9 +5,14 @@ import { StayItem } from '@/app/types/ItemType';
 interface AccomdationListProps {
   stays: StayItem[];
   onSlideChange: (index: number) => void;
+  onCardClick: () => void;
 }
 
-export default function AccomdationList({ stays, onSlideChange }: AccomdationListProps) {
+export default function AccomdationList({
+  stays,
+  onSlideChange,
+  onCardClick,
+}: AccomdationListProps) {
   return (
     <Swiper
       className="cursor-pointer !pb-3 lg:!pb-5 1xl:!pb-7"
@@ -20,7 +25,7 @@ export default function AccomdationList({ stays, onSlideChange }: AccomdationLis
     >
       {stays.map((stay) => (
         <SwiperSlide key={stay.contentid}>
-          <AccomdationCard stay={stay} />
+          <AccomdationCard stay={stay} onClick={() => onCardClick()} />
         </SwiperSlide>
       ))}
     </Swiper>

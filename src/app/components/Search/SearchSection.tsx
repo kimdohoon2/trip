@@ -14,6 +14,7 @@ interface SearchSectionProps {
   items: SearchApiResponse[];
   isExpanded: boolean;
   onExpand: (contentTypeId: string) => void;
+  onClick: () => void;
 }
 
 export default function SearchSection({
@@ -22,6 +23,7 @@ export default function SearchSection({
   items,
   isExpanded,
   onExpand,
+  onClick,
 }: SearchSectionProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [initialItems, setInitialItems] = useState(5);
@@ -70,7 +72,11 @@ export default function SearchSection({
       <h2 className="mb-2 text-base font-semibold">{name}</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {currentItems.map((item: SearchApiResponse) => (
-          <div key={item.contentid} className="border-b border-bordercolor">
+          <div
+            key={item.contentid}
+            className="cursor-pointer border-b border-bordercolor"
+            onClick={onClick}
+          >
             <div className="flex gap-4">
               <div className="mb-2 h-16 w-24 lg:h-32 lg:w-44">
                 <Image
@@ -91,6 +97,9 @@ export default function SearchSection({
                     className="hover-button relative inline-block h-[30px] w-[30px] rounded-full border border-bordercolor text-sm lg:text-base"
                     href={createKakaoMapURL(item.addr1)}
                     target="_blank"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
                   >
                     <FontAwesomeIcon
                       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"

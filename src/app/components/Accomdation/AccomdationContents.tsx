@@ -12,10 +12,13 @@ import AccomdationHeader from '@/app/components/Accomdation/AccomdationHeader';
 import { useStayProcessor } from '@/app/hooks/useStayProcessor';
 import AccomdationList from '@/app/components/Accomdation/AccomdationList';
 import AccomdationSkeleton from '@/app/components/Accomdation/AccomdationSkeleton';
+import Modal from '@/app/components/Common/Modal';
+import { useModalLogic } from '@/app/hooks/useModalLogic';
 
 export default function AccomdationContents() {
   const { setCurrentPage } = useInteractionStore();
   const [selectedArea, setSelectedArea] = useState<string>('전국');
+  const { isModalOpen, openModal, closeModal } = useModalLogic();
 
   const { data: stayData, isLoading, error } = useStayData(selectedArea);
 
@@ -64,7 +67,11 @@ export default function AccomdationContents() {
           </div>
         ) : stayData && stayData.length > 0 ? (
           <>
-            <AccomdationList stays={processedStayData} onSlideChange={setCurrentPage} />
+            <AccomdationList
+              stays={processedStayData}
+              onSlideChange={setCurrentPage}
+              onCardClick={openModal}
+            />
             <ProgressBar totalPages={stayData.length} />
           </>
         ) : (
@@ -74,6 +81,7 @@ export default function AccomdationContents() {
         )}
       </div>
       <MoreButton href="/morepage" text="더많은" strongText="숙박시설" />
+      {isModalOpen && <Modal onClose={closeModal} />}
     </section>
   );
 }
