@@ -55,50 +55,52 @@ const SearchModal: React.FC<SearchModalProps> = ({
           <ThemeToggle />
         </div>
       </div>
-      <div className="block">
-        <form onSubmit={handleSearch} className="mb-[10px] lg:mb-0">
-          <div className="mr-0 box-border flex h-[35px] w-auto items-center justify-between rounded-full border border-black bg-white px-[20px] lg:w-full lg:rounded-none lg:border-0 lg:border-b lg:border-b-black lg:bg-transparent lg:px-[10px]">
-            <input
-              className="h-full w-full bg-transparent outline-none placeholder:text-[13px] lg:text-lg lg:placeholder:text-lg lg:placeholder:font-thin"
-              type="text"
-              placeholder="어디로 여행을 떠날 예정인가요?"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              autoFocus
-            />
-            <button type="submit">
-              <FontAwesomeIcon
-                className="text-[#6d6d6d] lg:text-lg lg:text-black"
-                icon={faSearch}
+      <div className="lg:mx-auto lg:w-[1000px]">
+        <div className="block">
+          <form onSubmit={handleSearch} className="mb-[10px] lg:mb-0">
+            <div className="mr-0 box-border flex h-[35px] w-auto items-center justify-between rounded-full border border-black bg-white px-[20px] lg:w-full lg:rounded-none lg:border-0 lg:border-b lg:border-b-black lg:bg-transparent lg:px-[10px]">
+              <input
+                className="h-full w-full bg-transparent outline-none placeholder:text-[13px] lg:text-lg lg:placeholder:text-lg lg:placeholder:font-thin"
+                type="text"
+                placeholder="어디로 여행을 떠날 예정인가요?"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                autoFocus
               />
-            </button>
-          </div>
-        </form>
-      </div>
-      <div className="mt-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold lg:text-lg">최근검색어</h2>
-          {recentSearches.length > 0 && (
-            <button onClick={clearRecentSearches} className="text-gray-500 text-sm lg:text-lg">
-              전체 삭제
-            </button>
-          )}
+              <button type="submit">
+                <FontAwesomeIcon
+                  className="text-[#6d6d6d] lg:text-lg lg:text-black"
+                  icon={faSearch}
+                />
+              </button>
+            </div>
+          </form>
         </div>
-        <ul className="mt-2">
-          {recentSearches.map((search, index) => (
-            <li key={index} className="flex items-center justify-between py-1">
-              <button
-                className="flex-grow text-left lg:text-lg"
-                onClick={() => handleRecentSearchClick(search)}
-              >
-                {search}
+        <div className="mt-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-bold lg:text-lg">최근검색어</h2>
+            {recentSearches.length > 0 && (
+              <button onClick={clearRecentSearches} className="text-gray-500 text-sm lg:text-lg">
+                전체 삭제
               </button>
-              <button onClick={() => removeRecentSearch(index)}>
-                <FontAwesomeIcon icon={faTimes} className="text-gray-500" />
-              </button>
-            </li>
-          ))}
-        </ul>
+            )}
+          </div>
+          <ul className="mt-2">
+            {recentSearches.map((search, index) => (
+              <li key={index} className="flex items-center justify-between py-1">
+                <button
+                  className="flex-grow text-left lg:text-lg"
+                  onClick={() => handleRecentSearchClick(search)}
+                >
+                  {search}
+                </button>
+                <button onClick={() => removeRecentSearch(index)}>
+                  <FontAwesomeIcon icon={faTimes} className="text-gray-500" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
