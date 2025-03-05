@@ -6,12 +6,12 @@ import { useStayData } from '@/app/hooks/useStayData';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 import ProgressBar from '@/app/components/Common/ProgressBar';
 import MoreButton from '@/app/components/Common/MoreButton';
-import Spinner from '@/app/components/Common/Spinner';
 import DataError from '@/app/components/Common/Error';
-import AreaEmptyState from '@/app/components/Common/AreaEmptyState';
+import EmptyState from '@/app/components/Common/EmptyState';
 import AccomdationHeader from '@/app/components/Accomdation/AccomdationHeader';
 import { useStayProcessor } from '@/app/hooks/useStayProcessor';
 import AccomdationList from '@/app/components/Accomdation/AccomdationList';
+import AccomdationSkeleton from '@/app/components/Accomdation/AccomdationSkeleton';
 
 export default function AccomdationContents() {
   const { setCurrentPage } = useInteractionStore();
@@ -56,23 +56,21 @@ export default function AccomdationContents() {
 
       {/* 숙박 데이터 표시 */}
       <div className="my-6 px-4 lg:px-6">
-        {isLoading && (
-          <div className="mt-6">
-            <Spinner />
-            <p className="text-center">잠시만 기다려 주세요.</p>
-          </div>
-        )}
-        {error && (
+        {isLoading ? (
+          <AccomdationSkeleton />
+        ) : error ? (
           <div className="mt-7 flex flex-col items-center gap-3">
             <DataError />
           </div>
-        )}
-        {!isLoading && !error && (!stayData || stayData.length === 0) && <AreaEmptyState />}
-        {!isLoading && !error && stayData && stayData.length > 0 && (
+        ) : stayData && stayData.length > 0 ? (
           <>
             <AccomdationList stays={processedStayData} onSlideChange={setCurrentPage} />
             <ProgressBar totalPages={stayData.length} />
           </>
+        ) : (
+          <div className="text-center">
+            <EmptyState type="area" mainClassName="text-black" subClassName="text-black" />
+          </div>
         )}
       </div>
       <MoreButton href="/morepage" text="더많은" strongText="숙박시설" />

@@ -11,7 +11,8 @@ export default function DataError() {
           height={120}
         ></Image>
       </div>
-      <div className="text-red-600 text-center">오류</div>
+      <h2 className="mb-2 text-2xl font-bold text-red">데이터 로딩 오류</h2>
+      <p className="mb-4 text-gray">죄송합니다. 데이터를 불러오는 중 문제가 발생했습니다.</p>
     </>
   );
 }
