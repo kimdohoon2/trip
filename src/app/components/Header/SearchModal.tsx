@@ -4,7 +4,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import LogoIcon from '@/app/components/Header/LogoIcon';
+import HeaderLogoIcon from '@/app/components/Header/HeaderLogoIcon';
 import ThemeToggle from '@/app/components/Header/ThemeToggle';
 
 interface SearchModalProps {
@@ -42,7 +42,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
       <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
         <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
           <Link className="relative block h-full w-full" href="/" onClick={onClose}>
-            <LogoIcon className="head-logo h-full w-full" />
+            <HeaderLogoIcon className="head-logo h-full w-full" />
           </Link>
         </div>
         <div className="flex items-center gap-4">
