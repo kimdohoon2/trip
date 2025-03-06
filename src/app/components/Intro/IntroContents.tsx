@@ -10,7 +10,11 @@ import RightTopBar from '@/app/components/Intro/RightTopBar';
 import LogoIcon from '@/app/components/Header/LogoIcon';
 import { SESSION_STORAGE_KEYS } from '@/app/constant/sessionStorageKeys';
 
-export default function IntroContents() {
+interface IntroContentsProps {
+  onComplete: () => void;
+}
+
+export default function IntroContents({ onComplete }: IntroContentsProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
   const [animationState, setAnimationState] = useState('initial');
@@ -41,8 +45,10 @@ export default function IntroContents() {
         clearTimeout(endTimer);
         clearTimeout(completeTimer);
       };
+    } else if (hasSeenIntro) {
+      onComplete();
     }
-  }, [isMounted, hasSeenIntro]);
+  }, [isMounted, hasSeenIntro, onComplete]);
 
   const getClipPathClass = () => {
     switch (animationState) {
