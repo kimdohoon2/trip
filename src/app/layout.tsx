@@ -6,7 +6,6 @@ import Footer from '@/app/components/Footer/FooterContents';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Providers from '@/app/providers/providers';
-import IntroPage from '@/app/(routes)/intro/page';
 config.autoAddCss = false;
 
 const pretendard = localFont({
@@ -29,7 +28,6 @@ export default function RootLayout({
   return (
     <html lang="ko" className={theme === 'dark' ? 'dark' : ''}>
       <body className={`${pretendard.className} antialiased`}>
-        <IntroPage />
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Header />
