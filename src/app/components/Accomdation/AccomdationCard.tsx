@@ -3,11 +3,12 @@ import { StayItem } from '@/app/types/ItemType';
 
 interface AccomdationCardProps {
   stay: StayItem;
+  onClick: () => void;
 }
 
-export default function AccomdationCard({ stay }: AccomdationCardProps) {
+export default function AccomdationCard({ stay, onClick }: AccomdationCardProps) {
   return (
-    <div className="rounded-lg bg-white shadow-md">
+    <div className="rounded-lg bg-white shadow-md" onClick={onClick}>
       <div className="relative aspect-[4/3]">
         <Image
           className="h-full w-full"

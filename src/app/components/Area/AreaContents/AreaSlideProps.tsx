@@ -4,17 +4,23 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import useLike from '@/app/hooks/useLike';
 
 interface ItemTypes {
-  firstimage: string;
-  title: string;
-  contentid: string;
-  addr1?: string;
+  item: {
+    firstimage: string;
+    title: string;
+    contentid: string;
+    addr1?: string;
+  };
+  onClick: () => void;
 }
 
-export default function AreaSlideProps({ item }: { item: ItemTypes }) {
+export default function AreaSlideProps({ item, onClick }: ItemTypes) {
   const { heartStates, toggleHeart } = useLike();
   return (
-    <div>
-      <div className="relative aspect-[4/3] h-[34.38vw] w-full overflow-hidden rounded-md lg:aspect-square lg:h-full">
+    <>
+      <div
+        className="relative aspect-[4/3] h-[34.38vw] w-full cursor-pointer overflow-hidden rounded-md lg:aspect-square lg:h-full"
+        onClick={onClick}
+      >
         <Image
           className="h-full w-full object-cover"
           src={item.firstimage || '/error/no-image.png'}
@@ -24,7 +30,10 @@ export default function AreaSlideProps({ item }: { item: ItemTypes }) {
           priority
         />
         <div
-          onClick={() => toggleHeart(item.contentid)}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleHeart(item.contentid);
+          }}
           className="absolute right-2 top-2 h-5 w-5 cursor-pointer rounded-full bg-white lg:h-7 lg:w-7"
         >
           <FontAwesomeIcon
@@ -39,6 +48,6 @@ export default function AreaSlideProps({ item }: { item: ItemTypes }) {
           {item.addr1 || '주소를 준비중입니다.'}
         </p>
       </div>
-    </div>
+    </>
   );
 }

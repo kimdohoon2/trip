@@ -13,11 +13,12 @@ interface EventCardProps {
     eventstartdate: string;
     eventenddate: string;
   };
+  onClick: () => void;
 }
 
-export default function EventCard({ event }: EventCardProps) {
+export default function EventCard({ event, onClick }: EventCardProps) {
   return (
-    <div className="event-card relative w-full rounded-md bg-white p-5">
+    <div className="event-card relative w-full rounded-md bg-white p-5" onClick={onClick}>
       <div className="2xl:flex">
         <div className="relative h-[200px] w-full lg:h-72 2xl:w-[200px]">
           <Image
@@ -54,6 +55,9 @@ export default function EventCard({ event }: EventCardProps) {
           <div className="mt-4 lg:mb-4 lg:mt-7">
             <Link
               className="hover-button rounded-xl border border-bordercolor px-6 py-1 text-sm lg:text-base"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
               href={createKakaoMapURL(event.addr1)}
               target="_blank"
             >

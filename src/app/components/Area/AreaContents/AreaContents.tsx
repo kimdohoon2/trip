@@ -13,6 +13,8 @@ import DataError from '@/app/components/Common/Error';
 import EmptyState from '@/app/components/Common/EmptyState';
 import AreaSlideProps from '@/app/components/Area/AreaContents/AreaSlideProps';
 import { useAreaContentsLogic } from '@/app/hooks/useAreaContentsLogic';
+import Modal from '@/app/components/Common/Modal';
+import { useModalLogic } from '@/app/hooks/useModalLogic';
 
 export default function AreaContents() {
   const {
@@ -25,6 +27,8 @@ export default function AreaContents() {
     isLoading,
     error,
   } = useAreaContentsLogic();
+
+  const { isModalOpen, openModal, closeModal } = useModalLogic();
 
   // 에러 발생 시 표시할 UI
   if (error) {
@@ -68,7 +72,7 @@ export default function AreaContents() {
                   key={generateKey(item)}
                   className="flex w-full max-w-[300px] flex-row items-center justify-center pb-[15px] pr-[15px] lg:pb-[30px]"
                 >
-                  <AreaSlideProps item={item} />
+                  <AreaSlideProps item={item} onClick={openModal} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -77,6 +81,7 @@ export default function AreaContents() {
         )}
         <MoreButton className="mt-4" href="/morepage" text="더많은" strongText="여행지" />
       </section>
+      {isModalOpen && <Modal onClose={closeModal} />}
     </>
   );
 }
