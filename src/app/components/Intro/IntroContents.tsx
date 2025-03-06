@@ -8,18 +8,21 @@ import LeftBottomBar from '@/app/components/Intro/LeftBottomBar';
 import RightBottomBar from '@/app/components/Intro/RightBottomBar';
 import RightTopBar from '@/app/components/Intro/RightTopBar';
 import LogoIcon from '@/app/components/Header/LogoIcon';
-import useSessionStorage from '@/app/hooks/useSessionStorage';
 import { SESSION_STORAGE_KEYS } from '@/app/constant/sessionStorageKeys';
 
 export default function IntroContents() {
-  const [hasSeenIntro, setHasSeenIntro] = useSessionStorage(
-    SESSION_STORAGE_KEYS.HAS_SEEN_INTRO,
-    false
-  );
+  const [isMounted, setIsMounted] = useState(false);
+  const [hasSeenIntro, setHasSeenIntro] = useState(false);
   const [animationState, setAnimationState] = useState('initial');
 
   useEffect(() => {
-    if (!hasSeenIntro) {
+    setIsMounted(true);
+    const storedHasSeenIntro = sessionStorage.getItem(SESSION_STORAGE_KEYS.HAS_SEEN_INTRO);
+    setHasSeenIntro(storedHasSeenIntro === 'true');
+  }, []);
+
+  useEffect(() => {
+    if (isMounted && !hasSeenIntro) {
       const startTimer = setTimeout(() => {
         setAnimationState('in');
       }, 100);
@@ -30,6 +33,7 @@ export default function IntroContents() {
 
       const completeTimer = setTimeout(() => {
         setHasSeenIntro(true);
+        sessionStorage.setItem(SESSION_STORAGE_KEYS.HAS_SEEN_INTRO, 'true');
       }, 6000);
 
       return () => {
@@ -38,7 +42,7 @@ export default function IntroContents() {
         clearTimeout(completeTimer);
       };
     }
-  }, [hasSeenIntro, setHasSeenIntro]);
+  }, [isMounted, hasSeenIntro]);
 
   const getClipPathClass = () => {
     switch (animationState) {
@@ -53,13 +57,12 @@ export default function IntroContents() {
     }
   };
 
-  if (hasSeenIntro) {
+  if (!isMounted || hasSeenIntro) {
     return null;
   }
 
   return (
     <div className={`fixed left-0 top-0 z-50 h-[100vh] w-full bg-white ${getClipPathClass()}`}>
-      {/* <div className={`fixed left-0 top-0 z-50 h-[100vh] w-full bg-white`}> */}
       <div className="relative top-1/2 mx-auto h-[240px] w-[360px] -translate-y-1/2 lg:h-[300px] lg:w-[400px]">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="relative h-[120px] w-[120px] rounded-full lg:h-[300px] lg:w-[300px]">
