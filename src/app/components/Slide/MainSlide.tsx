@@ -133,6 +133,7 @@ const MainSlide: React.FC = () => {
                     src={slide.image}
                     alt={slide.title}
                     fill
+                    priority
                   />
                 </div>
               </SwiperSlide>

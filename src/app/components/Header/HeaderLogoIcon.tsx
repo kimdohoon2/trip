@@ -1,35 +1,10 @@
-'use client';
-
-import React, { useEffect, useRef } from 'react';
-import useSessionStorage from '@/app/hooks/useSessionStorage';
-import { SESSION_STORAGE_KEYS } from '@/app/constant/sessionStorageKeys';
-
-interface LogoIconProps {
+interface HeaderLogoIconProps {
   className?: string;
 }
-export default function LogoIcon({ className }: LogoIconProps) {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const [hasAnimated, setHasAnimated] = useSessionStorage(SESSION_STORAGE_KEYS.ANIMATED, false);
-
-  useEffect(() => {
-    if (hasAnimated) return;
-    const svg = svgRef.current;
-    if (svg) {
-      svg.style.clipPath = 'inset(0 100% 0 0)';
-      svg.style.transition = 'clip-path 1s ease-in-out';
-
-      // 애니메이션 시작
-      setTimeout(() => {
-        svg.style.clipPath = 'inset(0 0 0 0)';
-        setHasAnimated(true);
-      }, 2500);
-    }
-  }, [hasAnimated, setHasAnimated]);
-
+export default function HeaderLogoIcon({ className }: HeaderLogoIconProps) {
   return (
     <svg
-      ref={svgRef}
-      className={`${className} text-black lg:text-white`}
+      className={className}
       width="510px"
       height="86px"
       viewBox="0 0 510 86"

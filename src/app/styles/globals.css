@@ -54,6 +54,20 @@ body {
   animation-delay: 1s;
 }
 @layer utilities {
+  .clip-circle-initial {
+    clip-path: circle(100% at 50% 50%);
+  }
+
+  .clip-circle-in {
+    clip-path: circle(70.7% at 50% 50%);
+    transition: clip-path 1s ease-in-out;
+  }
+
+  .clip-circle-out {
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 1s ease-in-out;
+  }
+
   .more-header-slider {
     content: '';
     display: block;
