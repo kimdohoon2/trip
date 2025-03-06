@@ -32,7 +32,7 @@ export default function LeftTopBar() {
       }
     };
 
-    const delays = [0, 500, 1500];
+    const delays = [100, 500, 1500];
     pathRefs.forEach((ref, index) => animatePath(ref, delays[index]));
 
     // 모든 애니메이션이 완료된 후 상태 업데이트
