@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import MainSlide from '@/app/components/Slide/MainSlide';
 import AccomdationContents from '@/app/components/Accomdation/AccomdationContents';
 import EventContents from '@/app/components/Event/EventContents';
@@ -17,11 +18,16 @@ export default function HomePage() {
     <>
       <IntroContents onComplete={handleIntroComplete} />
       {showMainContent && (
-        <>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+        >
           <MainSlide />
           <AccomdationContents />
           <EventContents />
-        </>
+        </motion.div>
       )}
     </>
   );
