@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import MainSlide from '@/app/components/Slide/MainSlide';
+import MainSlide from '@/app/components/MainSlide/MainSlide';
 import AccomdationContents from '@/app/components/Accomdation/AccomdationContents';
 import EventContents from '@/app/components/Event/EventContents';
 import IntroContents from '@/app/components/Intro/IntroContents';

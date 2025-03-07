@@ -8,6 +8,7 @@ import Search from '@/app/components/Header/Search';
 import ThemeToggle from '@/app/components/Header/ThemeToggle';
 import HeaderLogoIcon from '@/app/components/Header/HeaderLogoIcon';
 import MobileNavigation from '@/app/components/Header/MoblieNavigation';
+import ScrollToTopButton from '@/app/components/Common/ScrollToTopButton';
 
 export default function Header() {
   const [headerScrolled, setHeaderScrolled] = useState(false);
@@ -85,9 +86,14 @@ export default function Header() {
           <Navigation />
         </div>
       </header>
-      <div className="fixed bottom-0 left-0 z-40 block w-full bg-white lg:hidden">
+      <div className="fixed bottom-0 left-0 block w-full bg-white lg:hidden">
         <MobileNavigation />
       </div>
+      <ScrollToTopButton
+        className={`relative hidden cursor-pointer bg-black transition-all duration-300 lg:fixed lg:bottom-[4.5rem] lg:right-6 lg:z-40 lg:block lg:h-10 lg:w-10 lg:rounded-full lg:border lg:border-white 2xl:right-14 ${headerScrolled ? 'lg:opacity-1' : 'lg:opacity-0'}`}
+        buttonClassName="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        showText={false}
+      />
     </>
   );
 }
