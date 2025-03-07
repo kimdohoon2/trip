@@ -1,20 +1,27 @@
 import axios from 'axios';
 import xml2js from 'xml2js';
 import { AreaItem } from '@/app/types/ItemType';
-import { areaCodeMap } from '@/app/constant/SlideConstant';
+import { areaCodeMap, moreCategoryMap } from '@/app/constant/SlideConstant';
 import { API_URLS, TOUR_API_KEY } from '@/app/constant/apiConstants';
 
 // 지역 기반 관광 정보 조회
-export const getTourListApi = async (selectedArea: string): Promise<AreaItem[]> => {
+export const getTourListApi = async (
+  selectedArea: string,
+  numOfRows: number,
+  pageNo: number,
+  selectcontentTypeId?: string
+): Promise<AreaItem[]> => {
   const areaCode = areaCodeMap[selectedArea] || ''; // 선택된 지역에 맞는 areaCode
+  const contentTypeId = selectcontentTypeId ? moreCategoryMap[selectcontentTypeId] : '';
   const params = {
     MobileApp: 'AppTest',
     MobileOS: 'ETC',
-    pageNo: 1,
-    numOfRows: 100,
+    pageNo,
+    numOfRows,
     areaCode,
     arrange: 'R',
     listYN: 'Y',
+    contentTypeId,
   };
 
   try {
