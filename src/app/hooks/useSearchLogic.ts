@@ -4,7 +4,7 @@ import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
 const MAX_RECENT_SEARCHES = 5;
 
-export function useSearch() {
+export function useSearchLogic() {
   const { keyword, setKeyword, isModalOpen, openModal, closeModal } = useInteractionStore();
   const router = useRouter();
   const [recentSearches, setRecentSearches] = useState<string[]>([]);

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import SearchModal from '@/app/components/Header/SearchModal';
-import { useSearch } from '@/app/hooks/useSearch';
+import { useSearchLogic } from '@/app/hooks/useSearchLogic';
 
 export default function Search() {
   const {
@@ -15,7 +15,7 @@ export default function Search() {
     handleRecentSearchClick,
     clearRecentSearches,
     removeRecentSearch,
-  } = useSearch();
+  } = useSearchLogic();
 
   return (
     <>
