@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faHouseChimney, faMap, faUpLong } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faHouseChimney, faMap } from '@fortawesome/free-solid-svg-icons';
 import SearchModal from '@/app/components/Header/SearchModal';
-import { useSearch } from '@/app/hooks/useSearch';
+import { useSearchLogic } from '@/app/hooks/useSearchLogic';
+import ScrollToTopButton from '@/app/components/Common/ScrollToTopButton';
 
 export default function MobileNavigation() {
   const {
@@ -16,14 +17,7 @@ export default function MobileNavigation() {
     handleRecentSearchClick,
     clearRecentSearches,
     removeRecentSearch,
-  } = useSearch();
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  } = useSearchLogic();
 
   return (
     <nav>
@@ -53,12 +47,10 @@ export default function MobileNavigation() {
           </Link>
         </li>
         <li className="w-[25%] text-center lg:w-auto">
-          <button
-            onClick={scrollToTop}
-            className="relative flex w-full flex-col gap-1 py-[10px] text-[14px] lg:text-[20px]"
-          >
-            <FontAwesomeIcon icon={faUpLong} /> <span>TOP</span>
-          </button>
+          <ScrollToTopButton
+            buttonClassName="relative flex w-full flex-col gap-1 py-[10px] text-[14px] lg:text-[20px]"
+            spanClassName="TOP"
+          />
         </li>
       </ul>
       {isModalOpen && (
