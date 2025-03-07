@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useEffect } from 'react';
+import { useMemo, useCallback, useEffect, useState } from 'react';
 import { useTourData } from '@/app/hooks/useTourData';
 import { useLocationData } from '@/app/hooks/useLocationData';
 import { categoryMap } from '@/app/constant/SlideConstant';
@@ -11,13 +11,15 @@ export const useAreaContentsLogic = () => {
   const { selectedArea, slidesPerView, windowSize, setWindowSize, setSelectedArea } = useUIStore();
   const { category, setCurrentPage } = useInteractionStore();
   const { userLocation, setUserLocation } = useLocationStore();
+  const [numOfRows] = useState(100);
+  const [pageNo] = useState(1);
 
   // 여행지 데이터 가져오기
   const {
     data: tourData = [],
     isLoading: isTourLoading,
     error: tourError,
-  } = useTourData(selectedArea);
+  } = useTourData(selectedArea, numOfRows, pageNo);
   const {
     data: locationData,
     refetch: refetchLocationData,
