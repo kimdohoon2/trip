@@ -1,4 +1,3 @@
-// stores/useGalleryStore.ts
 import { create } from 'zustand';
 import { Swiper as SwiperClass } from 'swiper';
 
