@@ -86,7 +86,7 @@ export default function Header() {
           <Navigation />
         </div>
       </header>
-      <div className="fixed bottom-0 left-0 z-40 block w-full bg-white lg:hidden">
+      <div className="fixed bottom-0 left-0 z-40 block w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] lg:hidden">
         <MobileNavigation />
       </div>
       <ScrollToTopButton
