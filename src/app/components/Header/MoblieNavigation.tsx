@@ -26,6 +26,7 @@ export default function MobileNavigation() {
           <Link
             href="/"
             className="relative flex w-full flex-col gap-1 py-[10px] text-[14px] lg:text-[20px]"
+            aria-label="메인으로 이동"
           >
             <FontAwesomeIcon icon={faHouseChimney} /> <span>홈</span>
           </Link>

@@ -65,7 +65,7 @@ export default function Header() {
       >
         <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
           <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
-            <Link className="relative block h-full w-full" href="/">
+            <Link className="relative block h-full w-full" href="/" aria-label="메인으로 이동">
               <HeaderLogoIcon className="head-logo h-full w-full" />
             </Link>
           </div>
