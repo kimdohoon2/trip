@@ -56,6 +56,7 @@ const MainImageSlider: React.FC<MainImageSliderProps> = ({
                 src={slide.image}
                 alt={slide.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 840px, 840px"
                 priority
               />
             </div>

@@ -49,7 +49,7 @@ export const useMainSlideLogic = () => {
       }
       setIsPlaying(!isPlaying);
     } else {
-      console.error('Swiper instance or autoplay is not available.');
+      console.error('play, pause 작동이 안됩니다.');
     }
   };
 
