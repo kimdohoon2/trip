@@ -26,10 +26,10 @@ export default function MoreHeader() {
       <div className="1xl:m-auto 1xl:max-w-[1000px]">
         <div className="px-4 pt-7 lg:mx-auto lg:w-[600px]">
           <ul className="relative flex justify-center overflow-hidden rounded-md border border-[#000] bg-[#fff]">
-            <div
+            <li
               className="more-header-slider"
               style={{ transform: `translateX(${selectedTab * 100}%)` }}
-            ></div>
+            ></li>
             {moreCategories.map((tab, index) => (
               <li
                 key={index}
