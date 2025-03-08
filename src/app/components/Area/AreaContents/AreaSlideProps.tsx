@@ -27,7 +27,6 @@ export default function AreaSlideProps({ item, onClick }: ItemTypes) {
           alt={item.title}
           width={300}
           height={225}
-          priority
         />
         <div
           onClick={(e) => {
