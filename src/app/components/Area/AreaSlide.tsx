@@ -99,7 +99,7 @@ export default function AreaSlide() {
                 key={index}
                 className={`ml-[0.5rem] mr-[0.5rem] flex h-full w-full max-w-[2.8125rem] md:max-w-[5.9375rem] lg:max-w-[4.0625rem]${
                   activeIndex === index
-                    ? 'max-w-[13rem] md:max-w-[6.5625rem] lg:max-w-20'
+                    ? 'max-w-[3.25rem] md:max-w-[6.5625rem] lg:max-w-[5rem]'
                     : 'max-w-[2.8125rem] md:max-w-[5.9375rem] lg:max-w-[4.0625rem]'
                 }`}
                 onClick={() => handleSlideClick(index)}
@@ -107,7 +107,7 @@ export default function AreaSlide() {
                 <div
                   className={`flex h-full flex-col items-center justify-center ${
                     activeIndex === index
-                      ? 'w-[13rem] md:w-[6.5625rem] lg:w-20'
+                      ? 'w-[3.25rem] md:w-[6.5625rem] lg:w-[5rem]'
                       : 'w-[2.8125rem] md:w-[5.9375rem] lg:w-[4.0625rem]'
                   }`}
                 >
