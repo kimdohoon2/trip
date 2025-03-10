@@ -33,12 +33,12 @@ export default function IntroContents({ onComplete }: IntroContentsProps) {
 
       const endTimer = setTimeout(() => {
         setAnimationState('out');
-      }, 5000);
+      }, 4000);
 
       const completeTimer = setTimeout(() => {
         setHasSeenIntro(true);
         sessionStorage.setItem(SESSION_STORAGE_KEYS.HAS_SEEN_INTRO, 'true');
-      }, 6000);
+      }, 5000);
 
       return () => {
         clearTimeout(startTimer);
