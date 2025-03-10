@@ -2,7 +2,7 @@ import Image from 'next/image';
 export default function DataError() {
   return (
     <>
-      <div className="w-[122px]">
+      <div className="w-[7.625rem]">
         <Image
           className="h-full w-full object-cover"
           src="/error/data-error.svg"

@@ -7,9 +7,9 @@ export default function EventSkeleton() {
       {[...Array(2)].map((_, index) => (
         <div
           key={index}
-          className="relative w-[78%] flex-shrink-0 rounded-md bg-white p-5 lg:w-[54%] 2xl:flex 2xl:w-[800px]"
+          className="relative w-[78%] flex-shrink-0 rounded-md bg-white p-5 lg:w-[54%] 2xl:flex 2xl:w-[50rem]"
         >
-          <div className="relative mx-auto h-[200px] w-full md:w-[300px] 2xl:mx-0 2xl:h-[288px] 2xl:w-[200px]">
+          <div className="relative mx-auto h-[12.5rem] w-full md:w-[18.75rem] 2xl:mx-0 2xl:h-72 2xl:w-[12.5rem]">
             <Skeleton className="absolute h-full w-full" />
           </div>
           <div className="mt-4 border-b-0 border-dashed text-center 2xl:ml-8 2xl:mt-0 2xl:flex 2xl:flex-col 2xl:justify-between 2xl:border-l 2xl:pl-8">

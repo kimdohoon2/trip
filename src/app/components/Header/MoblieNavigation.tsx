@@ -21,11 +21,11 @@ export default function MobileNavigation() {
 
   return (
     <nav>
-      <ul className="flex items-center justify-between lg:w-full lg:gap-[50px]">
+      <ul className="flex items-center justify-between lg:w-full lg:gap-[3.125rem]">
         <li className="w-[25%] text-center lg:w-auto">
           <Link
             href="/"
-            className="relative flex w-full flex-col gap-1 py-[10px] text-[14px] lg:text-[20px]"
+            className="relative flex w-full flex-col gap-1 py-[0.625rem] text-[0.875rem] lg:text-[1.25rem]"
             aria-label="메인으로 이동"
           >
             <FontAwesomeIcon icon={faHouseChimney} /> <span>홈</span>
@@ -34,7 +34,7 @@ export default function MobileNavigation() {
         <li className="w-[25%] text-center lg:w-auto">
           <button
             onClick={openModal}
-            className="relative flex w-full flex-col gap-1 py-[10px] text-[14px] lg:text-[20px]"
+            className="relative flex w-full flex-col gap-1 py-[0.625rem] text-[0.875rem] lg:text-[1.25rem]"
           >
             <FontAwesomeIcon icon={faSearch} /> <span>검색</span>
           </button>
@@ -42,14 +42,14 @@ export default function MobileNavigation() {
         <li className="w-[25%] text-center lg:w-auto">
           <Link
             href="/morepage"
-            className="relative flex w-full flex-col gap-1 py-[10px] text-[14px] lg:text-[20px]"
+            className="relative flex w-full flex-col gap-1 py-[0.625rem] text-[0.875rem] lg:text-[1.25rem]"
           >
             <FontAwesomeIcon icon={faMap} /> <span>여행정보</span>
           </Link>
         </li>
         <li className="w-[25%] text-center lg:w-auto">
           <ScrollToTopButton
-            buttonClassName="relative flex w-full flex-col gap-1 py-[10px] text-[14px] lg:text-[20px]"
+            buttonClassName="relative flex w-full flex-col gap-1 py-[0.625rem] text-[0.875rem] lg:text-[1.25rem]"
             spanClassName="TOP"
           />
         </li>

@@ -63,8 +63,8 @@ export default function Header() {
       <header
         className={`fixed left-0 right-0 top-0 z-40 bg-white px-4 transition-all duration-300 md:px-3 lg:px-6 2xl:px-14 ${!isHeaderVisible ? '-translate-y-full' : 'translate-y-0'} ${headerScrolled ? 'lg:bg-white lg:shadow-md' : 'lg:bg-transparent'}`}
       >
-        <div className="flex h-[50px] items-center justify-between lg:h-[90px]">
-          <div className="h-[50px] w-[129px] lg:h-[36px] lg:w-[207px]">
+        <div className="flex h-[3.125rem] items-center justify-between lg:h-[5.625rem]">
+          <div className="h-[3.125rem] w-[8.0625rem] lg:h-[2.25rem] lg:w-[12.9375rem]">
             <Link className="relative block h-full w-full" href="/" aria-label="메인으로 이동">
               <HeaderLogoIcon className="head-logo h-full w-full" />
             </Link>

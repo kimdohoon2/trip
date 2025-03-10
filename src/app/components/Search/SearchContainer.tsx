@@ -112,7 +112,7 @@ export default function SearchContainer() {
 
   return (
     <div className="inline-block h-full w-full bg-[#f4f6f8] lg:pt-24">
-      <div className="lg:mx-auto lg:max-w-[1000px]">
+      <div className="lg:mx-auto lg:max-w-[62.5rem]">
         <div className="mb-4 bg-white lg:bg-transparent">
           <h1 className="p-4 text-xl font-bold">{`"${keyword}" 검색 결과`}</h1>
           <div className="scroll-container">

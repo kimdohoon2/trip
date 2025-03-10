@@ -2,7 +2,7 @@ import Skeleton from '@/app/components/Common/Skeleton';
 
 export default function SearchSectionSkeleton() {
   return (
-    <div className="mx-4 mb-4 rounded-2xl bg-white p-4 shadow-md lg:mx-auto lg:mb-8 lg:w-[1000px]">
+    <div className="mx-4 mb-4 rounded-2xl bg-white p-4 shadow-md lg:mx-auto lg:mb-8 lg:w-[62.5rem]">
       <Skeleton className="mb-2 h-6 w-10" />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {[...Array(4)].map((_, index) => (
@@ -14,7 +14,7 @@ export default function SearchSectionSkeleton() {
                   <Skeleton className="mb-2 h-5 w-3/4" />
                   <Skeleton className="h-4 w-1/2" />
                 </div>
-                <Skeleton className="h-[30px] w-[30px] rounded-full" />
+                <Skeleton className="h-[1.875rem] w-[1.875rem] rounded-full" />
               </div>
             </div>
           </div>

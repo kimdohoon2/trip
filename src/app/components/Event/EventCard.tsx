@@ -20,7 +20,7 @@ export default function EventCard({ event, onClick }: EventCardProps) {
   return (
     <div className="event-card relative w-full rounded-md bg-white p-5" onClick={onClick}>
       <div className="2xl:flex">
-        <div className="relative h-[200px] w-full lg:h-72 2xl:w-[200px]">
+        <div className="relative h-[12.5rem] w-full lg:h-72 2xl:w-[12.5rem]">
           <Image
             className="absolute h-full w-full rounded-lg object-contain 2xl:object-cover"
             src={event.firstimage || '/placeholder-image.jpg'}

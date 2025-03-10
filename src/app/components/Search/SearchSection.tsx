@@ -94,7 +94,7 @@ export default function SearchSection({
                 </div>
                 <div>
                   <Link
-                    className="hover-button relative inline-block h-[30px] w-[30px] rounded-full border border-bordercolor text-sm lg:text-base"
+                    className="hover-button relative inline-block h-[1.875rem] w-[1.875rem] rounded-full border border-bordercolor text-sm lg:text-base"
                     href={createKakaoMapURL(item.addr1)}
                     target="_blank"
                     onClick={(e) => {

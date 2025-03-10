@@ -12,7 +12,7 @@ interface MoreButtonProps {
 export default function MoreButton({ href, text, strongText, className = '' }: MoreButtonProps) {
   return (
     <div
-      className={`hover-button m-auto block h-[30px] w-[90%] rounded-full border border-black lg:h-[45px] lg:max-w-[240px] ${className}`}
+      className={`hover-button m-auto block h-[1.875rem] w-[90%] rounded-full border border-black lg:h-[2.8125rem] lg:max-w-60 ${className}`}
     >
       <Link
         className="flex h-full w-full items-center justify-center gap-1 text-xs lg:text-base"

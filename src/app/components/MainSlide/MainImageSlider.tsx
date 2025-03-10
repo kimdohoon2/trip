@@ -52,11 +52,11 @@ const MainImageSlider: React.FC<MainImageSliderProps> = ({
           <SwiperSlide key={index} className="h-full w-full">
             <div className="relative h-full w-full">
               <Image
-                className="rounded-bl-[5px] rounded-tl-[5px] object-cover lg:rounded-[5px]"
+                className="rounded-bl-[0.3125rem] rounded-tl-[0.3125rem] object-cover lg:rounded-[0.3125rem]"
                 src={slide.image}
                 alt={slide.title}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 840px, 840px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 52.5rem, 52.5rem"
                 priority
               />
             </div>

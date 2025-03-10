@@ -68,7 +68,7 @@ export default function EventContents() {
             >
               {eventData.map((event) => (
                 <SwiperSlide
-                  className="mr-4 !w-[65%] lg:!w-[45%] 2xl:!w-[800px]"
+                  className="mr-4 !w-[65%] lg:!w-[45%] 2xl:!w-[50rem]"
                   key={event.contentid}
                 >
                   <EventCard event={event} onClick={openModal} />

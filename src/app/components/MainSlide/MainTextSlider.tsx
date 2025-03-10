@@ -34,7 +34,7 @@ const MainTextSlider: React.FC<MainTextSliderProps> = ({ setGalleryTextSwiper })
             <em className="h-5 rounded-bl-none rounded-br-lg rounded-tl-lg rounded-tr-lg bg-black px-2 py-1 text-xs leading-5 text-white xl:text-lg 2xl:rounded-tl-2xl">
               {slide.title}
             </em>
-            <p className="mt-3 line-clamp-2 max-h-12 text-xl leading-6 tracking-tight text-black lg:text-[26px] lg:leading-10 xl:mt-4 xl:max-h-20 xl:text-[37px] 2xl:mt-10 2xl:max-h-28 2xl:text-[44px] 2xl:leading-[50px]">
+            <p className="mt-3 line-clamp-2 max-h-12 text-xl leading-6 tracking-tight text-black lg:text-[1.625rem] lg:leading-10 xl:mt-4 xl:max-h-20 xl:text-[2.3125rem] 2xl:mt-10 2xl:max-h-28 2xl:text-[2.75rem] 2xl:leading-[3.125rem]">
               {slide.description}
               {slide.description2 && (
                 <>

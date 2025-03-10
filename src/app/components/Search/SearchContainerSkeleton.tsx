@@ -3,7 +3,7 @@ import Skeleton from '@/app/components/Common/Skeleton';
 export default function SearchContainerSkeleton() {
   return (
     <div className="inline-block h-full w-full lg:pt-24">
-      <div className="lg:mx-auto lg:max-w-[1000px]">
+      <div className="lg:mx-auto lg:max-w-[62.5rem]">
         <div className="mb-4 bg-white lg:bg-transparent">
           <Skeleton className="m-4 h-8 w-16" />
           <div className="scroll-container">

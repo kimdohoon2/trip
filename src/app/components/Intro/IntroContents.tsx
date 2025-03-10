@@ -68,28 +68,28 @@ export default function IntroContents({ onComplete }: IntroContentsProps) {
   }
 
   return (
-    <div className={`fixed left-0 top-0 z-50 h-[100vh] w-full bg-white ${getClipPathClass()}`}>
-      <div className="relative top-1/2 mx-auto h-[240px] w-[360px] -translate-y-1/2 lg:h-[300px] lg:w-[400px]">
+    <div className={`fixed left-0 top-0 z-50 h-screen w-full bg-white ${getClipPathClass()}`}>
+      <div className="relative top-1/2 mx-auto h-[15rem] w-[22.5rem] -translate-y-1/2 lg:h-[18.75rem] lg:w-[25rem]">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="relative h-[120px] w-[120px] rounded-full lg:h-[300px] lg:w-[300px]">
-            <div className="absolute left-0 top-0 h-[90px] w-[120px] lg:h-[225px] lg:w-[300px]">
+          <div className="relative h-[7.5rem] w-[7.5rem] rounded-full lg:h-[18.75rem] lg:w-[18.75rem]">
+            <div className="absolute left-0 top-0 h-[5.625rem] w-[7.5rem] lg:h-[14.0625rem] lg:w-[18.75rem]">
               <CircleUp />
             </div>
-            <div className="absolute bottom-0 right-0 h-[90px] w-[120px] lg:h-[225px] lg:w-[300px]">
+            <div className="absolute bottom-0 right-0 h-[5.625rem] w-[7.5rem] lg:h-[14.0625rem] lg:w-[18.75rem]">
               <CircleDown />
             </div>
           </div>
         </div>
-        <div className="absolute left-1/4 top-1/4 flex h-[60px] w-[40px] -translate-x-1/2 -translate-y-1/2 rotate-[45deg] gap-1 lg:left-0 lg:top-0 lg:h-[100px] lg:w-[80px]">
+        <div className="absolute left-1/4 top-1/4 flex h-[3.75rem] w-[2.5rem] -translate-x-1/2 -translate-y-1/2 rotate-[45deg] gap-1 lg:left-0 lg:top-0 lg:h-[6.25rem] lg:w-[5rem]">
           <LeftTopBar />
         </div>
-        <div className="absolute right-1/4 top-1/4 flex h-[60px] w-[40px] -translate-y-1/2 translate-x-1/2 rotate-[-45deg] gap-1 lg:right-0 lg:top-0 lg:h-[100px] lg:w-[80px]">
+        <div className="absolute right-1/4 top-1/4 flex h-[3.75rem] w-[2.5rem] -translate-y-1/2 translate-x-1/2 rotate-[-45deg] gap-1 lg:right-0 lg:top-0 lg:h-[6.25rem] lg:w-[5rem]">
           <RightTopBar />
         </div>
-        <div className="absolute bottom-1/4 left-1/4 flex h-[60px] w-[40px] -translate-x-1/2 translate-y-1/2 rotate-[-45deg] gap-1 lg:bottom-0 lg:left-0 lg:h-[100px] lg:w-[80px]">
+        <div className="absolute bottom-1/4 left-1/4 flex h-[3.75rem] w-[2.5rem] -translate-x-1/2 translate-y-1/2 rotate-[-45deg] gap-1 lg:bottom-0 lg:left-0 lg:h-[6.25rem] lg:w-[5rem]">
           <LeftBottomBar />
         </div>
-        <div className="absolute bottom-1/4 right-1/4 flex h-[60px] w-[40px] translate-x-1/2 translate-y-1/2 rotate-[45deg] gap-1 lg:bottom-0 lg:right-0 lg:h-[100px] lg:w-[80px]">
+        <div className="absolute bottom-1/4 right-1/4 flex h-[3.75rem] w-[2.5rem] translate-x-1/2 translate-y-1/2 rotate-[45deg] gap-1 lg:bottom-0 lg:right-0 lg:h-[6.25rem] lg:w-[5rem]">
           <RightBottomBar />
         </div>
       </div>

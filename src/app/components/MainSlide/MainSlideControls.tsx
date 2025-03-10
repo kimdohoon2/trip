@@ -14,9 +14,9 @@ const MainSlideControls: React.FC<MainSlideControlsProps> = ({
   handlePlayPause,
 }) => {
   return (
-    <div className="lg:flex lg:w-[200px] lg:items-center lg:justify-between">
+    <div className="lg:flex lg:w-[12.5rem] lg:items-center lg:justify-between">
       {showNavigation && (
-        <div className="swiper-button-prev cursor-pointer text-[18px]">
+        <div className="swiper-button-prev cursor-pointer text-lg">
           <FontAwesomeIcon icon={faArrowLeft} />
         </div>
       )}
@@ -32,7 +32,7 @@ const MainSlideControls: React.FC<MainSlideControlsProps> = ({
         )}
       </div>
       {showNavigation && (
-        <div className="swiper-button-next cursor-pointer text-[18px]">
+        <div className="swiper-button-next cursor-pointer text-lg">
           <FontAwesomeIcon icon={faArrowRight} />
         </div>
       )}

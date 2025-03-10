@@ -23,8 +23,8 @@ export default function MoreHeader() {
 
   return (
     <div className="bg-morebg lg:pt-28">
-      <div className="1xl:m-auto 1xl:max-w-[1000px]">
-        <div className="px-4 pt-7 lg:mx-auto lg:w-[600px]">
+      <div className="1xl:m-auto 1xl:max-w-[62.5rem]">
+        <div className="px-4 pt-7 lg:mx-auto lg:w-[37.5rem]">
           <ul className="relative flex justify-center overflow-hidden rounded-md border border-[#000] bg-[#fff]">
             <li
               className="more-header-slider"
@@ -51,7 +51,7 @@ export default function MoreHeader() {
               {AreaHeaderSlide.map((slide, index) => (
                 <div
                   key={index}
-                  className={`flex cursor-pointer flex-col items-center justify-center transition-all lg:w-[62px] ${
+                  className={`flex cursor-pointer flex-col items-center justify-center transition-all lg:w-[3.875rem] ${
                     activeIndex === index ? 'scale-105' : 'opacity-80'
                   }`}
                   onClick={() => handleSlideClick(index)}
@@ -66,10 +66,10 @@ export default function MoreHeader() {
                     height={52}
                   />
                   <p
-                    className={`mt-2 text-center text-[12px] md:text-base ${
+                    className={`mt-2 text-center text-[0.75rem] md:text-base ${
                       activeIndex === index
-                        ? 'text-[13px] font-semibold lg:text-[20px]'
-                        : 'font-normal lg:text-[17px]'
+                        ? 'text-[0.8125rem] font-semibold lg:text-[1.25rem]'
+                        : 'font-normal lg:text-[1.0625rem]'
                     }`}
                   >
                     {slide.title}

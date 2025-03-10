@@ -46,7 +46,7 @@ export default function CalendarGrid({
       {calendarDays.map(({ day, isCurrentMonth }, index) => (
         <div
           key={index}
-          className={`hover:bg-gray-200 cursor-pointer rounded p-[5px] ${getDayColor(
+          className={`hover:bg-gray-200 cursor-pointer rounded p-[0.3125rem] ${getDayColor(
             index,
             isCurrentMonth
           )} ${
