@@ -43,8 +43,8 @@ export default function AreaSlideProps({ item, onClick }: ItemTypes) {
         </div>
       </div>
       <div className="shadow-indigo-500/40 lg:shadow-lg">
-        <p className="mt-2 text-center text-[13px] font-bold lg:text-lg">{item.title}</p>
-        <p className="text-center text-[11px] text-bordercolor lg:pb-3 lg:text-[15px]">
+        <p className="mt-2 text-center text-[0.8125rem] font-bold lg:text-lg">{item.title}</p>
+        <p className="text-center text-[0.6875rem] text-bordercolor lg:pb-3 lg:text-[0.9375rem]">
           {item.addr1 || '주소를 준비중입니다.'}
         </p>
       </div>

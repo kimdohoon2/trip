@@ -33,13 +33,13 @@ export default function AreaHeader() {
   return (
     <div className="bg-areabg pb-8 pt-3 lg:pb-0 lg:pt-28 1xl:pt-20">
       <div className="relative right-5 mb-2 flex items-center justify-end lg:right-7 lg:hidden 1xl:right-16">
-        <label className="mx-[5px] text-[11px] text-black lg:text-base">내위치</label>
+        <label className="mx-[0.3125rem] text-[0.6875rem] text-black lg:text-base">내위치</label>
         <button
-          className={`relative h-[13px] w-[22px] rounded-3xl lg:h-[15px] lg:w-[30px] ${myLocationButton ? 'bg-black' : 'bg-gray'}`}
+          className={`relative h-[0.8125rem] w-[1.375rem] rounded-3xl lg:h-[0.9375rem] lg:w-[1.875rem] ${myLocationButton ? 'bg-black' : 'bg-gray'}`}
           onClick={handleLocationClick} // 클릭 시 위치 정보 요청
         >
           <div
-            className={`absolute top-1/2 h-[13px] w-[13px] -translate-y-1/2 transform rounded-[50%] bg-white transition-all duration-100 lg:h-[15px] lg:w-[15px] ${
+            className={`absolute top-1/2 h-[0.8125rem] w-[0.8125rem] -translate-y-1/2 transform rounded-[50%] bg-white transition-all duration-100 lg:h-[0.9375rem] lg:w-[0.9375rem] ${
               myLocationButton ? 'translate-x-[100%]' : 'translate-x-0'
             }`} // myLocationButton 상태에 따라 이동
           ></div>

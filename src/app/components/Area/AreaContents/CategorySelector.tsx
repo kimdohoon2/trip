@@ -12,7 +12,7 @@ export default function CategorySelector({ availableCategories }: CategorySelect
     <div className="align-center relative flex items-center">
       <span className="mr-2 text-sm text-bgopacity lg:text-2xl">다양한</span>
       <button onClick={() => setVisible(!visible)}>
-        <div className="z-20 flex w-[120px] justify-between border-b border-black bg-white text-lg font-bold lg:w-[170px] lg:text-3xl 1xl:w-[195px]">
+        <div className="z-20 flex w-[7.5rem] justify-between border-b border-black bg-white text-lg font-bold lg:w-[10.625rem] lg:text-3xl 1xl:w-[12.1875rem]">
           {category}
           <span>
             <FontAwesomeIcon
@@ -23,7 +23,7 @@ export default function CategorySelector({ availableCategories }: CategorySelect
         </div>
         <ul
           aria-hidden={!visible}
-          className={`absolute top-[29px] z-10 w-full max-w-[120px] lg:top-[38px] lg:max-w-[170px] ${visible ? 'block' : 'hidden'}`}
+          className={`absolute top-[1.8125rem] z-10 w-full max-w-[7.5rem] lg:top-[2.375rem] lg:max-w-[10.625rem] ${visible ? 'block' : 'hidden'}`}
         >
           {availableCategories.map((item) => (
             <li

@@ -47,9 +47,7 @@ export default function RootLayout({
       <body className={`${pretendard.className} antialiased`}>
         <Providers>
           <div className="flex min-h-screen flex-col">
-            <main className="mb-16 mt-[140px] flex-1 md:mt-[140px] lg:mb-0 lg:mt-0">
-              {children}
-            </main>
+            <main className="mb-16 mt-[8.75rem] flex-1 lg:mb-0 lg:mt-0">{children}</main>
           </div>
         </Providers>
       </body>

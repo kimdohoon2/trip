@@ -70,14 +70,14 @@ export default function AreaSlide() {
 
   return (
     <>
-      <div className="overflow-hidden lg:flex lg:w-full lg:items-center lg:justify-between lg:p-6 1xl:m-auto 1xl:w-[1000px]">
+      <div className="overflow-hidden lg:flex lg:w-full lg:items-center lg:justify-between lg:p-6 1xl:m-auto 1xl:w-[62.5rem]">
         {/* 이전 슬라이드 버튼 */}
-        <div className="swiper-button-prev hidden cursor-pointer text-[22px] text-black lg:block">
+        <div className="swiper-button-prev hidden cursor-pointer text-[1.375rem] text-black lg:block">
           <FontAwesomeIcon icon={faCircleLeft} />
         </div>
 
         {/* Swiper 컴포넌트로 슬라이드들 렌더링 */}
-        <div className="overflow-hidden lg:w-[900px]">
+        <div className="overflow-hidden lg:w-[56.25rem]">
           <Swiper
             slidesPerView="auto"
             centeredSlides={true}
@@ -97,18 +97,18 @@ export default function AreaSlide() {
             {AreaHeaderSlide.map((slide, index) => (
               <SwiperSlide
                 key={index}
-                className={`ml-[8px] mr-[8px] flex h-full w-full max-w-[45px] md:max-w-[95px] lg:max-w-[65px]${
+                className={`ml-[0.5rem] mr-[0.5rem] flex h-full w-full max-w-[2.8125rem] md:max-w-[5.9375rem] lg:max-w-[4.0625rem]${
                   activeIndex === index
-                    ? 'max-w-[52px] md:max-w-[105px] lg:max-w-[80px]'
-                    : 'max-w-[45px] md:max-w-[95px] lg:max-w-[65px]'
+                    ? 'max-w-[13rem] md:max-w-[6.5625rem] lg:max-w-20'
+                    : 'max-w-[2.8125rem] md:max-w-[5.9375rem] lg:max-w-[4.0625rem]'
                 }`}
                 onClick={() => handleSlideClick(index)}
               >
                 <div
                   className={`flex h-full flex-col items-center justify-center ${
                     activeIndex === index
-                      ? 'w-[52px] md:w-[105px] lg:w-[80px]'
-                      : 'w-[45px] md:w-[95px] lg:w-[65px]'
+                      ? 'w-[13rem] md:w-[6.5625rem] lg:w-20'
+                      : 'w-[2.8125rem] md:w-[5.9375rem] lg:w-[4.0625rem]'
                   }`}
                 >
                   <Image
@@ -121,10 +121,10 @@ export default function AreaSlide() {
                     height={52}
                   />
                   <p
-                    className={`mt-2 text-center text-[12px] ${
+                    className={`mt-2 text-center text-[0.75rem] ${
                       activeIndex === index
-                        ? 'text-[13px] font-semibold lg:text-[20px]'
-                        : 'font-normal lg:text-[17px]'
+                        ? 'text-[0.8125rem] font-semibold lg:text-[1.25rem]'
+                        : 'font-normal lg:text-[1.0625rem]'
                     }`}
                   >
                     {slide.title} {/* 슬라이드 제목 표시 */}
@@ -136,7 +136,7 @@ export default function AreaSlide() {
         </div>
 
         {/* 다음 슬라이드 버튼 */}
-        <div className="swiper-button-next hidden cursor-pointer text-[22px] text-black lg:block">
+        <div className="swiper-button-next hidden cursor-pointer text-[1.375rem] text-black lg:block">
           <FontAwesomeIcon icon={faCircleRight} />
         </div>
       </div>

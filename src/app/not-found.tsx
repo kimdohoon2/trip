@@ -9,7 +9,7 @@ const NotFound: React.FC = () => {
     <>
       <Header />
       <div className="bg-gray-100 flex flex-col items-center justify-center pt-48 1xl:pt-32">
-        <div className="w-[120px] lg:w-[300px] 1xl:w-[500px]">
+        <div className="w-[7.5rem] lg:w-[18.75rem] 1xl:w-[31.25rem]">
           <Image
             className="h-full w-full object-cover"
             src="/error/404.png"

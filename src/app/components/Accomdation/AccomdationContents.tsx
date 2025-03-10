@@ -25,7 +25,7 @@ export default function AccomdationContents() {
   const processedStayData = useStayProcessor(stayData);
 
   return (
-    <section className="mt-6 1xl:mx-auto 1xl:max-w-[1000px]">
+    <section className="mt-6 1xl:mx-auto 1xl:max-w-[62.5rem]">
       <div className="px-4 lg:px-6">
         {/* 아이콘 & 제목 */}
         <div className="flex items-center justify-center gap-2">

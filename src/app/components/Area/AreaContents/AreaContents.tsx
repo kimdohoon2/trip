@@ -42,11 +42,11 @@ export default function AreaContents() {
   return (
     <>
       <Toast />
-      <section className="relative -top-5 rounded-tl-[20px] bg-white pb-10 pl-4 pt-5 lg:-top-0 lg:px-6 lg:pb-12 lg:pt-12 1xl:m-auto 1xl:max-w-[1000px] 1xl:pl-0 1xl:pr-0">
+      <section className="relative -top-5 rounded-tl-[1.375rem] bg-white pb-10 pl-4 pt-5 lg:-top-0 lg:px-6 lg:pb-12 lg:pt-12 1xl:m-auto 1xl:max-w-[62.5rem] 1xl:pl-0 1xl:pr-0">
         <h2 className="text-lg lg:text-2xl">{regionText}</h2>
         <CategorySelector availableCategories={availableCategories} />
         {isLoading ? (
-          <div className="relative h-[400px] md:h-[670px]">
+          <div className="relative h-[25rem] md:h-[41.875rem]">
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
               <Spinner />
               <p>잠시만 기다려 주세요 :)</p>
@@ -65,12 +65,12 @@ export default function AreaContents() {
               }}
               modules={[Grid]}
               onSlideChange={handleSlideChange}
-              className="mt-[20px] h-full w-full lg:mt-[50px]"
+              className="mt-[1.25rem] h-full w-full lg:mt-[3.125rem]"
             >
               {filteredData.map((item) => (
                 <SwiperSlide
                   key={generateKey(item)}
-                  className="flex w-full max-w-[300px] flex-row items-center justify-center pb-[15px] pr-[15px] lg:pb-[30px]"
+                  className="flex w-full max-w-[18.75rem] flex-row items-center justify-center pb-[0.9375rem] pr-[0.9375rem] lg:pb-[1.875rem]"
                 >
                   <AreaSlideProps item={item} onClick={openModal} />
                 </SwiperSlide>
