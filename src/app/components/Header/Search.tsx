@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import SearchModal from '@/app/components/Header/SearchModal';
 import { useSearchLogic } from '@/app/hooks/useSearchLogic';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Search() {
   const {
@@ -35,18 +36,20 @@ export default function Search() {
         </div>
       </form>
 
-      {isModalOpen && (
-        <SearchModal
-          keyword={keyword}
-          setKeyword={setKeyword}
-          handleSearch={handleSearch}
-          recentSearches={recentSearches}
-          handleRecentSearchClick={handleRecentSearchClick}
-          clearRecentSearches={clearRecentSearches}
-          removeRecentSearch={removeRecentSearch}
-          onClose={closeModal}
-        />
-      )}
+      <AnimatePresence>
+        {isModalOpen && (
+          <SearchModal
+            keyword={keyword}
+            setKeyword={setKeyword}
+            handleSearch={handleSearch}
+            recentSearches={recentSearches}
+            handleRecentSearchClick={handleRecentSearchClick}
+            clearRecentSearches={clearRecentSearches}
+            removeRecentSearch={removeRecentSearch}
+            onClose={closeModal}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
