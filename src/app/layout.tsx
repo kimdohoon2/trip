@@ -1,16 +1,9 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import '@/app/styles/globals.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Providers from '@/app/providers/providers';
 config.autoAddCss = false;
-
-const pretendard = localFont({
-  src: './fonts/PretendardVariable.woff2',
-  display: 'swap',
-  weight: '45 920',
-});
 
 export const metadata: Metadata = {
   title: '대한민국 구석구석',
@@ -44,7 +37,14 @@ export default function RootLayout({
   const theme = typeof window !== 'undefined' && localStorage.getItem('theme');
   return (
     <html lang="ko" className={theme === 'dark' ? 'dark' : ''}>
-      <body className={`${pretendard.className} antialiased`}>
+      <head>
+        <link
+          rel="stylesheet"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/subsets/Pretendard-dynamic-subset.css"
+        />
+      </head>
+      <body>
         <Providers>
           <div className="flex min-h-screen flex-col">
             <main className="mb-16 mt-[8.75rem] flex-1 lg:mb-0 lg:mt-0">{children}</main>
