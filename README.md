@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 대한민국 구석구석 클론 프로젝트
 
-## Getting Started
+## 프로젝트 소개
 
-First, run the development server:
+이 프로젝트는 개인 포트폴리오 용으로 제작된 클론 코딩 프로젝트입니다. '대한민국 구석구석' 웹사이트의 주요 기능(검색, 지역 여행지 소개 등)을 구현하고, 기존 사이트에는 없는 기능들(인트로 페이지, 무한 스크롤, 스켈레톤 UI, 다크 모드 등)을 추가하여 사용자 경험을 개선했습니다. Open API(한국관광공사\_국문 관광정보 서비스)를 활용하여 새로운 여행 정보를 제공하며, Next.js와 앱 라우팅 방식을 사용하여 빠른 페이지 전환과 자연스러운 UI 렌더링을 구현했습니다. 동적 데이터 처리를 위해 React Query와 Zustand를 활용하여 서버 상태와 클라이언트 상태를 효율적으로 관리했습니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 주요 기능
+
+- **검색 기능**: 검색창을 통해 전국 어디든 여행지 정보를 검색할 수 있습니다.
+- **지역 페이지(모바일)**: 내 위치를 클릭하면, 해당 지역의 음식점, 관광지, 문화시설 정보를 확인할 수 있습니다.
+- **지역 필터링**: 특정 지역을 클릭하면 숙박, 음식점, 여행지 등의 정보를 필터링하여 제공.
+- **더 보기 기능**: 여행정보, 인기 맛집, 인기 숙소 등을 최대 100개까지 볼 수 있는 기능.
+
+## 추가 기능
+
+- **무한 스크롤**: 여행 정보(더 보기) 페이지에서 무한 스크롤을 구현하여 스크롤 시 자동으로 데이터가 로드됩니다.
+  - _기술_: React Intersection Observer를 활용한 효율적인 데이터 페칭.
+- **스켈레톤 UI**: 데이터를 로딩 중일 때, 스켈레톤 UI를 사용하여 사용자 경험을 개선했습니다.
+  - _기술_: React Query로 로딩 상태 관리.
+- **인트로 페이지**: 첫 화면에 애니메이션 효과가 있는 인트로 페이지를 추가하여 사용자에게 강렬한 인상을 제공합니다.
+  - _기술_: SVG에 `strokeDasharray`, `strokeDashoffset`을 사용하여 그려지는 효과.
+- **다크 모드 & 라이트 모드**: Tailwind CSS와 localStorage를 사용하여 다크 모드와 라이트 모드를 구현하였으며, 사용자 선호에 맞춰 전환 가능합니다.
+
+## 기술 스택
+
+- **프레임워크**: Next.js (앱 라우팅 방식으로 빠른 페이지 전환 및 UI 렌더링, 동적 데이터 처리)
+- **상태 관리**: Zustand (클라이언트 상태 관리), React Query (서버 상태 관리 및 데이터 캐싱 최적화)
+- **애니메이션**: Framer Motion (검색창 UI 전환 애니메이션 구현)
+- **스타일링**: Tailwind CSS (반응형 디자인)
+- **API 요청**: Axios (Open API - 한국관광공사\_국문 관광정보 서비스)
+- **기타 라이브러리**: React Intersection Observer (무한 스크롤 구현), Swiper (각 페이지에 들어가는 슬라이드)
+
+## 프로젝트 구조
+
+```
+📦 app/
+├── 📂 routes/            # 페이지 라우팅
+│   ├── 📂 area/          # 지역 페이지 관련
+│   ├── 📂 morepage/      # 여행 정보 더 보기 페이지
+│   └── 📂 searchpage/    # 검색 페이지
+├── 📂 api/               # API 로직
+├── 📂 components/        # UI 컴포넌트
+├── 📂 hooks/             # 커스텀 훅
+├── 📂 stores/            # Zustand (상태 관리)
+├── 📂 constant/          # 상수 값 정의
+├── 📂 styles/            # 스타일
+├── 📂 utils/             # 유틸리티 함수
+├── 📂 types/             # 타입 정의
+├── 📂 providers/         # React-Query 관련 설정
+├── layout.tsx         # 레이아웃 구성
+├── not-found.tsx      # 404 페이지
+└── page.tsx           # 메인 페이지
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 프로젝트 목표 및 배운 점
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+이 프로젝트의 주요 목표는 **핵심 기능과 콘텐츠 구현에 집중**하는 것이었습니다. Open API를 활용해 데이터를 제공하고, **Zustand**와 **React Query**를 사용하여 효율적인 상태 관리와 데이터 로딩 처리에 중점을 두었습니다. 또한, **재사용 가능한 커스텀 훅**, **유틸 함수**, **컴포넌트**를 설계하여 코드의 효율성을 높이는 데 신경을 썼습니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 주요 목표:
 
-## Learn More
+- **클라이언트 상태 관리**: Zustand를 사용하여 **props drilling**을 최소화하고, 여러 컴포넌트에서 공통적으로 사용하는 상태를 효율적으로 관리했습니다.
+- **서버 상태 관리**: React Query를 사용해 데이터 로딩, 에러 처리, 캐시 활용 등 서버 상태 관리를 효율적으로 구현했습니다. 이를 통해 API 호출을 최소화하고, 데이터가 변화할 때마다 자동으로 최신 상태를 반영할 수 있었습니다.
+- **재사용 가능한 코드 설계**: 공통으로 사용되는 **커스텀 훅**, **유틸 함수**, **컴포넌트**를 재사용할 수 있도록 설계하여 코드의 중복을 줄이고 유지보수를 용이하게 만들었습니다.
+- **UI 최적화**: 긴 제목과 주소로 인해 UI가 밀리지 않도록 데이터를 필터링하고, **에러 메시지**와 **데이터 부재 처리** UI를 개선하여 사용자 경험을 향상시켰습니다.
+- **사용자 경험 개선**: 인트로 페이지를 추가하여 첫 방문 시 강렬한 인상을 주었고, **버튼 애니메이션**을 부드럽게 처리하여 앱과 유사한 느낌을 제공했습니다.
 
-To learn more about Next.js, take a look at the following resources:
+이 프로젝트를 통해 **React Query**, **Zustand**, **Open API 활용**과 같은 최신 기술을 익히고, **성능 최적화**와 **사용자 경험 개선**의 중요성에 대해 많은 것을 배웠습니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 리팩토링 및 Lighthouse를 통한 코드 품질 향상과 성능 최적화
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+프로젝트의 성능을 개선하고 코드 품질을 향상시키기 위해 다양한 최적화를 진행했습니다.
 
-## Deploy on Vercel
+- **컴퍼넌트 책임분리** : UI 컴포넌트와 비즈니스 로직을 분리하여 유지보수성을 높이고 재사용성을 강화했습니다.
+- **접근성 향상** : `aria-label`을 추가하여 스크린 리더가 요소를 정확하게 인식할 수 있도록 개선했습니다.
+- **웹폰트 최적화**: `Pretendard` 서브셋을 적용하여 필요한 문자만 로드하도록 설정했습니다.
+- **불필요한 리렌더링 방지**: ``useMemo`, `useCallback`를 활용하여 불필요한 컴포넌트 리렌더링을 줄였습니다.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![KakaoTalk_20250308_183350696](https://github.com/user-attachments/assets/dbaf491e-ec52-4849-9f10-7355ed8aec20)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 향후 개선 사항 및 발전 계획
+
+- **검색 기능 강화**: 사용자의 검색 기록을 기반으로 맞춤형 추천 검색 기능 추가
+- **지역 페이지 개선**: Kakao Maps 또는 Google Maps API를 활용하여 지도 기반 UI 제공 및 지역별 상세 데이터 표시
+- **상세 페이지 추가**: 각 여행지별 상세 페이지를 만들어 더 많은 정보를 제공
+- **반려동물 여행 페이지**: 반려동물과 동반 가능한 숙박시설과 여행지 정보를 제공하는 별도 페이지 구현
+
+## 배포 링크
+
+🔗 **배포 링크**: [koreantrip.vercel.app](https://koreantrip.vercel.app/)
