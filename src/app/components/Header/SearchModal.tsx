@@ -55,25 +55,27 @@ const SearchModal: React.FC<SearchModalProps> = ({
           <ThemeToggle />
         </div>
       </div>
-      <div className="lg:mx-auto lg:w-full">
-        <form onSubmit={handleSearch} className="mb-[0.625rem] lg:mb-0">
-          <div className="mr-0 box-border flex h-[2.1875rem] w-auto items-center justify-between rounded-full border border-black bg-white px-[1.25rem] lg:w-full lg:rounded-none lg:border-0 lg:border-b lg:border-b-black lg:bg-transparent lg:px-[0.625rem]">
-            <input
-              className="h-full w-full bg-transparent outline-none placeholder:text-[0.8125rem] lg:text-lg lg:placeholder:text-lg lg:placeholder:font-thin"
-              type="text"
-              placeholder="어디로 여행을 떠날 예정인가요?"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              autoFocus
-            />
-            <button type="submit">
-              <FontAwesomeIcon
-                className="text-[#6d6d6d] lg:text-lg lg:text-black"
-                icon={faSearch}
+      <div className="lg:mx-auto lg:w-[62.5rem]">
+        <div className="block">
+          <form onSubmit={handleSearch} className="mb-[0.625rem] lg:mb-0">
+            <div className="mr-0 box-border flex h-[2.1875rem] w-auto items-center justify-between rounded-full border border-black bg-white px-[1.25rem] lg:w-full lg:rounded-none lg:border-0 lg:border-b lg:border-b-black lg:bg-transparent lg:px-[0.625rem]">
+              <input
+                className="h-full w-full bg-transparent outline-none placeholder:text-[0.8125rem] lg:text-lg lg:placeholder:text-lg lg:placeholder:font-thin"
+                type="text"
+                placeholder="어디로 여행을 떠날 예정인가요?"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                autoFocus
               />
-            </button>
-          </div>
-        </form>
+              <button type="submit">
+                <FontAwesomeIcon
+                  className="text-[#6d6d6d] lg:text-lg lg:text-black"
+                  icon={faSearch}
+                />
+              </button>
+            </div>
+          </form>
+        </div>
         <div className="mt-4">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-bold lg:text-lg">최근검색어</h2>
