@@ -36,7 +36,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
 
   return (
     <div
-      className="fixed left-0 right-0 top-0 z-[100] h-screen w-full bg-white px-[0.125rem] shadow-md transition-colors duration-300 md:px-[0.1875rem] lg:h-[50vh] lg:px-[0.375rem] 2xl:px-[0.875rem]"
+      className="fixed left-0 right-0 top-0 z-[100] h-screen w-full bg-white px-2 shadow-md transition-colors duration-300 md:px-3 lg:h-[50vh] lg:px-6 2xl:px-14"
       onClick={handleModalClick}
     >
       <div className="flex h-[3.125rem] items-center justify-between lg:h-[5.625rem]">
