@@ -23,7 +23,7 @@ export default function EventCard({ event, onClick }: EventCardProps) {
         <div className="relative h-[12.5rem] w-full lg:h-72 2xl:w-[12.5rem]">
           <Image
             className="absolute h-full w-full rounded-lg object-contain 2xl:object-cover"
-            src={event.firstimage || '/placeholder-image.jpg'}
+            src={event.firstimage || '/error/no-image.png'}
             alt={event.title}
             width={512}
             height={512}
