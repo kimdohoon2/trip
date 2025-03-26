@@ -6,7 +6,8 @@ export function useStayData(selectedArea: string) {
   return useQuery<StayItem[], Error>({
     queryKey: ['stayData', selectedArea],
     queryFn: () => getStayApi(selectedArea),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 1000 * 60 * 15,
+    gcTime: 1000 * 60 * 30,
     retry: 1, //
     enabled: !!selectedArea,
   });

@@ -6,7 +6,8 @@ export function useSearchData(keyword: string, numOfRows: number, contentTypeId:
   return useQuery<SearchApiResponse[], Error>({
     queryKey: ['searchData', keyword, numOfRows, contentTypeId],
     queryFn: () => getSearchApi(keyword, numOfRows, contentTypeId),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 1000 * 60 * 15,
+    gcTime: 1000 * 60 * 30,
     retry: 1,
     enabled: !!keyword,
   });
