@@ -90,8 +90,8 @@ export default function Header() {
         <MobileNavigation />
       </div>
       <ScrollToTopButton
-        className={`relative hidden bg-black transition-all duration-300 lg:fixed lg:bottom-[4.5rem] lg:right-6 lg:z-40 lg:block lg:h-10 lg:w-10 lg:rounded-full lg:border lg:border-white 2xl:right-14 ${headerScrolled ? 'lg:opacity-1 lg:cursor-pointer' : 'lg:opacity-0'}`}
-        buttonClassName="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        className={`relative bg-black transition-all duration-300 lg:fixed lg:bottom-[4.5rem] lg:right-6 lg:z-40 lg:h-10 lg:w-10 lg:rounded-full lg:border lg:border-white 2xl:right-14 ${headerScrolled ? 'lg:opacity-1 lg:cursor-pointer' : 'lg:opacity-0'}`}
+        buttonClassName="text-transparent lg:text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         showText={false}
       />
     </>
