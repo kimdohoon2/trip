@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { useStayData } from '@/app/hooks/useStayData';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
@@ -14,10 +13,11 @@ import AccomdationList from '@/app/components/Accomdation/AccomdationList';
 import AccomdationSkeleton from '@/app/components/Accomdation/AccomdationSkeleton';
 import Modal from '@/app/components/Common/Modal';
 import { useModalLogic } from '@/app/hooks/useModalLogic';
+import { useUIStore } from '@/app/stores/useAreaUiStore';
 
 export default function AccomdationContents() {
   const { setCurrentPage } = useInteractionStore();
-  const [selectedArea, setSelectedArea] = useState<string>('전국');
+  const { selectedArea, setSelectedArea } = useUIStore();
   const { isModalOpen, openModal, closeModal } = useModalLogic();
 
   const { data: stayData, isLoading, error } = useStayData(selectedArea);
@@ -80,7 +80,7 @@ export default function AccomdationContents() {
           </div>
         )}
       </div>
-      <MoreButton href="/morepage" text="더많은" strongText="숙박시설" />
+      <MoreButton href="/morepage" text="더많은" strongText="여행정보" />
       {isModalOpen && <Modal onClose={closeModal} />}
     </section>
   );

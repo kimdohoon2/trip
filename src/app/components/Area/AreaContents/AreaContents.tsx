@@ -15,6 +15,7 @@ import AreaSlideProps from '@/app/components/Area/AreaContents/AreaSlideProps';
 import { useAreaContentsLogic } from '@/app/hooks/useAreaContentsLogic';
 import Modal from '@/app/components/Common/Modal';
 import { useModalLogic } from '@/app/hooks/useModalLogic';
+import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
 export default function AreaContents() {
   const {
@@ -29,6 +30,7 @@ export default function AreaContents() {
   } = useAreaContentsLogic();
 
   const { isModalOpen, openModal, closeModal } = useModalLogic();
+  const { category } = useInteractionStore();
 
   // 에러 발생 시 표시할 UI
   if (error) {
@@ -79,7 +81,12 @@ export default function AreaContents() {
             <ProgressBar className="lg:hidden" totalPages={totalPages} />
           </>
         )}
-        <MoreButton className="mt-4" href="/morepage" text="더많은" strongText="여행지" />
+        <MoreButton
+          className="mt-4"
+          href="/morepage"
+          text="더많은"
+          strongText={category || '여행지'}
+        />
       </section>
       {isModalOpen && <Modal onClose={closeModal} />}
     </>

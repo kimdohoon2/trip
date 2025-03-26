@@ -8,6 +8,7 @@ interface CategorySelectorTypes {
 export default function CategorySelector({ availableCategories }: CategorySelectorTypes) {
   const { category, setCategory } = useInteractionStore();
   const { visible, setVisible } = useUIStore();
+
   return (
     <div className="align-center relative flex items-center">
       <span className="mr-2 text-sm text-bgopacity lg:text-2xl">다양한</span>
