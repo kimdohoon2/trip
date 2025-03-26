@@ -2,12 +2,18 @@ import { useQuery } from '@tanstack/react-query';
 import { getTourListApi } from '@/app/api/getTourListApi';
 import { AreaItem } from '@/app/types/ItemType';
 
-export function useTourData(selectedArea: string, numOfRows: number, pageNo: number) {
+export function useTourData(
+  selectedArea: string,
+  numOfRows: number,
+  pageNo: number,
+  category?: string
+) {
   return useQuery<AreaItem[], Error>({
-    queryKey: ['tourData', selectedArea, numOfRows, pageNo],
-    queryFn: () => getTourListApi(selectedArea, numOfRows, pageNo),
-    staleTime: 5 * 60 * 1000, // 5분
+    queryKey: ['tourData', selectedArea, numOfRows, pageNo, category],
+    queryFn: () => getTourListApi(selectedArea, numOfRows, pageNo, category),
+    staleTime: 1000 * 60 * 15,
+    gcTime: 1000 * 60 * 30,
     retry: 1,
-    enabled: !!selectedArea, // selectedArea가 있을 때만 쿼리 실행
+    enabled: !!selectedArea && !!category,
   });
 }

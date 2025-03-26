@@ -1,17 +1,17 @@
 import { useMemo, useCallback, useEffect, useState } from 'react';
 import { useTourData } from '@/app/hooks/useTourData';
 import { useLocationData } from '@/app/hooks/useLocationData';
-import { categoryMap } from '@/app/constant/SlideConstant';
+import { categories } from '@/app/constant/SlideConstant';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 import { useLocationStore } from '@/app/stores/useLocationStore';
 import { useUIStore } from '@/app/stores/useAreaUiStore';
 import { AreaItem } from '@/app/types/ItemType';
 
 export const useAreaContentsLogic = () => {
-  const { selectedArea, slidesPerView, windowSize, setWindowSize, setSelectedArea } = useUIStore();
+  const { selectedArea, slidesPerView, setWindowSize, setSelectedArea } = useUIStore();
   const { category, setCurrentPage } = useInteractionStore();
   const { userLocation, setUserLocation } = useLocationStore();
-  const [numOfRows] = useState(100);
+  const [numOfRows] = useState(8);
   const [pageNo] = useState(1);
 
   // 여행지 데이터 가져오기
@@ -19,7 +19,7 @@ export const useAreaContentsLogic = () => {
     data: tourData = [],
     isLoading: isTourLoading,
     error: tourError,
-  } = useTourData(selectedArea, numOfRows, pageNo);
+  } = useTourData(selectedArea, numOfRows, pageNo, category);
   const {
     data: locationData,
     refetch: refetchLocationData,
@@ -27,33 +27,25 @@ export const useAreaContentsLogic = () => {
   } = useLocationData();
 
   // 카테고리 필터링 및 데이터 가공 함수
-  const processData = useCallback(
-    (data: AreaItem[]) => {
-      const categoryId = categoryMap[category];
-      return data
-        .filter((item) => (categoryId ? String(item.contenttypeid) === String(categoryId) : true))
-        .map((item) => ({
-          ...item,
-          addr1: item.addr1.split(' ').slice(0, 2).join(' '),
-          title: item.title.length > 12 ? item.title.slice(0, 12) + '...' : item.title,
-        }));
-    },
-    [category]
-  );
+  const processData = useCallback((data: AreaItem[]) => {
+    return data.map((item) => ({
+      ...item,
+      addr1: item.addr1.split(' ').slice(0, 2).join(' '),
+      title: item.title.length > 12 ? item.title.slice(0, 12) + '...' : item.title,
+    }));
+  }, []);
 
   const { filteredData, availableCategories } = useMemo(() => {
-    const categories = ['음식점 🍽️', '관광지 🏛️', '문화시설 🎨'];
     const availableCategories = categories.filter((item) => item !== category);
 
     const dataToProcess = userLocation ? locationData?.items || [] : tourData;
     const processedData = processData(dataToProcess);
 
-    const maxItems = windowSize >= 1024 ? 8 : 10;
     return {
-      filteredData: processedData.slice(0, maxItems),
+      filteredData: processedData,
       availableCategories,
     };
-  }, [userLocation, locationData, tourData, category, windowSize, processData]);
+  }, [userLocation, locationData, tourData, category, processData]);
 
   // 슬라이드 변경 시 페이지 번호 업데이트
   const handleSlideChange = useCallback(
@@ -88,7 +80,7 @@ export const useAreaContentsLogic = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [userLocation, selectedArea, setCurrentPage]);
+  }, [userLocation, selectedArea, category, setCurrentPage]);
 
   useEffect(() => {
     setUserLocation(null);
