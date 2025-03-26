@@ -8,6 +8,17 @@ export function useSearchLogic() {
   const { keyword, setKeyword, isModalOpen, openModal, closeModal } = useInteractionStore();
   const router = useRouter();
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [recommendedSearches] = useState([
+    '제주도',
+    '진해',
+    '제천',
+    '군산',
+    '전주',
+    '부산',
+    '삼척',
+    '강릉',
+    '여수',
+  ]);
 
   useEffect(() => {
     const storedSearches = localStorage.getItem('recentSearches');
@@ -22,6 +33,7 @@ export function useSearchLogic() {
   };
 
   const addRecentSearch = (search: string) => {
+    if (!search.trim() || search.length > 100) return;
     const updatedSearches = [search, ...recentSearches.filter((s) => s !== search)].slice(
       0,
       MAX_RECENT_SEARCHES
@@ -54,7 +66,12 @@ export function useSearchLogic() {
     const updatedSearches = recentSearches.filter((_, i) => i !== index);
     saveRecentSearches(updatedSearches);
   };
-
+  const handleRecommendedSearchClick = (search: string) => {
+    setKeyword(search);
+    addRecentSearch(search);
+    router.push(`/searchpage?keyword=${encodeURIComponent(search)}`);
+    closeModal();
+  };
   return {
     keyword,
     setKeyword,
@@ -66,5 +83,7 @@ export function useSearchLogic() {
     handleRecentSearchClick,
     clearRecentSearches,
     removeRecentSearch,
+    recommendedSearches,
+    handleRecommendedSearchClick,
   };
 }

@@ -16,6 +16,8 @@ export default function Search() {
     handleRecentSearchClick,
     clearRecentSearches,
     removeRecentSearch,
+    recommendedSearches,
+    handleRecommendedSearchClick,
   } = useSearchLogic();
 
   return (
@@ -47,6 +49,8 @@ export default function Search() {
             clearRecentSearches={clearRecentSearches}
             removeRecentSearch={removeRecentSearch}
             onClose={closeModal}
+            recommendedSearches={recommendedSearches}
+            handleRecommendedSearchClick={handleRecommendedSearchClick}
           />
         )}
       </AnimatePresence>

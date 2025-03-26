@@ -21,7 +21,7 @@ const contentTypeNames: { [key: string]: string } = {
 
 export default function SearchContainer() {
   const { keyword } = useInteractionStore();
-  const [numOfRows] = useState(1000);
+  const [numOfRows] = useState(100);
   const [contentTypeId, setContentTypeId] = useState<string | null>(null);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const prevKeywordRef = useRef<string>('');
@@ -80,6 +80,20 @@ export default function SearchContainer() {
     setContentTypeId(id);
   };
 
+  const highlightKeyword = (text: string, keyword: string): (string | JSX.Element)[] => {
+    if (!keyword.trim()) return [text];
+    const parts = text.split(new RegExp(`(${keyword})`, 'gi'));
+    return parts.map((part: string, index: number) =>
+      part.toLowerCase() === keyword.toLowerCase() ? (
+        <span key={index} className="text-red">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   if (!keyword) {
     return (
       <div className="mx-auto p-4 text-center lg:mt-28">
@@ -114,7 +128,9 @@ export default function SearchContainer() {
     <div className="inline-block h-full min-h-screen w-full bg-[#f4f6f8] lg:pt-24">
       <div className="lg:mx-auto lg:max-w-[62.5rem]">
         <div className="mb-4 bg-white lg:bg-transparent">
-          <h1 className="p-4 text-xl font-bold">{`"${keyword}" 검색 결과`}</h1>
+          <h1 className="p-4 text-xl font-bold">
+            {highlightKeyword(`"${keyword}" 검색 결과`, keyword)}
+          </h1>
           <div className="scroll-container">
             <div className="mb-4 flex space-x-2 px-4 lg:justify-between">
               <button
@@ -154,6 +170,8 @@ export default function SearchContainer() {
                   isExpanded={expandedCategory === id}
                   onExpand={() => handleExpandCategory(id)}
                   onClick={openModal}
+                  highlightKeyword={highlightKeyword}
+                  keyword={keyword}
                 />
               );
             })
@@ -167,6 +185,8 @@ export default function SearchContainer() {
                 isExpanded={expandedCategory === contentTypeId}
                 onExpand={() => handleExpandCategory(contentTypeId)}
                 onClick={openModal}
+                highlightKeyword={highlightKeyword}
+                keyword={keyword}
               />
             )
           )

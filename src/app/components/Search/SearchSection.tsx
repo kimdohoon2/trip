@@ -15,6 +15,8 @@ interface SearchSectionProps {
   isExpanded: boolean;
   onExpand: (contentTypeId: string) => void;
   onClick: () => void;
+  keyword: string;
+  highlightKeyword: (text: string, keyword: string) => React.ReactNode;
 }
 
 export default function SearchSection({
@@ -24,6 +26,8 @@ export default function SearchSection({
   isExpanded,
   onExpand,
   onClick,
+  keyword,
+  highlightKeyword,
 }: SearchSectionProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [initialItems, setInitialItems] = useState(5);
@@ -89,8 +93,11 @@ export default function SearchSection({
               </div>
               <div className="flex w-full justify-between">
                 <div>
-                  <h3 className="text-base font-semibold">{filterTitle(item.title)}</h3>
-                  <p className="text-sm">{filterAddress(item.addr1)}</p>
+                  <h3 className="text-base font-semibold">
+                    {' '}
+                    {highlightKeyword(filterTitle(item.title), keyword)}
+                  </h3>
+                  <p className="text-sm"> {highlightKeyword(filterAddress(item.addr1), keyword)}</p>
                 </div>
                 <div>
                   <Link
