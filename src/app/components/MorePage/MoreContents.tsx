@@ -10,12 +10,15 @@ import useTourDataInfinites from '@/app/hooks/useTourDataInfinites';
 import Toast from '@/app/components/Common/Toast';
 import Modal from '@/app/components/Common/Modal';
 import { useModalLogic } from '@/app/hooks/useModalLogic';
+import { debounce } from 'lodash';
+import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
 const MAX_ITEMS = 100;
 
 export default function MoreContents() {
-  const { selectedArea, selectedCategory } = useUIStore();
-  const [numOfRows] = useState(24);
+  const { category } = useInteractionStore();
+  const { selectedArea } = useUIStore();
+  const [numOfRows] = useState(8);
   const {
     data: moreData,
     fetchNextPage,
@@ -23,14 +26,20 @@ export default function MoreContents() {
     isFetchingNextPage,
     isLoading,
     error,
-  } = useTourDataInfinites(selectedArea, numOfRows, selectedCategory);
+  } = useTourDataInfinites(selectedArea, numOfRows, category);
   const { isModalOpen, openModal, closeModal } = useModalLogic();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({
+    threshold: 0.2,
+  });
 
-  useEffect(() => {
+  const fetchMoreData = debounce(() => {
     if (inView && hasNextPage && moreData.pages.flat().length < MAX_ITEMS) {
       fetchNextPage();
     }
+  }, 300);
+
+  useEffect(() => {
+    fetchMoreData();
   }, [inView, hasNextPage, fetchNextPage, moreData]);
 
   if (isLoading) return <MoreSkeleton />;
@@ -42,7 +51,6 @@ export default function MoreContents() {
     <>
       <Toast />
       <MoreCard moreData={tourList} onClick={openModal} />
-
       {tourList.length < MAX_ITEMS && (
         <div ref={ref} style={{ height: 20, background: 'transparent' }} />
       )}
