@@ -93,11 +93,12 @@ export const AreaHeaderSlide: AreaSlideType[] = [
     title: '세종',
   },
 ];
+export const categories = ['여행지 🌍', '맛집 🍴', '숙소 🏨'];
 
 export const categoryMap: { [key: string]: string } = {
-  '음식점 🍽️': '39',
-  '관광지 🏛️': '12',
-  '문화시설 🎨': '14',
+  '여행지 🌍': '12',
+  '맛집 🍴': '39',
+  '숙소 🏨': '32',
 };
 
 // tour api 관련 상수값
@@ -120,12 +121,4 @@ export const areaCodeMap: { [key: string]: string } = {
   전북: '37',
   전남: '38',
   제주: '39',
-};
-
-export const moreCategories = ['인기 여행지', '인기 맛집', '인기 숙소'];
-
-export const moreCategoryMap: { [key: string]: string } = {
-  '인기 여행지': '12',
-  '인기 맛집': '39',
-  '인기 숙소': '32',
 };

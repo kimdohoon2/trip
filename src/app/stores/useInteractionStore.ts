@@ -25,7 +25,7 @@ export const useInteractionStore = create<InteractionStoreState>((set) => ({
     set((state) => ({
       heartStates: setter(state.heartStates),
     })),
-  category: '음식점 🍽️',
+  category: '여행지 🌍',
   setCategory: (category) => set({ category }),
   currentPage: 1,
   setCurrentPage: (currentPage) => set({ currentPage }),
