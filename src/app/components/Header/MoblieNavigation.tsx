@@ -17,6 +17,8 @@ export default function MobileNavigation() {
     handleRecentSearchClick,
     clearRecentSearches,
     removeRecentSearch,
+    recommendedSearches,
+    handleRecommendedSearchClick,
   } = useSearchLogic();
 
   return (
@@ -44,7 +46,7 @@ export default function MobileNavigation() {
             href="/morepage"
             className="relative flex w-full flex-col gap-1 py-[0.625rem] text-[0.875rem] lg:text-[1.25rem]"
           >
-            <FontAwesomeIcon icon={faMap} /> <span>여행정보</span>
+            <FontAwesomeIcon icon={faMap} /> <span>지역 더보기</span>
           </Link>
         </li>
         <li className="w-[25%] text-center lg:w-auto">
@@ -64,6 +66,8 @@ export default function MobileNavigation() {
           clearRecentSearches={clearRecentSearches}
           removeRecentSearch={removeRecentSearch}
           onClose={closeModal}
+          recommendedSearches={recommendedSearches}
+          handleRecommendedSearchClick={handleRecommendedSearchClick}
         />
       )}
     </nav>

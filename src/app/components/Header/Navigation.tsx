@@ -32,7 +32,7 @@ export default function Navigation() {
               pathname === '/morepage' ? 'on' : ''
             }`}
           >
-            여행정보
+            지역 더보기
           </Link>
         </li>
       </ul>
