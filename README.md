@@ -78,7 +78,7 @@
 - **불필요한 리렌더링 방지**: `useMemo`, `useCallback`를 활용하여 불필요한 컴포넌트 리렌더링을 줄였습니다.
 
 ## Lighthouse검사결과
-![라이트하우스](https://github.com/user-attachments/assets/faa51495-e7de-4463-97e6-952b6667ff6a)
+![라이트하우스](https://github.com/user-attachments/assets/b11d82af-6bd5-4af8-bdf1-9fab5ec0999a)
 
 ## 향후 개선 사항 및 발전 계획
 
