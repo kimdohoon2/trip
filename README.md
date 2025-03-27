@@ -12,13 +12,13 @@
 
 ## 추가 기능
 
+- **인트로 페이지**: 첫 화면에 애니메이션 효과가 있는 인트로 페이지를 추가하여 사용자에게 강렬한 인상을 제공합니다.
+  - _기술_: SVG에 `strokeDasharray`, `strokeDashoffset`을 사용하여 그려지는 효과.
+![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/99dc41e1-f862-4cbd-aa29-4470de3bf0ef)
 - **무한 스크롤**: 지역 더 보기 페이지에서 무한 스크롤을 구현하여 스크롤 시 자동으로 데이터가 로드됩니다.
   - _기술_: React Intersection Observer를 활용한 효율적인 데이터 페칭.
 - **스켈레톤 UI**: 데이터를 로딩 중일 때, 스켈레톤 UI를 사용하여 사용자 경험을 개선했습니다.
   - _기술_: React Query로 로딩, 에러 상태 관리.
-- **인트로 페이지**: 첫 화면에 애니메이션 효과가 있는 인트로 페이지를 추가하여 사용자에게 강렬한 인상을 제공합니다.
-  - _기술_: SVG에 `strokeDasharray`, `strokeDashoffset`을 사용하여 그려지는 효과.
-![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/99dc41e1-f862-4cbd-aa29-4470de3bf0ef)
 
 - **다크 모드 & 라이트 모드**: CSS 변수(`--white`, `--black` 등)를 활용하였으며 localStorage를 사용하여 다크 모드와 라이트 모드를 구현하였으며, 사용자 선호에 맞춰 전환 가능합니다.
 
