@@ -89,4 +89,4 @@
 
 ## 배포 링크
 
-🔗 [koreantrip.vercel.app](https://koreantrip.vercel.app/)
+🔗 [대한민국 구석구석 클론 프로젝트](https://koreantrip.vercel.app/)
