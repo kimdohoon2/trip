@@ -18,6 +18,8 @@
   - _기술_: React Query로 로딩, 에러 상태 관리.
 - **인트로 페이지**: 첫 화면에 애니메이션 효과가 있는 인트로 페이지를 추가하여 사용자에게 강렬한 인상을 제공합니다.
   - _기술_: SVG에 `strokeDasharray`, `strokeDashoffset`을 사용하여 그려지는 효과.
+![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/99dc41e1-f862-4cbd-aa29-4470de3bf0ef)
+
 - **다크 모드 & 라이트 모드**: CSS 변수(`--white`, `--black` 등)를 활용하였으며 localStorage를 사용하여 다크 모드와 라이트 모드를 구현하였으며, 사용자 선호에 맞춰 전환 가능합니다.
 
 ## 기술 스택
