@@ -8,7 +8,7 @@ const NotFound: React.FC = () => {
   return (
     <>
       <Header />
-      <div className="bg-gray-100 flex flex-col items-center justify-center pt-48 1xl:pt-32">
+      <div className="bg-gray-100 flex min-h-screen flex-col items-center justify-center 1xl:pt-32">
         <div className="w-[7.5rem] lg:w-[18.75rem] 1xl:w-[31.25rem]">
           <Image
             className="h-full w-full object-cover"
