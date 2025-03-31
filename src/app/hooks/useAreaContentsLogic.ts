@@ -31,7 +31,7 @@ export const useAreaContentsLogic = () => {
     return data.map((item) => ({
       ...item,
       addr1: item.addr1.split(' ').slice(0, 2).join(' '),
-      title: item.title.length > 12 ? item.title.slice(0, 12) + '...' : item.title,
+      title: item.title.length > 10 ? item.title.slice(0, 10) + '...' : item.title,
     }));
   }, []);
 
