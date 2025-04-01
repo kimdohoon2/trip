@@ -13,7 +13,7 @@ import { useModalLogic } from '@/app/hooks/useModalLogic';
 import { debounce } from 'lodash';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
-const MAX_ITEMS = 100;
+const MAX_ITEMS = 24;
 
 export default function MoreContents() {
   const { category } = useInteractionStore();
@@ -60,7 +60,7 @@ export default function MoreContents() {
       {isModalOpen && <Modal onClose={closeModal} />}
 
       {tourList.length >= MAX_ITEMS && (
-        <div className="py-4 text-center">최대 100개의 항목만 표시됩니다.</div>
+        <div className="py-4 text-center">최대 24개의 항목만 표시됩니다.</div>
       )}
     </>
   );
