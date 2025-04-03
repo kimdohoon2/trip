@@ -51,7 +51,7 @@ export default function MobileNavigation() {
         </li>
         <li className="w-[25%] text-center lg:w-auto">
           <ScrollToTopButton
-            buttonClassName="relative flex w-full flex-col gap-1 py-[0.625rem] text-[0.875rem] lg:text-[1.25rem]"
+            className="relative flex w-full flex-col gap-1 py-[0.625rem] text-[0.875rem] lg:text-[1.25rem]"
             spanClassName="TOP"
           />
         </li>
