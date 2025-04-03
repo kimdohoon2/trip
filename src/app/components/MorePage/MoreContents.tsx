@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import MoreCard from '@/app/components/MorePage/MoreCard';
 import MoreSkeleton from '@/app/components/MorePage/MoreSkeleton';
@@ -19,6 +19,7 @@ export default function MoreContents() {
   const { category } = useInteractionStore();
   const { selectedArea } = useUIStore();
   const [numOfRows] = useState(8);
+  const isFetchingRef = useRef(false); // 중복 호출 방지용 ref
   const {
     data: moreData,
     fetchNextPage,
@@ -29,18 +30,37 @@ export default function MoreContents() {
   } = useTourDataInfinites(selectedArea, numOfRows, category);
   const { isModalOpen, openModal, closeModal } = useModalLogic();
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 1.0, // 요소가 100% 뷰포트에 들어왔을 때만 트리거
   });
 
-  const fetchMoreData = debounce(() => {
-    if (inView && hasNextPage && moreData.pages.flat().length < MAX_ITEMS) {
-      fetchNextPage();
-    }
-  }, 300);
+  // useMemo로 debounce 함수 생성
+  const fetchMoreData = useMemo(
+    () =>
+      debounce(() => {
+        if (
+          inView &&
+          hasNextPage &&
+          moreData.pages.flat().length < MAX_ITEMS &&
+          !isFetchingRef.current
+        ) {
+          isFetchingRef.current = true; // 호출 중 상태 설정
+          fetchNextPage().finally(() => {
+            isFetchingRef.current = false; // 호출 완료 후 상태 해제
+          });
+        }
+      }, 300),
+    [inView, hasNextPage, fetchNextPage, moreData]
+  );
 
+  // useEffect에서 fetchMoreData 호출
   useEffect(() => {
-    fetchMoreData();
-  }, [inView, hasNextPage, fetchNextPage, moreData]);
+    if (inView) {
+      fetchMoreData();
+    }
+    return () => {
+      fetchMoreData.cancel(); // 컴포넌트 언마운트 시 debounce 취소
+    };
+  }, [inView, fetchMoreData]);
 
   if (isLoading) return <MoreSkeleton />;
   if (error) return <DataError />;
