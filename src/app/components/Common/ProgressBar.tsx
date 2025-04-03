@@ -23,9 +23,9 @@ export default function ProgressBar({ totalPages, className = '' }: ProgressBarT
         ></div>
       </div>
       <span className="flex gap-1 text-[11px]">
-        <span>{currentPage}</span>
-        <span className="text-bordercolor"> / </span>
-        <span className="text-bordercolor">{totalPages}</span>
+        <span className="font-bold">{currentPage}</span>
+        <span className="text-black"> / </span>
+        <span className="text-black">{totalPages}</span>
       </span>
     </div>
   );
