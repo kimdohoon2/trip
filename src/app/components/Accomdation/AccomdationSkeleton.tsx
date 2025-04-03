@@ -11,11 +11,14 @@ export default function AccomdationSkeleton() {
               <Skeleton className="h-full w-full" />
             </div>
             <div className="p-4">
-              <Skeleton className="mb-2 h-6 w-3/4" />
-              <Skeleton className="h-4 w-1/2" />
+              <Skeleton className="mb-2 h-4 w-3/4" />
+              <Skeleton className="h-3 w-1/2" />
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center p-4">
+        <Skeleton className="h-2 w-full" />
       </div>
     </div>
   );

@@ -45,7 +45,6 @@ export default function EventContents() {
           onPrevDay={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)))}
           onNextDay={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 1)))}
         />
-
         {isLoading ? (
           <EventSkeleton />
         ) : error ? (
@@ -75,7 +74,6 @@ export default function EventContents() {
                 </SwiperSlide>
               ))}
             </Swiper>
-
             <EventPagination
               eventData={eventData}
               activeIndex={activeIndex}
