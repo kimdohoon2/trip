@@ -57,14 +57,14 @@ const MainImageSlider: React.FC<MainImageSliderProps> = ({
                 alt={slide.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 52.5rem, 52.5rem"
-                priority
+                priority={index === 0}
               />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
       <div className="lg:transform-origin-center hidden h-auto w-full lg:absolute lg:left-[-8%] lg:top-[-10%] lg:z-20 lg:block lg:max-w-[125px] lg:animate-rotate_image xl:left-[-6%] 2xl:left-[-4%] 2xl:top-[-8%]">
-        <Image
+        <img
           className="object-contain"
           src="/icons/main_showcase_logo.png"
           alt="써클로고"

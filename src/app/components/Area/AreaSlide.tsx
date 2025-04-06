@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
-import Image from 'next/image';
 import { AreaHeaderSlide, areaCodeMap } from '@/app/constant/SlideConstant';
 import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -111,7 +110,7 @@ export default function AreaSlide() {
                       : 'w-[2.8125rem] md:w-[5.9375rem] lg:w-[4.0625rem]'
                   }`}
                 >
-                  <Image
+                  <img
                     className={`h-full w-full rounded-full border-2 object-cover ${
                       activeIndex === index ? 'border-black' : 'border-transparent'
                     }`}

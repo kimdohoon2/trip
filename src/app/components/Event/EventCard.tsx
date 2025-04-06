@@ -25,8 +25,9 @@ export default function EventCard({ event, onClick }: EventCardProps) {
             className="absolute h-full w-full rounded-lg object-contain 2xl:object-cover"
             src={event.firstimage || '/error/no-image.png'}
             alt={event.title}
-            width={512}
-            height={512}
+            width={300}
+            height={300}
+            loading="lazy"
           />
         </div>
         <div className="border-dashed text-center 2xl:ml-8 2xl:flex 2xl:flex-col 2xl:justify-between 2xl:border-l 2xl:pb-0 2xl:pl-8 2xl:text-left">

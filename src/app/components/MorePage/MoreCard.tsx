@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { AreaItem } from '@/app/types/ItemType';
-import { filterAddress } from '@/app/utils/filterDate';
-import { filterTitle } from '@/app/utils/filterDate';
+import { filterAddress, filterTitle } from '@/app/utils/filterDate';
 import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
 import useLike from '@/app/hooks/useLike';
 
@@ -12,6 +11,7 @@ interface MoreCardProps {
   moreData: AreaItem[];
   onClick: () => void;
 }
+
 export default function MoreCard({ moreData, onClick }: MoreCardProps) {
   const { heartStates, toggleHeart } = useLike();
   return (
@@ -28,8 +28,9 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
                 className="h-full w-full rounded-lg object-cover"
                 src={more.firstimage || '/error/no-image.png'}
                 alt={more.title}
-                width={500}
-                height={333}
+                width={300}
+                height={200}
+                loading="lazy"
               />
               <div
                 onClick={(e) => {
@@ -44,13 +45,13 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
                 />
               </div>
             </div>
-            <div className="shadow-indigo-500/40 lg:shadow-lg">
+            <div className="shadow-lg">
               <div className="text-left lg:pl-3">
                 <h1 className="text-base font-bold lg:text-lg">{filterTitle(more.title)}</h1>
                 <p className="text-xs lg:text-sm">
                   {filterAddress(more.addr1 || '주소를 준비중입니다.')}
                 </p>
-                <div className="mt-2 lg:mb-4 lg:mt-7">
+                <div className="mb-2 mt-2 lg:mb-4 lg:mt-7">
                   <Link
                     className="hover-button rounded-xl border border-bordercolor px-6 py-1 text-sm lg:text-base"
                     href={createKakaoMapURL(more.addr1 || '주소를 준비중입니다.')}

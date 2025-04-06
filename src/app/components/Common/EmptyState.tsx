@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 type MessageType = 'area' | 'date';
 
 interface EmptyStateProps {
@@ -27,7 +25,7 @@ export default function EmptyState({
   return (
     <div className="mt-7 flex flex-col items-center gap-3">
       <div className="w-[122px]">
-        <Image
+        <img
           className="h-full w-full object-cover"
           src="/error/error.png"
           alt="error"
