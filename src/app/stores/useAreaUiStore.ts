@@ -12,8 +12,6 @@ export interface UIStoreState {
   setSlidesPerView: (count: number) => void;
   windowSize: number;
   setWindowSize: (size: number) => void;
-  selectedTab: number;
-  setSelectedTab: (tab: number) => void;
   activeIndex: number;
   setActiveIndex: (index: number) => void;
 }
@@ -29,8 +27,6 @@ export const useUIStore = create<UIStoreState>((set) => ({
   setSlidesPerView: (count) => set({ slidesPerView: count }),
   windowSize: typeof window !== 'undefined' ? window.innerWidth : 0,
   setWindowSize: (size) => set({ windowSize: size }),
-  selectedTab: 0,
-  setSelectedTab: (tab) => set({ selectedTab: tab }),
   activeIndex: 0,
   setActiveIndex: (index) => set({ activeIndex: index }),
 }));
