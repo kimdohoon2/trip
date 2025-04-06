@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import MoreCard from '@/app/components/MorePage/MoreCard';
 import MoreSkeleton from '@/app/components/MorePage/MoreSkeleton';
@@ -14,11 +14,10 @@ import { debounce } from 'lodash';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
 const MAX_ITEMS = 24;
-
 export default function MoreContents() {
   const { category } = useInteractionStore();
   const { selectedArea } = useUIStore();
-  const [numOfRows] = useState(8);
+  const numOfRows = 8;
   const isFetchingRef = useRef(false); // 중복 호출 방지용 ref
   const {
     data: moreData,
@@ -30,7 +29,7 @@ export default function MoreContents() {
   } = useTourDataInfinites(selectedArea, numOfRows, category);
   const { isModalOpen, openModal, closeModal } = useModalLogic();
   const { ref, inView } = useInView({
-    threshold: 1.0, // 요소가 100% 뷰포트에 들어왔을 때만 트리거
+    threshold: 0.5, // 요소가 50% 뷰포트에 들어왔을 때만 트리거
   });
 
   // useMemo로 debounce 함수 생성
@@ -63,7 +62,10 @@ export default function MoreContents() {
   }, [inView, fetchMoreData]);
 
   if (isLoading) return <MoreSkeleton />;
-  if (error) return <DataError />;
+  if (error) return;
+  <div className="flex flex-col items-center">
+    <DataError />
+  </div>;
 
   const tourList = moreData?.pages.flat().slice(0, MAX_ITEMS) ?? [];
 
@@ -74,11 +76,8 @@ export default function MoreContents() {
       {tourList.length < MAX_ITEMS && (
         <div ref={ref} style={{ height: 20, background: 'transparent' }} />
       )}
-
       {isFetchingNextPage && <MoreSkeleton />}
-
       {isModalOpen && <Modal onClose={closeModal} />}
-
       {tourList.length >= MAX_ITEMS && (
         <div className="py-4 text-center">최대 24개의 항목만 표시됩니다.</div>
       )}
