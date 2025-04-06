@@ -26,12 +26,12 @@ export const useAreaContentsLogic = () => {
     isLoading: isLocationLoading,
   } = useLocationData();
 
-  // 카테고리 필터링 및 데이터 가공 함수
+  // 카테고리 필터링
   const processData = useCallback((data: AreaItem[]) => {
     return data.map((item) => ({
       ...item,
-      addr1: item.addr1.split(' ').slice(0, 2).join(' '),
-      title: item.title.length > 10 ? item.title.slice(0, 10) + '...' : item.title,
+      addr1: item.addr1,
+      title: item.title,
     }));
   }, []);
 

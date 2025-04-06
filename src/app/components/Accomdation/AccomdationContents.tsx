@@ -8,7 +8,6 @@ import MoreButton from '@/app/components/Common/MoreButton';
 import DataError from '@/app/components/Common/Error';
 import EmptyState from '@/app/components/Common/EmptyState';
 import AccomdationHeader from '@/app/components/Accomdation/AccomdationHeader';
-import { useStayProcessor } from '@/app/hooks/useStayProcessor';
 import AccomdationList from '@/app/components/Accomdation/AccomdationList';
 import AccomdationSkeleton from '@/app/components/Accomdation/AccomdationSkeleton';
 import Modal from '@/app/components/Common/Modal';
@@ -21,8 +20,6 @@ export default function AccomdationContents() {
   const { isModalOpen, openModal, closeModal } = useModalLogic();
 
   const { data: stayData, isLoading, error } = useStayData(selectedArea);
-
-  const processedStayData = useStayProcessor(stayData);
 
   return (
     <section className="mt-6 1xl:mx-auto 1xl:max-w-[62.5rem]">
@@ -68,7 +65,7 @@ export default function AccomdationContents() {
         ) : stayData && stayData.length > 0 ? (
           <>
             <AccomdationList
-              stays={processedStayData}
+              stays={stayData}
               onSlideChange={setCurrentPage}
               onCardClick={openModal}
             />

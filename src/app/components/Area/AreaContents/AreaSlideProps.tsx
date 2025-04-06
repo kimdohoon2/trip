@@ -1,7 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
 import useLike from '@/app/hooks/useLike';
+import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
+import { filterAddress, filterTitle } from '@/app/utils/filterDate';
 
 interface ItemTypes {
   item: {
@@ -41,11 +45,30 @@ export default function AreaSlideProps({ item, onClick }: ItemTypes) {
           />
         </div>
       </div>
-      <div className="shadow-indigo-500/40 lg:shadow-lg">
-        <p className="mt-2 text-center text-[0.8125rem] font-bold lg:text-lg">{item.title}</p>
-        <p className="text-center text-[0.6875rem] text-black lg:pb-3 lg:text-[0.9375rem]">
-          {item.addr1 || '주소를 준비중입니다.'}
+      <div className="shadow-lg">
+        <p className="mt-2 text-center text-[0.8125rem] font-bold lg:text-lg">
+          {filterTitle(item.title)}
         </p>
+        <div className="pb-2 md:flex md:items-center md:justify-center md:gap-2 lg:pb-3">
+          <p className="text-center text-[0.6875rem] text-black lg:text-[0.9375rem]">
+            {filterAddress(item.addr1 || '주소를 준비중입니다.')}
+          </p>
+          <div className="flex justify-center">
+            <Link
+              className="hover-button relative inline-block h-[1.875rem] w-[1.875rem] rounded-full border border-bordercolor text-sm lg:text-base"
+              href={createKakaoMapURL(item.addr1 || '주소를 준비중입니다.')}
+              target="_blank"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <FontAwesomeIcon
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                icon={faMapLocationDot}
+              />
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
