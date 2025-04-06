@@ -11,7 +11,7 @@ export default function MoreSkeleton() {
               <Skeleton className="h-full w-full rounded-full" />
             </div>
           </div>
-          <div className="shadow-indigo-500/40 lg:shadow-lg">
+          <div className="shadow-lg">
             <div className="text-left lg:pl-3">
               <Skeleton className="mb-2 h-6 w-3/4" />
               <Skeleton className="mb-2 h-4 w-1/2" />
