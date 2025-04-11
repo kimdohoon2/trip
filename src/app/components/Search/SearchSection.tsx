@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { SearchApiResponse } from '@/app/types/ItemType';
 import { filterAddress, filterTitle } from '@/app/utils/filterDate';
 import SearchPagination from '@/app/components/Search/SearchPagination';
@@ -63,13 +63,13 @@ export default function SearchSection({
   const endIndex = isExpanded ? startIndex + ITEMS_PER_PAGE : initialItems;
   const currentItems = items.slice(startIndex, endIndex);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-  };
+  }, []);
 
-  const handleShowMore = () => {
+  const handleShowMore = useCallback(() => {
     onExpand(contentTypeId);
-  };
+  }, [onExpand, contentTypeId]);
 
   return (
     <div className="mx-4 mb-4 rounded-2xl bg-white p-4 shadow-md lg:mb-8">

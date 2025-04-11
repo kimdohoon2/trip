@@ -8,20 +8,19 @@ import Providers from '@/app/providers/providers';
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-  title: '대한민국 구석구석',
-  description:
-    '대한민국 구석구석의 핵심 기능을 참고하여 개발하였으며, 일부는 원본과 유사하게 구현하고, 일부는 사용자 경험을 개선하여 차별화된 기능을 추가하였습니다. 국내 여행 정보를 효과적으로 탐색할 수 있는 서비스입니다.',
-  keywords: '대한민국 구석구석, 국내 여행, 관광 정보, 여행 플랫폼, 웹 개발',
+  title: '여행 어디가?',
+  description: '전국 숙박, 맛집, 관광지, 여행지, 행사 정보를 제공하는 국내 여행 정보 서비스입니다.',
+  keywords: '여행 어디가?, 국내 여행, 관광 정보, 여행 플랫폼, 웹 개발',
   openGraph: {
-    siteName: '대한민국 구석구석',
-    title: '대한민국 구석구석',
+    siteName: '여행 어디가?',
+    title: '여행 어디가?',
     type: 'website',
     description:
-      '대한민국 구석구석의 핵심 기능을 참고하여 개발하였으며, 일부는 원본과 유사하게 구현하고, 일부는 사용자 경험을 개선하여 차별화된 기능을 추가하였습니다. 국내 여행 정보를 효과적으로 탐색할 수 있는 서비스입니다.',
+      '전국 숙박, 맛집, 관광지, 여행지, 행사 정보를 제공하는 국내 여행 정보 서비스입니다.',
     images: [
       {
         url: 'https://koreantrip.vercel.app/meta/sum-meta-img.png',
-        alt: '대한민국 구석구석 이미지',
+        alt: '여행 어디가? 이미지',
       },
     ],
     url: 'https://koreantrip.vercel.app/',

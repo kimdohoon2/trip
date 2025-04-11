@@ -14,6 +14,7 @@ import { debounce } from 'lodash';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
 const MAX_ITEMS = 24;
+
 export default function MoreContents() {
   const { category } = useInteractionStore();
   const { selectedArea } = useUIStore();

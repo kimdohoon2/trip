@@ -86,7 +86,7 @@ export const useAreaContentsLogic = () => {
     setUserLocation(null);
   }, [selectedArea, setUserLocation]);
 
-  const regionText = selectedArea === '전국' ? '대한민국 구석구석,' : '우리지역,';
+  const regionText = selectedArea === '전국' ? '여행 어디가?,' : '우리지역,';
 
   const totalPages = useMemo(
     () => Math.ceil(filteredData.length / slidesPerView),
