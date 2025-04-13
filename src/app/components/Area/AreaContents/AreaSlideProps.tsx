@@ -41,11 +41,6 @@ export default function AreaSlideProps({ item, onClick }: ItemTypes) {
             toggleHeart(item.contentid);
           }}
           className="absolute right-2 top-2 h-5 w-5 cursor-pointer rounded-full bg-white lg:h-7 lg:w-7"
-          aria-label={
-            heartStates[item.contentid]
-              ? `${filterTitle(item.title)} 찜 삭제하기`
-              : `${filterTitle(item.title)} 찜하기`
-          }
         >
           <FontAwesomeIcon
             className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-sm ${heartStates[item.contentid] ? 'text-[#ff6b6b]' : 'text-black opacity-[50%]'} transition-transform duration-300 hover:text-[#ff6b6b] lg:text-lg`}
