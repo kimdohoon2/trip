@@ -18,21 +18,33 @@ import { useModalLogic } from '@/app/hooks/useModalLogic';
 export default function EventContents() {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState<Date | null>(null);
   const [selectedArea, setSelectedArea] = useState<string>('전국');
   const { isModalOpen, openModal, closeModal } = useModalLogic();
 
-  const eventStartDate = `${currentDate.getFullYear()}${(currentDate.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}${currentDate.getDate().toString().padStart(2, '0')}`;
+  useEffect(() => {
+    setCurrentDate(new Date());
+  }, []);
+
+  const eventStartDate = currentDate
+    ? `${currentDate.getFullYear()}${(currentDate.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}${currentDate.getDate().toString().padStart(2, '0')}`
+    : '';
 
   const { data: eventData, isLoading, error, refetch } = useEventData(selectedArea, eventStartDate);
 
   useEffect(() => {
-    refetch();
-    setActiveIndex(0);
-    swiperRef?.slideTo(0);
-  }, [currentDate, selectedArea, refetch, swiperRef]);
+    if (currentDate && eventStartDate) {
+      refetch();
+      setActiveIndex(0);
+      swiperRef?.slideTo(0);
+    }
+  }, [currentDate, selectedArea, refetch, swiperRef, eventStartDate]);
+
+  if (!currentDate) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="mt-8">
@@ -42,8 +54,12 @@ export default function EventContents() {
         <EventCalendar
           currentDate={currentDate}
           onDateChange={setCurrentDate}
-          onPrevDay={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)))}
-          onNextDay={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 1)))}
+          onPrevDay={() =>
+            setCurrentDate(new Date(new Date(currentDate).setDate(currentDate.getDate() - 1)))
+          }
+          onNextDay={() =>
+            setCurrentDate(new Date(new Date(currentDate).setDate(currentDate.getDate() + 1)))
+          }
         />
         {isLoading ? (
           <EventSkeleton />

@@ -74,13 +74,18 @@ export const useMainSlideLogic = () => {
 
   useEffect(() => {
     function handleResize() {
-      setShowNavigation(window.innerWidth >= 1024);
+      if (typeof window !== 'undefined') {
+        setShowNavigation(window.innerWidth >= 1024);
+      }
     }
 
-    handleResize(); // 초기 로드 시 실행
-    window.addEventListener('resize', handleResize);
+    // 클라이언트 사이드에서만 실행
+    if (typeof window !== 'undefined') {
+      handleResize(); // 초기 로드 시 실행
+      window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   return {
