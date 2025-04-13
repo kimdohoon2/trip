@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleLeft, faCircleRight } from '@fortawesome/free-regular-svg-icons';
+import { faCircleLeft } from '@fortawesome/free-regular-svg-icons/faCircleLeft';
+import { faCircleRight } from '@fortawesome/free-regular-svg-icons/faCircleRight';
 import CustomCalendar from '@/app/components/Calendar/CustomCalendar';
 
 interface EventCalendarProps {

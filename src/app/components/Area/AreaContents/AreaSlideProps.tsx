@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
+import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons/faMapLocationDot';
 import useLike from '@/app/hooks/useLike';
 import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
 import { filterAddress, filterTitle } from '@/app/utils/filterDate';

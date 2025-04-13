@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { AreaItem } from '@/app/types/ItemType';
 import { filterAddress, filterTitle } from '@/app/utils/filterDate';
 import createKakaoMapURL from '@/app/utils/createKakaoMapURL';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
 import { StayItem } from '@/app/types/ItemType';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons/faMapLocationDot';
 import { filterAddress, filterTitle } from '@/app/utils/filterDate';
 
 interface AccomdationCardProps {

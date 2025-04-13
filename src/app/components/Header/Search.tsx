@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import SearchModal from '@/app/components/Header/SearchModal';
 import { useSearchLogic } from '@/app/hooks/useSearchLogic';
 import { AnimatePresence } from 'framer-motion';

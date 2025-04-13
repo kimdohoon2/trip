@@ -1,10 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 import { useUIStore } from '@/app/stores/useAreaUiStore';
+
 interface CategorySelectorTypes {
   availableCategories: string[];
 }
+
 export default function CategorySelector({ availableCategories }: CategorySelectorTypes) {
   const { category, setCategory } = useInteractionStore();
   const { visible, setVisible } = useUIStore();

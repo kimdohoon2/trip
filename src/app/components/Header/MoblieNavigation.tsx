@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faHouseChimney, faMap } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faHouseChimney } from '@fortawesome/free-solid-svg-icons/faHouseChimney';
+import { faMap } from '@fortawesome/free-solid-svg-icons/faMap';
 import SearchModal from '@/app/components/Header/SearchModal';
 import { useSearchLogic } from '@/app/hooks/useSearchLogic';
 import ScrollToTopButton from '@/app/components/Common/ScrollToTopButton';

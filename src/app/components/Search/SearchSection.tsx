@@ -6,7 +6,7 @@ import { filterAddress, filterTitle } from '@/app/utils/filterDate';
 import SearchPagination from '@/app/components/Search/SearchPagination';
 import createKakaoMapURL from '@/app/utils/createKakaoMapURL';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons/faMapLocationDot';
 
 interface SearchSectionProps {
   contentTypeId: string;

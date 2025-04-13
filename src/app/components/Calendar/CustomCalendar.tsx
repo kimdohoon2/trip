@@ -3,7 +3,7 @@ import DateDisplay from '@/app/components/Calendar/DateDisplay';
 import CalendarHeader from '@/app/components/Calendar/CalendarHeader';
 import CalendarGrid from '@/app/components/Calendar/CalendarGrid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 
 interface CustomCalendarProps {
   selectedDate: Date;

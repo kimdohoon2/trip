@@ -10,7 +10,7 @@ import useTourDataInfinites from '@/app/hooks/useTourDataInfinites';
 import Toast from '@/app/components/Common/Toast';
 import Modal from '@/app/components/Common/Modal';
 import { useModalLogic } from '@/app/hooks/useModalLogic';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { useInteractionStore } from '@/app/stores/useInteractionStore';
 
 const MAX_ITEMS = 24;

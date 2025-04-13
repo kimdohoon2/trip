@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpLong } from '@fortawesome/free-solid-svg-icons';
+import { faUpLong } from '@fortawesome/free-solid-svg-icons/faUpLong';
 import useScrollTop from '@/app/hooks/useScrollTop';
 
 interface ScrollToTopButtonProps {
