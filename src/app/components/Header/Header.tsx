@@ -18,51 +18,46 @@ export default function Header() {
   const SCROLL_THRESHOLD = 50; // 스크롤 임계값 (픽셀 단위)
   const THROTTLE_DELAY = 200; // 스로틀링 딜레이 (밀리초 단위)
 
-  // 컴포넌트가 마운트 된 후에 초기 스크롤 값 설정
+  // 클라이언트 사이드에서만 실행
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setLastScrollY(window.scrollY);
-    }
+    // 컴포넌트가 마운트 된 후에 초기 스크롤 값 설정
+    setLastScrollY(window.scrollY);
   }, []);
 
   const controlHeader = useMemo(
     () =>
       throttle(() => {
-        if (typeof window !== 'undefined') {
-          const currentScrollY = window.scrollY;
+        const currentScrollY = window.scrollY;
 
-          if (window.innerWidth < 1024) {
-            // 모바일 환경
-            if (Math.abs(currentScrollY - lastScrollY) > SCROLL_THRESHOLD) {
-              if (currentScrollY > lastScrollY) {
-                // 아래로 스크롤
-                setIsHeaderVisible(false);
-              } else {
-                // 위로 스크롤
-                setIsHeaderVisible(true);
-              }
-              setLastScrollY(currentScrollY);
+        if (window.innerWidth < 1024) {
+          // 모바일 환경
+          if (Math.abs(currentScrollY - lastScrollY) > SCROLL_THRESHOLD) {
+            if (currentScrollY > lastScrollY) {
+              // 아래로 스크롤
+              setIsHeaderVisible(false);
+            } else {
+              // 위로 스크롤
+              setIsHeaderVisible(true);
             }
-          } else {
-            // 데스크톱 환경
-            setHeaderScrolled(currentScrollY > 10);
+            setLastScrollY(currentScrollY);
           }
+        } else {
+          // 데스크톱 환경
+          setHeaderScrolled(currentScrollY > 10);
         }
       }, THROTTLE_DELAY),
     [lastScrollY]
   );
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlHeader);
-      window.addEventListener('resize', controlHeader);
+    window.addEventListener('scroll', controlHeader);
+    window.addEventListener('resize', controlHeader);
 
-      return () => {
-        window.removeEventListener('scroll', controlHeader);
-        window.removeEventListener('resize', controlHeader);
-        controlHeader.cancel();
-      };
-    }
+    return () => {
+      window.removeEventListener('scroll', controlHeader);
+      window.removeEventListener('resize', controlHeader);
+      controlHeader.cancel();
+    };
   }, [controlHeader]);
 
   return (

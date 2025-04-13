@@ -25,8 +25,12 @@ export default function EventCard({ event, onClick }: EventCardProps) {
             className="absolute h-full w-full rounded-lg object-contain 2xl:object-cover"
             src={event.firstimage || '/error/no-image.png'}
             alt={event.title}
-            width={300}
-            height={300}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{
+              objectFit: 'contain',
+              borderRadius: '0.5rem',
+            }}
             loading="lazy"
           />
         </div>

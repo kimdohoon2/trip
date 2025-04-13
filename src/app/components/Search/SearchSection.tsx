@@ -82,13 +82,16 @@ export default function SearchSection({
             onClick={onClick}
           >
             <div className="flex gap-4">
-              <div className="mb-2 h-16 w-24 lg:h-32 lg:w-44">
+              <div className="relative mb-2 h-16 w-24 lg:h-32 lg:w-44">
                 <Image
                   className="h-full w-full object-cover"
                   src={item.firstimage || '/error/no-image.png'}
                   alt={item.title}
-                  width={300}
-                  height={225}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
                 />
               </div>
               <div className="flex w-full justify-between">

@@ -9,14 +9,18 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   // 클라이언트 사이드에서만 테마 정보 로드
   useEffect(() => {
-    const storedTheme = sessionStorage.getItem('theme');
-    setTheme(storedTheme || '');
+    try {
+      const storedTheme = sessionStorage?.getItem('theme');
+      setTheme(storedTheme || '');
 
-    // HTML 요소의 클래스 설정
-    if (storedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+      // HTML 요소의 클래스 설정
+      if (storedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (error) {
+      console.error('테마 설정 중 오류 발생:', error);
     }
   }, []);
 

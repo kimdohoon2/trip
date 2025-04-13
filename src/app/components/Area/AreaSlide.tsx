@@ -12,13 +12,16 @@ import { faCircleRight } from '@fortawesome/free-solid-svg-icons/faCircleRight';
 import Spinner from '@/app/components/Common/Spinner';
 import { useLocationData } from '@/app/hooks/useLocationData';
 import { useLocationStore } from '@/app/stores/useLocationStore';
-import { useUIStore } from '@/app/stores/useAreaUiStore';
+import { useUIStore, useWindowSizeEffect } from '@/app/stores/useAreaUiStore';
 
 export default function AreaSlide() {
   // 상태 변수 및 훅
   const { userLocation } = useLocationStore();
   const { data: locationData } = useLocationData();
   const { selectedArea, setSelectedArea } = useUIStore();
+
+  // 창 크기 추적
+  useWindowSizeEffect();
 
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -72,10 +75,7 @@ export default function AreaSlide() {
     <>
       <div className="overflow-hidden lg:flex lg:w-full lg:items-center lg:justify-between lg:p-6 1xl:m-auto 1xl:w-[62.5rem]">
         {/* 이전 슬라이드 버튼 */}
-        <div
-          className="swiper-button-prev hidden cursor-pointer text-[1.375rem] text-black lg:block"
-          aria-label="이전 슬라이드로 이동"
-        >
+        <div className="swiper-button-prev hidden cursor-pointer text-[1.375rem] text-black lg:block">
           <FontAwesomeIcon icon={faCircleLeft} />
         </div>
 
@@ -139,10 +139,7 @@ export default function AreaSlide() {
         </div>
 
         {/* 다음 슬라이드 버튼 */}
-        <div
-          className="swiper-button-next hidden cursor-pointer text-[1.375rem] text-black lg:block"
-          aria-label="다음 슬라이드로 이동"
-        >
+        <div className="swiper-button-next hidden cursor-pointer text-[1.375rem] text-black lg:block">
           <FontAwesomeIcon icon={faCircleRight} />
         </div>
       </div>

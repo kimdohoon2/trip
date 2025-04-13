@@ -21,8 +21,8 @@ const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({
   const { scrollToTop } = useScrollTop();
 
   return (
-    <div className={className} onClick={scrollToTop}>
-      <button aria-label="페이지 맨 위로 이동" className={buttonClassName}>
+    <div className={className}>
+      <button aria-label="페이지 맨 위로 이동" onClick={scrollToTop} className={buttonClassName}>
         <FontAwesomeIcon icon={faUpLong} />
         {showText && <span className={spanClassName}>{text}</span>}
       </button>
