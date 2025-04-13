@@ -12,11 +12,11 @@ export default function MoreSkeleton() {
             </div>
           </div>
           <div className="shadow-lg">
-            <div className="text-left lg:pl-3">
-              <Skeleton className="mb-2 h-6 w-3/4" />
-              <Skeleton className="mb-2 h-4 w-1/2" />
+            <div>
+              <Skeleton className="mx-auto mb-2 h-6 w-3/4" />
+              <Skeleton className="mx-auto mb-2 h-4 w-1/2" />
               <div className="mt-2 lg:mb-4 lg:mt-7">
-                <Skeleton className="h-4 w-1/2 rounded-xl" />
+                <Skeleton className="mx-auto h-4 w-1/2 rounded-xl" />
               </div>
             </div>
           </div>

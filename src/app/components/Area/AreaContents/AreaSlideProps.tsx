@@ -29,8 +29,11 @@ export default function AreaSlideProps({ item, onClick }: ItemTypes) {
           className="h-full w-full object-cover"
           src={item.firstimage || '/error/no-image.png'}
           alt={item.title}
-          width={300}
-          height={225}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
         <div
           onClick={(e) => {
@@ -38,7 +41,6 @@ export default function AreaSlideProps({ item, onClick }: ItemTypes) {
             toggleHeart(item.contentid);
           }}
           className="absolute right-2 top-2 h-5 w-5 cursor-pointer rounded-full bg-white lg:h-7 lg:w-7"
-          role="button"
           aria-label={
             heartStates[item.contentid]
               ? `${filterTitle(item.title)} 찜 삭제하기`

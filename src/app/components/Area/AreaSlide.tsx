@@ -74,7 +74,6 @@ export default function AreaSlide() {
         {/* 이전 슬라이드 버튼 */}
         <div
           className="swiper-button-prev hidden cursor-pointer text-[1.375rem] text-black lg:block"
-          role="button"
           aria-label="이전 슬라이드로 이동"
         >
           <FontAwesomeIcon icon={faCircleLeft} />
@@ -142,7 +141,6 @@ export default function AreaSlide() {
         {/* 다음 슬라이드 버튼 */}
         <div
           className="swiper-button-next hidden cursor-pointer text-[1.375rem] text-black lg:block"
-          role="button"
           aria-label="다음 슬라이드로 이동"
         >
           <FontAwesomeIcon icon={faCircleRight} />

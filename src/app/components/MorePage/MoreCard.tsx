@@ -28,8 +28,12 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
                 className="h-full w-full rounded-lg object-cover"
                 src={more.firstimage || '/error/no-image.png'}
                 alt={more.title}
-                width={300}
-                height={200}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{
+                  objectFit: 'cover',
+                  borderRadius: '0.5rem',
+                }}
                 loading="lazy"
               />
               <div
@@ -38,7 +42,6 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
                   toggleHeart(more.contentid);
                 }}
                 className="absolute right-2 top-2 h-5 w-5 cursor-pointer rounded-full bg-white lg:h-7 lg:w-7"
-                role="button"
                 aria-label={
                   heartStates[more.contentid]
                     ? `${filterTitle(more.title)} 찜 삭제하기`
@@ -52,7 +55,7 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
               </div>
             </div>
             <div className="shadow-lg">
-              <div className="text-left lg:pl-3">
+              <div className="text-center">
                 <h1 className="text-base font-bold lg:text-lg">{filterTitle(more.title)}</h1>
                 <p className="text-xs lg:text-sm">
                   {filterAddress(more.addr1 || '주소를 준비중입니다.')}
