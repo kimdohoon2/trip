@@ -72,7 +72,11 @@ export default function AreaSlide() {
     <>
       <div className="overflow-hidden lg:flex lg:w-full lg:items-center lg:justify-between lg:p-6 1xl:m-auto 1xl:w-[62.5rem]">
         {/* 이전 슬라이드 버튼 */}
-        <div className="swiper-button-prev hidden cursor-pointer text-[1.375rem] text-black lg:block">
+        <div
+          className="swiper-button-prev hidden cursor-pointer text-[1.375rem] text-black lg:block"
+          role="button"
+          aria-label="이전 슬라이드로 이동"
+        >
           <FontAwesomeIcon icon={faCircleLeft} />
         </div>
 
@@ -136,7 +140,11 @@ export default function AreaSlide() {
         </div>
 
         {/* 다음 슬라이드 버튼 */}
-        <div className="swiper-button-next hidden cursor-pointer text-[1.375rem] text-black lg:block">
+        <div
+          className="swiper-button-next hidden cursor-pointer text-[1.375rem] text-black lg:block"
+          role="button"
+          aria-label="다음 슬라이드로 이동"
+        >
           <FontAwesomeIcon icon={faCircleRight} />
         </div>
       </div>

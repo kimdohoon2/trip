@@ -38,6 +38,12 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
                   toggleHeart(more.contentid);
                 }}
                 className="absolute right-2 top-2 h-5 w-5 cursor-pointer rounded-full bg-white lg:h-7 lg:w-7"
+                role="button"
+                aria-label={
+                  heartStates[more.contentid]
+                    ? `${filterTitle(more.title)} 찜 삭제하기`
+                    : `${filterTitle(more.title)} 찜하기`
+                }
               >
                 <FontAwesomeIcon
                   className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-sm ${heartStates[more.contentid] ? 'text-[#ff6b6b]' : 'text-black opacity-[50%]'} transition-transform duration-300 hover:text-[#ff6b6b] lg:text-lg`}
@@ -59,6 +65,7 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
+                    aria-label={`${filterTitle(more.title)} 위치 카카오맵에서 길찾기`}
                   >
                     길찾기
                   </Link>

@@ -14,7 +14,12 @@ export default function CategorySelector({ availableCategories }: CategorySelect
   return (
     <div className="align-center relative flex items-center">
       <span className="mr-2 text-sm text-bgopacity lg:text-2xl">다양한</span>
-      <button onClick={() => setVisible(!visible)}>
+      <button
+        onClick={() => setVisible(!visible)}
+        aria-label={`카테고리 선택: 현재 ${category}`}
+        aria-expanded={visible}
+        aria-controls="category-dropdown"
+      >
         <div className="z-20 flex w-[7.5rem] justify-between border-b border-black bg-white text-lg font-bold lg:w-[10.625rem] lg:text-3xl 1xl:w-[12.1875rem]">
           {category}
           <span>
@@ -25,6 +30,7 @@ export default function CategorySelector({ availableCategories }: CategorySelect
           </span>
         </div>
         <ul
+          id="category-dropdown"
           aria-hidden={!visible}
           className={`absolute top-[1.8125rem] z-10 w-full max-w-[7.5rem] lg:top-[2.375rem] lg:max-w-[10.625rem] ${visible ? 'block' : 'hidden'}`}
         >

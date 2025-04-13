@@ -21,6 +21,7 @@ export default function Footer() {
             className="flex w-full items-center gap-2"
             href="https://github.com/kimdohoon2/trip"
             target="_blank"
+            aria-label="kimdohoon2의 Github 페이지로 이동"
           >
             <FontAwesomeIcon icon={faGithub} />
             <span>kimdohoon2</span>
