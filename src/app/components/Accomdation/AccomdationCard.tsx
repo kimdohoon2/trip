@@ -16,11 +16,14 @@ export default function AccomdationCard({ stay, onClick }: AccomdationCardProps)
     <div className="rounded-lg bg-white shadow-md" onClick={onClick}>
       <div className="relative aspect-[4/3]">
         <Image
-          className="h-full w-full"
+          className="h-full w-full rounded-t-lg"
           src={stay.firstimage || '/error/no-image.png'}
           alt={stay.title}
-          width={300}
-          height={225}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{
+            objectFit: 'cover',
+          }}
           loading="lazy"
         />
       </div>
