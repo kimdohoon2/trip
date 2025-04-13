@@ -26,7 +26,7 @@ export default function AreaSlideProps({ item, onClick }: ItemTypes) {
         onClick={onClick}
       >
         <Image
-          className="h-full w-full object-cover"
+          className="object-cover"
           src={item.firstimage || '/error/no-image.png'}
           alt={item.title}
           fill

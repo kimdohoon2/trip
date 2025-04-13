@@ -25,7 +25,7 @@ export default function MoreCard({ moreData, onClick }: MoreCardProps) {
           >
             <div className="relative mb-2 aspect-[4/3] h-[34.38vw] w-full lg:h-[13.75rem]">
               <Image
-                className="h-full w-full rounded-lg object-cover"
+                className="rounded-lg object-cover"
                 src={more.firstimage || '/error/no-image.png'}
                 alt={more.title}
                 fill
