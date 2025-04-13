@@ -19,11 +19,18 @@ const MainSlideControls: React.FC<MainSlideControlsProps> = ({
   return (
     <div className="lg:flex lg:w-[12.5rem] lg:items-center lg:justify-between">
       {showNavigation && (
-        <div className="swiper-button-prev cursor-pointer text-lg">
+        <div
+          className="swiper-button-prev cursor-pointer text-lg"
+          aria-label="이전 슬라이드로 이동"
+        >
           <FontAwesomeIcon icon={faArrowLeft} />
         </div>
       )}
-      <div className="cursor-pointer p-3" onClick={handlePlayPause}>
+      <button
+        className="cursor-pointer p-3"
+        onClick={handlePlayPause}
+        aria-label={isPlaying ? '슬라이드 일시정지' : '슬라이드 재생'}
+      >
         {isPlaying ? (
           <div className="text-black">
             <FontAwesomeIcon icon={faPause} />
@@ -33,9 +40,12 @@ const MainSlideControls: React.FC<MainSlideControlsProps> = ({
             <FontAwesomeIcon icon={faPlay} />
           </div>
         )}
-      </div>
+      </button>
       {showNavigation && (
-        <div className="swiper-button-next cursor-pointer text-lg">
+        <div
+          className="swiper-button-next cursor-pointer text-lg"
+          aria-label="다음 슬라이드로 이동"
+        >
           <FontAwesomeIcon icon={faArrowRight} />
         </div>
       )}

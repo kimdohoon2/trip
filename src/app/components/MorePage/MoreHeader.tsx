@@ -56,13 +56,18 @@ export default function MoreHeader() {
                   onClick={() => handleSlideClick(index)}
                 >
                   <Image
-                    className={`rounded-full border-2 object-cover lg:w-full ${
+                    className={`rounded-full border-2 object-cover ${
                       slide.title === selectedArea ? 'border-black' : 'border-transparent'
                     }`}
                     src={slide.image}
                     alt={slide.title}
                     width={52}
                     height={52}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      aspectRatio: '1 / 1',
+                    }}
                   />
                   <p
                     className={`mt-2 text-center text-[0.75rem] md:text-base ${
