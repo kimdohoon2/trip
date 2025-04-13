@@ -35,9 +35,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const theme = typeof window !== 'undefined' && sessionStorage.getItem('theme');
   return (
-    <html lang="ko" className={theme === 'dark' ? 'dark' : ''}>
+    <html lang="ko">
       <head>
         <link
           rel="stylesheet"

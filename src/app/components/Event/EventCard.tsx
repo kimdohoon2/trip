@@ -61,6 +61,7 @@ export default function EventCard({ event, onClick }: EventCardProps) {
               }}
               href={createKakaoMapURL(event.addr1)}
               target="_blank"
+              aria-label={`${filterTitle(event.title)} 위치 카카오맵에서 길찾기`}
             >
               길찾기
             </Link>

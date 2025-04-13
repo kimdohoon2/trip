@@ -18,6 +18,13 @@ export default function Header() {
   const SCROLL_THRESHOLD = 50; // 스크롤 임계값 (픽셀 단위)
   const THROTTLE_DELAY = 200; // 스로틀링 딜레이 (밀리초 단위)
 
+  // 컴포넌트가 마운트 된 후에 초기 스크롤 값 설정
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLastScrollY(window.scrollY);
+    }
+  }, []);
+
   const controlHeader = useMemo(
     () =>
       throttle(() => {

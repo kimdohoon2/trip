@@ -35,21 +35,21 @@ export default function SearchSection({
 
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth >= 1024) {
-          setInitialItems(8);
-        } else if (window.innerWidth >= 768) {
-          setInitialItems(6);
-        } else {
-          setInitialItems(5);
-        }
+      if (window.innerWidth >= 1024) {
+        setInitialItems(8);
+      } else if (window.innerWidth >= 768) {
+        setInitialItems(6);
+      } else {
+        setInitialItems(5);
       }
     };
 
-    handleResize(); // 초기 실행
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
+    // 클라이언트 사이드에서만 실행되도록 합니다
+    if (typeof window !== 'undefined') {
+      handleResize(); // 초기 실행
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   useEffect(() => {

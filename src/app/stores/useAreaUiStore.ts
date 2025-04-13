@@ -25,7 +25,7 @@ export const useUIStore = create<UIStoreState>((set) => ({
   setVisible: (visible) => set({ visible }),
   slidesPerView: 3,
   setSlidesPerView: (count) => set({ slidesPerView: count }),
-  windowSize: typeof window !== 'undefined' ? window.innerWidth : 0,
+  windowSize: 0,
   setWindowSize: (size) => set({ windowSize: size }),
   activeIndex: 0,
   setActiveIndex: (index) => set({ activeIndex: index }),
