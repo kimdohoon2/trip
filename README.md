@@ -76,7 +76,9 @@
 
 ## Lighthouse검사결과
 
-![라이트하우스](https://github.com/user-attachments/assets/b11d82af-6bd5-4af8-bdf1-9fab5ec0999a)
+![100점라이트하우스](https://github.com/user-attachments/assets/845f9a44-416d-406c-a223-348f608a9b7f)
+- 리팩토링을 통해 성능, 접근성, Best Practices, SEO 모든 항목에서 100점 만점을 달성하였습니다.
+
 
 ## 향후 개선 사항 및 발전 계획
 
