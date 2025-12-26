@@ -22,22 +22,29 @@ export interface StayItem {
   firstimage2: string;
   contentid: string;
   contenttypeid: string;
-  benikia?: string; // 베니케아 여부
-  hanok?: string; // 한옥 여부
-  goodstay?: string; // 굿스테이 여부
   areaCode?: string; // 지역 코드
 }
 export interface EventItem {
   title: string;
   addr1: string;
+  addr2?: string;
   firstimage: string;
   firstimage2: string;
-  contentid: string;
   contenttypeid: string;
-  tel: string;
-  areaCode?: string; // 지역 코드
+  contentid: string;
+  tel?: string;
   eventstartdate: string;
   eventenddate: string;
+  mapx?: string;
+  mapy?: string;
+  areacode?: string;
+  sigungucode?: string;
+  // 새로 추가된 필드들
+  progresstype?: string; // 1: 진행중, 2: 진행예정, 3: 진행완료
+  festivaltype?: string; // 행사 유형
+  cat1?: string;
+  cat2?: string;
+  cat3?: string;
 }
 
 export interface LocationApiResponse {

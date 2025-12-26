@@ -1,55 +1,56 @@
 import axios from 'axios';
-import xml2js from 'xml2js';
 import { EventItem } from '@/app/types/ItemType';
 import { areaCodeMap } from '@/app/constant/SlideConstant';
-import { API_URLS, TOUR_API_KEY } from '@/app/constant/apiConstants';
 
-// 행사 정보 조회
+interface EventApiOptions {
+  numOfRows?: number;
+  pageNo?: number;
+  eventEndDate?: string;
+}
+
 export const getEventApi = async (
   selectedArea: string,
-  eventStartDate: string
+  eventStartDate: string,
+  options?: EventApiOptions
 ): Promise<EventItem[]> => {
-  const areaCode = areaCodeMap[selectedArea] || ''; // 선택된 지역의 areaCode
-  const params = {
-    MobileApp: 'AppTest',
-    MobileOS: 'ETC',
-    pageNo: 1,
-    numOfRows: 5,
-    eventStartDate,
-    eventEndDate: eventStartDate, // 종료일을 동일하게 지정
-    areaCode,
-    arrange: 'R',
-    listYN: 'Y',
-  };
+  const areaCode = areaCodeMap[selectedArea] || '';
 
-  try {
-    const response = await axios.get(`${API_URLS.EVENT_BASED}?serviceKey=${TOUR_API_KEY}`, {
-      params,
-    });
+  const response = await axios.get('/api/event', {
+    params: {
+      eventStartDate,
+      eventEndDate: options?.eventEndDate || eventStartDate,
+      areaCode,
+      pageNo: options?.pageNo || 1,
+      numOfRows: options?.numOfRows || 5,
+      arrange: 'R',
+    },
+  });
 
-    // XML 데이터를 JSON으로 변환
-    const parsedData = await xml2js.parseStringPromise(response.data, { explicitArray: false });
+  const rawItems = response.data?.response?.body?.items?.item;
 
-    // API 응답에서 items가 없을 경우 기본값 처리
-    const items = parsedData.response?.body?.items?.item || [];
+  if (!rawItems) return [];
 
-    // `items`가 객체로 들어올 수도 있으므로 배열인지 확인 후 변환
-    const eventItems: EventItem[] = Array.isArray(items) ? items : [items];
+  const items = Array.isArray(rawItems) ? rawItems : [rawItems];
 
-    // 필요한 값만 추출
-    return eventItems.map((item) => ({
-      title: item.title,
-      addr1: item.addr1 || '',
-      firstimage: item.firstimage || '',
-      firstimage2: item.firstimage2 || '',
-      contenttypeid: item.contenttypeid || '',
-      contentid: item.contentid || '',
-      tel: item.tel || '',
-      eventstartdate: item.eventstartdate || '',
-      eventenddate: item.eventenddate || '',
-    }));
-  } catch (error) {
-    console.error('API 오류:', error);
-    throw new Error('데이터를 불러오는 중 오류가 발생했습니다.');
-  }
+  return items.filter(Boolean).map((item) => ({
+    title: item.title ?? '',
+    addr1: item.addr1 ?? '',
+    addr2: item.addr2 ?? '',
+    firstimage: item.firstimage ?? '',
+    firstimage2: item.firstimage2 ?? '',
+    contenttypeid: item.contenttypeid ?? '',
+    contentid: item.contentid ?? '',
+    tel: item.tel ?? '',
+    eventstartdate: item.eventstartdate ?? '',
+    eventenddate: item.eventenddate ?? '',
+    mapx: item.mapx ?? '',
+    mapy: item.mapy ?? '',
+    areacode: item.areacode ?? '',
+    sigungucode: item.sigungucode ?? '',
+    progresstype: item.progresstype ?? '',
+    festivaltype: item.festivaltype ?? '',
+    cat1: item.cat1 ?? '',
+    cat2: item.cat2 ?? '',
+    cat3: item.cat3 ?? '',
+  }));
 };
